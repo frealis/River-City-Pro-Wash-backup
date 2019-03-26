@@ -5,7 +5,7 @@
 {% block title %} River City Pro Wash {% endblock %}
 
 <!-- JavaScript -->
-{% block js %} <script src="{% static 'js/index.js' %}"></script> {% endblock %}
+{% block js %} <script src="{% static 'js/test.js' %}"></script> {% endblock %}
 
 <!-- Body -->
 {% block body %}
@@ -110,7 +110,7 @@
           <input id="name" name="name"type="text" maxlength="64"><br>
 
           Address<br>
-          <input id="address" name="address" type="text" maxlength="140"><br>
+          <input id="address" name="address" type="text" maxlength="200"><br>
 
           Phone Number<br>
           <span class="font_size22">(</span> 
@@ -118,13 +118,16 @@
           <span class="font_size22">)</span>
           <input id="phone_3d" name="phone_3d" class="phone" type="tel" maxlength="3" size="3" onkeypress="return keypress(event)"> 
           <span class="font_size22">-</span> 
-          <input id="phone_4d" name="phone_4d" class="phone" type="tel" maxlength="4" size="4" onkeypress="return keypress(event)"><br>
+          <input id="phone_4d" name="phone_4d" class="phone" type="tel" maxlength="4" size="4" onkeypress="return keypress(event)">
+          <!-- <span class="font_size22"> ext.</span>  -->
+          ext.
+          <input id="phone_ext" name="phone_ext" class="phone" type="tel" maxlength="12" size="4"><br>
 
           Email Address <span class="red">*</span><br>
           <input id="email" name="email" type="email" maxlength="64"><br>
 
           Message <span class="red">*</span><br>
-          <input id="message" name="message" type="text" style="width: 100%" placeholder="Enter a message" maxlength="800"><br><br>
+          <textarea id="message" name="message" type="text" style="width: 100%; height: 120px" placeholder="Enter a message" maxlength="800"></textarea><br>
         </form>
         
         <p><span class="red">*</span> indicates a required field</p>

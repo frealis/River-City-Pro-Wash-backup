@@ -1,22 +1,18 @@
-.red {
-  color: red;
+/* Remove number spin buttons for Firefox */
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+/* Remove number spin buttons for Webkit browsers like Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input[type='text'], input[type='email'] {
   width: 100%;
   margin: 8px 0;
-}
-
-/* For Firefox */
-input[type='number'] {
-  -moz-appearance:textfield;
-}
-
-/* Webkit browsers like Safari and Chrome */
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 
 .font_size22 {
@@ -26,4 +22,8 @@ input[type=number]::-webkit-outer-spin-button {
 .phone {
   margin: 8px 0;
   text-align: center;
+}
+
+.red {
+  color: red;
 }
