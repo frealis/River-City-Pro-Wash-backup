@@ -17,8 +17,6 @@ def test(request):
     email = request.POST['email']
     message = request.POST['message']
 
-    # print('name: ', name, 'address: ', address, 'phone: ', phone, 'email: ', email, 'message: ', message)
-
     # Save data submitted from the "Contact Us" form to sqlite3 database
     from web_app.models import Message
     m = Message(name=name, address=address, phone=phone, email=email, message=message)

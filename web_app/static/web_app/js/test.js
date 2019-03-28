@@ -40,24 +40,63 @@ document.addEventListener('DOMContentLoaded', function() {
     let email     = document.querySelector('#email').value;
     let message   = document.querySelector('#message').value;
 
-    console.log('name: ', name, 'address: ', address, 'phone: ', phone, 'email: ', email, 'message: ', message);
+    // Ensure that the Name, Email Address, and Message fields are not empty in
+    // the "Contact Us" form
+    if (name !== '' && email !== '' && message !== '') {
 
-    // Append user input to message_data (the FormData() object)
-    const message_data = new FormData();
-    message_data.append('name',       name);
-    message_data.append('address',    address);
-    message_data.append('phone',      phone);
-    message_data.append('email',      email);
-    message_data.append('message',    message);
+      // Clear "Contact Us" form data after submission
+      document.querySelector('#name').value = '';
+      document.querySelector('#address').value = '';
+      document.querySelector('#phone_ac').value = '';
+      document.querySelector('#phone_3d').value = '';
+      document.querySelector('#phone_4d').value = '';
+      document.querySelector('#email').value = '';
+      document.querySelector('#message').value = '';
 
-    // View the contents of FormData() in browser console
-    // for (let i of message_data.entries()) {
-    //   console.log(i);
-    // };
+      // Clear the error message and revert required field headers to default in
+      // case the user had previously submitted an incomplete form
+      document.querySelector('#alert').innerHTML = "";
+      document.querySelector('#alert').className = "";
+      required_fields = document.querySelectorAll('#required_field');
+      for (let i = 0; i < required_fields.length; i++) {
+        required_fields[i].style.color="black";
+      };
 
-    // Send FormData() object to server
-    request.send(message_data);
-    return false;
+      // console.log('name: ', name, 'address: ', address, 'phone: ', phone, 'email: ', email, 'message: ', message);
+
+      // Append user input to message_data (the FormData() object)
+      const message_data = new FormData();
+      message_data.append('name',       name);
+      message_data.append('address',    address);
+      message_data.append('phone',      phone);
+      message_data.append('email',      email);
+      message_data.append('message',    message);
+      message_data.append('success',    true);
+
+      // View the contents of FormData() in browser console
+      // for (let i of message_data.entries()) {
+      //   console.log(i);
+      // };
+
+      // Send a "Message successfully sent!" alert to the DOM in the event of a
+      // successful "Contact Us" form submission
+      document.querySelector('#alert').innerHTML = "Your message has been sent!";
+      document.querySelector('#alert').className = "alert alert-success";
+
+      // Send FormData() object to server
+      request.send(message_data);
+      return false;
+
+    // Display error message and highlight required fields if any of them are
+    // empty
+    } else {
+      document.querySelector('#alert').innerHTML = "Please fill in all required fields.";
+      document.querySelector('#alert').className = "alert alert-danger";
+      required_fields = document.querySelectorAll('#required_field');
+      for (let i = 0; i < required_fields.length; i++) {
+        required_fields[i].style.color="red";
+      };
+    };
   };
 });
 
