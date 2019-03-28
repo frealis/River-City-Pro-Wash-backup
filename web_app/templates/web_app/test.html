@@ -103,7 +103,7 @@
 
       <!-- CONTACT US -->
       <div class="col-lg-5">
-        <h2 class="text-center">Contact Us</h2>
+        <h2>Contact Us</h2>
         <p>Fill out the form below send us a message, ask a question, or request a free quote!</p>
         
         <form id="contact_us_form">
@@ -134,35 +134,67 @@
       </div><!-- /.col-lg-5 -->
 
       <!-- SERVICES & MAP -->
-      <div class="col-lg-7 text-center">
+      <div class="col-lg-7">
         <h2>Our Services</h2>
-        <p class="alert alert-primary">House Washing · Concrete/Brick Washing · Deck Washing · Deck Staining</p>
-        <!-- <span style="width: 100%" class="text_center red">House Washing · Concrete/Brick Washing · Deck Washing · Deck Staining</span> -->
-        <!-- <ul>
-          <li>House Washing</li>
-          <li>Concrete/Brick Washing</li>
-          <li>Deck Washing</li>
-          <li>Deck Staining</li>
-        </ul> -->
+        <p class="alert alert-primary text-center">House Washing · Concrete/Brick Washing · Deck Washing · Deck Staining</p>
+        <h5>We service Richmond VA and the surrounding areas, including:</h5>
+        <ul>
+          <li>Chesterfield</li>
+          <li>Chester</li>
+          <li>Glen Allen</li>
+          <li>Mechanicsville</li>
+          <li>Midlothian</li>
+          <li>Woodlake</li>
+        </ul>
 
         <div id="map"></div>
         <script>
           function initMap() {
-            var Richmond_VA = {lat: 37.540, lng: -77.436};
+            var Chesterfield_VA = {lat: 37.377, lng: -77.505};
+            var Chester_VA = {lat: 37.359, lng: -77.442};
             var Glen_Allen_VA = {lat: 37.666, lng: -77.506};
+            var Mechanicsville_VA = {lat: 37.608, lng: -77.373};
+            var Midlothian_VA = {lat: 37.506, lng: -77.649};
+            var Richmond_VA = {lat: 37.540, lng: -77.436};
+            var Woodlake_VA = {lat: 37.420, lng: -77.679};
             var map = new google.maps.Map(document.getElementById('map'), {
               zoom: 10,
               center: Richmond_VA
+            });
+            var marker_Chesterfield_VA = new google.maps.Marker({
+              position: Chesterfield_VA,
+              map: map,
+              title: 'Chesterfield, VA'
+            });
+            var marker_Chester_VA = new google.maps.Marker({
+              position: Chester_VA,
+              map: map,
+              title: 'Chester, VA'
+            });
+            var marker_Glen_Allen_VA = new google.maps.Marker({
+              position: Glen_Allen_VA,
+              map: map,
+              title: 'Glen Allen, VA'
+            });
+            var marker_Mechanicsville_VA = new google.maps.Marker({
+              position: Mechanicsville_VA,
+              map: map,
+              title: 'Mechanicsville, VA'
+            });
+            var marker_Midlothian_VA = new google.maps.Marker({
+              position: Midlothian_VA,
+              map: map,
+              title: 'Midlothian, VA'
             });
             var marker_Richmond_VA = new google.maps.Marker({
               position: Richmond_VA,
               map: map,
               title: 'Richmond, VA'
             });
-            var marker_Glen_Allen_VA = new google.maps.Marker({
-              position: Glen_Allen_VA,
+            var marker_Woodlake_VA = new google.maps.Marker({
+              position: Woodlake_VA,
               map: map,
-              title: 'Glen Allen, VA'
+              title: 'Woodlake, VA'
             });
           }
         </script>
