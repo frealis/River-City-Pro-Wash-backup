@@ -100,18 +100,17 @@
 
     <!-- TWO COLUMNS -->
     <div class="row">
+
+      <!-- CONTACT US -->
       <div class="col-lg-5">
-        <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> -->
         <h2>Contact Us</h2>
         <p>Fill out the form below send us a message, ask a question, or request a free quote!</p>
         
         <form id="contact_us_form">
           <span id="required_field">Name</span> <span class="red">*</span><br>
           <input id="name" name="name"type="text" maxlength="64"><br>
-
           Address<br>
           <input id="address" name="address" type="text" maxlength="200"><br>
-
           Phone Number<br>
           <span class="font_size22">(</span> 
             <input id="phone_ac" name="phone_ac" class="phone" type="tel" maxlength="3" size="3" onkeypress="return noLetters(event)"> 
@@ -121,10 +120,8 @@
           <input id="phone_4d" name="phone_4d" class="phone" type="tel" maxlength="4" size="4" onkeypress="return noLetters(event)">
           ext.
           <input id="phone_ext" name="phone_ext" class="phone" type="tel" maxlength="12" size="4" onkeypress="return noSpaces(event)"><br>
-
           <span id="required_field">Email Address</span> <span class="red">*</span><br>
           <input id="email" name="email" type="email" maxlength="64"><br>
-
           <span id="required_field">Message</span> <span class="red">*</span><br>
           <textarea id="message" name="message" class="mt-2" type="text" style="width: 100%; height: 120px" placeholder="Enter a message" maxlength="800"></textarea><br>
         </form>
@@ -134,12 +131,45 @@
         <p><span id="alert"></span></p>
         <!-- <p><a id="send_message" class="btn btn-outline-success" href="#" role="button">Send Message &raquo;</a></p> -->
         <p><input id="send_message" class="btn btn-outline-success mt-2" type="submit"></p>
-      </div><!-- /.col-lg-4 -->
+      </div><!-- /.col-lg-5 -->
+
+      <!-- SERVICES & MAP -->
       <div class="col-lg-7">
-        <!-- <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em">140x140</text></svg> -->
         <h2>Our Services</h2>
-        <p>Services & map go here</p>
-      </div><!-- /.col-lg-4 -->
+        <!-- <p>House Washing | Concrete/Brick Washing | Deck Washing | Deck Staining</p> -->
+        <ul>
+          <li>House Washing</li>
+          <li>Concrete/Brick Washing</li>
+          <li>Deck Washing</li>
+          <li>Deck Staining</li>
+        </ul>
+
+        <div id="map"></div>
+        <script>
+          function initMap() {
+            var Richmond_VA = {lat: 37.540, lng: -77.436};
+            var Glen_Allen_VA = {lat: 37.666, lng: -77.506};
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 10,
+              center: Richmond_VA
+            });
+            var marker_Richmond_VA = new google.maps.Marker({
+              position: Richmond_VA,
+              map: map,
+              title: 'Richmond, VA'
+            });
+            var marker_Glen_Allen_VA = new google.maps.Marker({
+              position: Glen_Allen_VA,
+              map: map,
+              title: 'Glen Allen, VA'
+            });
+          }
+        </script>
+        <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3AhMydBnNDS3I4cGX_uDxd3u5GJ9Rzsc&callback=initMap">
+        </script>
+
+      </div><!-- /.col-lg-7 -->
     </div><!-- /.row -->
 
 

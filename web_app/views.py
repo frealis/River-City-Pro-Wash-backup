@@ -44,4 +44,11 @@ def test(request):
       fail_silently=False,
     )
 
-  return render(request, 'web_app/test.html')
+  GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
+  print(GOOGLE_MAPS_API_KEY)
+
+  context = {
+    'GOOGLE_MAPS_API_KEY': os.getenv('GOOGLE_MAPS_API_KEY')
+  }
+
+  return render(request, 'web_app/test.html', context)
