@@ -13,7 +13,7 @@
 <!-- NAVBAR -->
 <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top color-scheme-27506E">
-    <a class="navbar-brand" href="#">River City Pro Wash</a>
+    <a class="navbar-brand" href="#"><img src="{% static 'img/logo-banner-02-27506e-a.svg' %}" height="50px"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -60,9 +60,9 @@
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin slice" focusable="false" role="img"><image xlink:href="https://picsum.photos/600/900?random" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/></svg>
         <div class="container">
           <div class="carousel-caption text-left">
-            <h1>Example headline.</h1>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            <p><a class="btn btn-lg btn-primary color-scheme-27506E" href="#contact_us" role="button">Sign up today</a></p>
+            <h1>Contact Us.</h1>
+            <p>Our company is dedicated to servicing all of your pressure washing needs. From cleaning residential homes to restoring large post-apocalyptic industrial complexes to their former glory, we've got you covered! Contact us today for a free estimate.</p>
+            <p><a class="btn btn-lg btn-primary color-scheme-27506E" href="#contact_us" role="button">Send us a message</a></p>
           </div>
         </div>
       </div>
@@ -70,9 +70,9 @@
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><image xlink:href="https://source.unsplash.com/random" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/></svg>
         <div class="container">
           <div class="carousel-caption">
-            <h1>Another example headline.</h1>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            <p><a class="btn btn-lg btn-primary color-scheme-27506E" href="#" role="button">Learn more</a></p>
+            <h1>Our Reviews.</h1>
+            <p>We are only as good as our last review. See what our previous customers have to say about our services!</p>
+            <p><a class="btn btn-lg btn-primary color-scheme-27506E" href="#our_reviews" role="button">Read our reviews</a></p>
           </div>
         </div>
       </div>
@@ -80,9 +80,9 @@
         <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><image xlink:href="http://lorempixel.com/640/360" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/></svg>
         <div class="container">
           <div class="carousel-caption text-right">
-            <h1>One more for good measure.</h1>
-            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-            <p><a class="btn btn-lg btn-primary color-scheme-27506E" href="#" role="button">Browse gallery</a></p>
+            <h1>FAQ.</h1>
+            <p>When my grandfather was growing up in Nova Scotia, kids always went to great pains to hide the fact that they had a lobster sandwich for lunch. It meant your dad was a fisherman and you had run out of any other food and had to eat lobster. Because that stuff was cheaper than bologna. It actually hit that point again out here if you bought it from the guy who caught it. It only became a status symbol when people started bringing it inland.</p>
+            <p><a class="btn btn-lg btn-primary color-scheme-27506E" href="#faq" role="button">Frequently Asked Questions</a></p>
           </div>
         </div>
       </div>
@@ -108,7 +108,7 @@
       <div class="col-lg-5">
         <a class="anchor" id="contact_us"></a>
         <h2>Contact Us</h2>
-        <p><img src="{% static 'img/clock.svg' %}" class="svg_contact_us_icon" height="16px" width="16px"> Hours of Operation: 24 hours a day, 7 days a week</p>
+        <p><img src="{% static 'img/clock.svg' %}" class="svg_contact_us_icon" height="16px" width="16px"> Hours of Operation: 24 hours a day, 7 days a week, 365 days a year every 3 out of 4 years, 366 days every 4th year</p>
         <p><img src="{% static 'img/phone.svg' %}" class="svg_contact_us_icon" height="16px" width="16px"> (123) 546-7890</p>
         <h6>Fill out the form below to send us a message, ask a question, or request a free quote!</h6>
         
@@ -172,7 +172,7 @@
           </div>
         </div>
 
-        <!-- Google Maps API -->
+        <!-- GOOGLE MAPS API -->
         {% include "web_app/map.html" %}
 
       </div><!-- /.col-lg-7 -->
@@ -185,7 +185,7 @@
     <div class="row featurette">
       <div class="col-md-7">
         <a class="anchor" id="our_reviews"></a>
-        <h2 class="featurette-heading">Our Reviews. <span class="text-muted">x</span></h2>
+        <h2 class="featurette-heading">Our Reviews. <span class="text-muted">(placeholder)</span></h2>
         <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
       </div>
       <div class="col-md-5">
@@ -198,7 +198,7 @@
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
         <a class="anchor" id="about_us"></a>
-        <h2 class="featurette-heading">About Us. <span class="text-muted">x</span></h2>
+        <h2 class="featurette-heading">About Us. <span class="text-muted">(placeholder)</span></h2>
         <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
       </div>
       <div class="col-md-5 order-md-1">
@@ -211,7 +211,7 @@
     <div class="row featurette">
       <div class="col-md-7">
         <a class="anchor" id="faq"></a>
-        <h2 class="featurette-heading">FAQ. <span class="text-muted">x</span></h2>
+        <h2 class="featurette-heading">FAQ. <span class="text-muted">(placeholder)</span></h2>
         <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
       </div>
       <div class="col-md-5">
@@ -227,7 +227,7 @@
   <!-- FOOTER -->
   <footer class="container">
     <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2018-2019 River City Pro Wash, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    <p>&copy; 2018-2019 River City Pro Wash, Inc. &middot; <a href="#">Privacy (placeholder)</a> &middot; <a href="#">Terms (placeholder)</a></p>
   </footer>
 
 </main>

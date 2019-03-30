@@ -2,7 +2,7 @@
 a.anchor {
   display: block;
   position: relative;
-  top: -60px;
+  top: -80px;
   visibility: hidden;
 }
 
@@ -50,6 +50,9 @@ input[type='text'], input[type='email'] {
 }
 /* ========== END: SVG placeholder images in carosel ========== */
 
+.font_size20 {
+  font-size: 20px;
+}
 
 .font_size22 {
   font-size: 22px;
