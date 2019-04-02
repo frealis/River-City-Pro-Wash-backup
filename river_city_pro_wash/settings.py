@@ -30,7 +30,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.99.100', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -86,17 +86,28 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 #     }
 # }
 
+# Dockerfile database
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': os.getenv("POSTGRES_NAME"),
-    'USER': os.getenv("POSTGRES_USER"),
-    'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-    'HOST': '127.0.0.1',
+    'NAME': 'postgres',
+    'USER': 'postgres',
+    'HOST': 'db',
     'PORT': '5432',
   }
 }
 
+# Local database
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': os.getenv("POSTGRES_NAME"),
+#     'USER': os.getenv("POSTGRES_USER"),
+#     'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+#     'HOST': '127.0.0.1',
+#     'PORT': '5432',
+#   }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
