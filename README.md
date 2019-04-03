@@ -1,7 +1,25 @@
+
 # River-City-Pro-Wash
-Website for a power washing company
+
+*Website for a power washing company*
 
 - This website was built using Django and uses a Postgres database. It has also been tested using Docker with Windows 10 (Home) and Docker Toolbox (https://docs.docker.com/toolbox/toolbox_install_windows/) which uses Oracle VM Virtualbox, and -not- Microsoft's Hyper-V.
+
+
+# Run the Web Application
+
+- To start the web application locally, navigate to the root directory (which contains manage.py) and run:
+
+  $ python manage.py runserver
+
+  ... and the website should be accessible at 127.0.0.1:8000. Alternatively, to run the web application using a Dockerfile, navigate to the root directory (which contains docker-compose.yml) and run:
+
+  $ docker-compose up
+
+  ... and the website should be accessible at 192.168.99.100:8000 (on Windows machines). However, there are a lot of caveats with running the web application from a Docker image which are explained below.
+
+
+# Docker
 
 - (4/3/2019) Docker's _Getting Started_ guide states: "Pull and run the image from the remote repository. From now on, you can use docker run and run your app on any machine with this command:
 
@@ -38,7 +56,6 @@ Website for a power washing company
   ... once you're done with looking at this, Ctrl+Z out of there and then Ctrl+C (kill) whichever terminal is currently running the dockerized instance of the web application. Wait for the application to stop (or alternatively, you can go into another terminal and run $ docker-compose down) and then run $ docker-compose up again. Hopefully at this point you get yellow text that reads "... exited with code 0."
   
   ... however, you might get an error code in yellow text that reads "... exited with code 1." which may have to do with the fact that you were just inside of the database's container. If so, just Ctrl+C and run $ docker-compose up again.
-
 
 
 # Social Media Icon Credits
