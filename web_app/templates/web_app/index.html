@@ -11,215 +11,41 @@
 {% block body %}
 
 <!-- NAVBAR -->
-<header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top color-scheme-27506E">
-    <a class="navbar-brand" href="#">River City Pro Wash<br><img src="{% static 'img/logo-banner-05-27506e-a.svg' %}" height="20px"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#contact_us">Contact Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#our_services"> Our Services</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#our_reviews">Our Reviews</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#about_us">About Us</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#faq">FAQ</a>
-        </li>
-      </ul>
-      <div class="navbar-brand">
-        (123) 456-7890
-      </div>
-    </div>
-  </nav>
-</header>
+{% include "web_app/navbar.html" %}
 
-<!-- CAROSEL -->
-<!-- note: currently using svg (scalable vector graphics) as placeholder images -->
 <main role="main">
 
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#myCarousel" data-slide-to="1"></li>
-      <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin slice" focusable="false" role="img"><image xlink:href="https://picsum.photos/600/900?random" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/></svg>
-        <div class="container">
-          <div class="carousel-caption text-left">
-            <h1>Contact Us.</h1>
-            <p>Our company is dedicated to servicing all of your pressure washing needs. From cleaning residential homes to restoring large post-apocalyptic industrial complexes to their former glory, we've got you covered! Contact us today for a free estimate.</p>
-            <p><a class="btn btn-lg btn-primary color-scheme-27506E" href="#contact_us" role="button">Send us a message</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><image xlink:href="https://source.unsplash.com/random" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/></svg>
-        <div class="container">
-          <div class="carousel-caption">
-            <h1>Our Reviews.</h1>
-            <p>We are only as good as our last review. See what our previous customers have to say about our services!</p>
-            <p><a class="btn btn-lg btn-primary color-scheme-27506E" href="#our_reviews" role="button">Read our reviews</a></p>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"><image xlink:href="http://lorempixel.com/640/360" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/></svg>
-        <div class="container">
-          <div class="carousel-caption text-right">
-            <h1>FAQ.</h1>
-            <p>When my grandfather was growing up in Nova Scotia, kids always went to great pains to hide the fact that they had a lobster sandwich for lunch. It meant your dad was a fisherman and you had run out of any other food and had to eat lobster. Because that stuff was cheaper than bologna. It actually hit that point again out here if you bought it from the guy who caught it. It only became a status symbol when people started bringing it inland.</p>
-            <p><a class="btn btn-lg btn-primary color-scheme-27506E" href="#faq" role="button">Frequently Asked Questions</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-
+  <!-- CAROSEL -->  
+  {% include "web_app/carosel.html" %}
 
   <!-- begin centering wrapper -->
   <div class="container marketing">
 
-    <!-- TWO COLUMNS -->
+    <!-- Mid-section: Columns A and B -->
     <div class="row">
 
-      <!-- CONTACT US -->
+      <!-- Column A -->
       <div class="col-lg-5">
-        <a class="anchor" id="contact_us"></a>
-        <h2>Contact Us</h2>
-        <p><img src="{% static 'img/clock.svg' %}" class="svg_contact_us_icon" height="16px" width="16px"> Hours of Operation: 24 hours a day, 7 days a week, 365 days a year every 3 out of 4 years, 366 days every 4th year</p>
-        <p><img src="{% static 'img/phone.svg' %}" class="svg_contact_us_icon" height="16px" width="16px"> (123) 546-7890</p>
-        <h6>Fill out the form below to send us a message, ask a question, or request a free quote!</h6>
         
-        <form id="contact_us_form">
-          <span id="required_field">Name</span> <span class="red">*</span><br>
-          <input id="name" name="name"type="text" maxlength="64"><br>
-          Address<br>
-          <input id="address" name="address" type="text" maxlength="200"><br>
-          Phone Number<br>
-          <span class="font_size22">(</span> 
-            <input id="phone_ac" name="phone_ac" class="phone" type="tel" maxlength="3" size="3" onkeypress="return noLetters(event)"> 
-          <span class="font_size22">)</span>
-          <input id="phone_3d" name="phone_3d" class="phone" type="tel" maxlength="3" size="3" onkeypress="return noLetters(event)"> 
-          <span class="font_size22">-</span> 
-          <input id="phone_4d" name="phone_4d" class="phone" type="tel" maxlength="4" size="4" onkeypress="return noLetters(event)">
-          ext.
-          <input id="phone_ext" name="phone_ext" class="phone" type="tel" maxlength="12" size="4" onkeypress="return noSpaces(event)"><br>
-          <span id="required_field">Email Address</span> <span class="red">*</span><br>
-          <input id="email" name="email" type="email" maxlength="64"><br>
-          <span id="required_field">Message</span> <span class="red">*</span><br>
-          <textarea id="message" name="message" class="mt-2" type="text" style="width: 100%; height: 120px" placeholder="Enter a message" maxlength="800"></textarea><br>
-        </form>
-        
-        <p><span class="red">*</span> indicates a required field</p>
-        <span id="csrf">{% csrf_token %}</span>
-        <p><span id="alert"></span></p>
-        <p><input id="send_message" class="btn btn-outline-success mt-2" type="submit"></p>
+        <!-- CONTACT US -->
+        {% include "web_app/contact_us.html" %}
 
         <!-- SOCIAL MEDIA BUTTONS -->
-        <div class="phone">
-          {% include "web_app/social_media.html" %}
-        </div>
-      </div><!-- /.col-lg-5 -->
+        {% include "web_app/social_media.html" %}
 
-      <!-- OUR SERVICES & MAP -->
+      </div>
+
+      <!-- Column B -->
       <div class="col-lg-7">
-        <a class="anchor" id="our_services"></a>
-        <h2>Our Services</h2>
-        <p class="alert alert-primary text-center">House Washing · Concrete/Brick Washing · Deck Washing · Deck Staining</p>
-        <h5>We service Richmond VA and the surrounding areas, including:</h5>
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-6">
-              <ul>
-                <li>Ashland</li>
-                <li>Bon Air</li>
-                <li>Chesterfield</li>
-                <li>Chester</li>
-                <li>Glen Allen</li>
-              </ul>
-            </div>
-            <div class="col-lg-6">
-              <ul>
-                <li>Highland Springs</li>
-                <li>Mechanicsville</li>
-                <li>Midlothian</li>
-                <li>Short Pump</li>
-                <li>Woodlake</li>
-              </ul>
-            </div>
-          </div>
-        </div>
 
-        <!-- GOOGLE MAPS API -->
+        <!-- OUR SERVICES & GOOGLE MAP -->
         {% include "web_app/map.html" %}
 
-      </div><!-- /.col-lg-7 -->
-    </div><!-- /.row -->
-
+      </div>
+    </div>
 
     <!-- FEATURETTES -->
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <a class="anchor" id="our_reviews"></a>
-        <h2 class="featurette-heading">Our Reviews. <span class="text-muted">(placeholder)</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-      </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image xlink:href="https://picsum.photos/600/900?random" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <a class="anchor" id="about_us"></a>
-        <h2 class="featurette-heading">About Us. <span class="text-muted">(placeholder)</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-      </div>
-      <div class="col-md-5 order-md-1">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image xlink:href="https://source.unsplash.com/random" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <div class="row featurette">
-      <div class="col-md-7">
-        <a class="anchor" id="faq"></a>
-        <h2 class="featurette-heading">FAQ. <span class="text-muted">(placeholder)</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-      </div>
-      <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image xlink:href="http://lorempixel.com/640/360" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
+    {% include "web_app/featurettes.html" %}
 
   </div><!-- end centering wrapper -->
 
