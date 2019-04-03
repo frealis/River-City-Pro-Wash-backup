@@ -37,7 +37,7 @@
 
   $ docker-machine ls
 
-- When deciding whether to launch the application via manage.py or docker-compose, you have to make appropriate database settings adjustments in order to use Postgres; Docker, when set to create a Postgres database through docker-compose.yml, will initially create a database named 'postgres' (which is why you probably have to set the 'NAME': attribute of the DATABASE settings in settings.py to 'postgres', at least initially). To test this out, make sure that all images and containers are deleted from your local machine (run these commands from any directory, it doesn't matter):
+- When deciding whether to launch the application via manage.py or docker-compose, you have to make appropriate database settings adjustments in order to use Postgres; Docker, when set to create a Postgres database through docker-compose.yml, will initially create a database named 'postgres' (which is why you probably have to set the 'NAME': attribute of the DATABASE settings in settings.py to 'postgres', at least initially). To test this out, make sure that all images and containers are deleted from your local machine (run these following commands from any directory, it doesn't matter):
 
   $ docker rm $(docker ps -a -q)    // Remove all containers
   $ docker rmi $(docker images -q)  // Remove all images
@@ -55,7 +55,7 @@
 
   ... once you're done with looking at this, Ctrl+Z out of there and then Ctrl+C (kill) whichever terminal is currently running the dockerized instance of the web application. Wait for the application to stop (or alternatively, you can go into another terminal and run $ docker-compose down) and then run $ docker-compose up again. Hopefully at this point you get yellow text that reads "... exited with code 0."
   
-  ... however, you might get an error code in yellow text that reads "... exited with code 1." which may have to do with the fact that you were just inside of the database's container. If so, just Ctrl+C and run $ docker-compose up again.
+  ... however, you might get an error code in yellow text that reads "... exited with code 1." which may have something to do with recently being inside of the database's container. If so, just Ctrl+C and run $ docker-compose up again.
 
 
 # Social Media Icon Credits
