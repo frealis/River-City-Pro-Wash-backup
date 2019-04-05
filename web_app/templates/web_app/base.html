@@ -26,14 +26,9 @@
     <!-- Favicon -->
     <link rel="shortcut icon" href="{% static 'img/river_city_pro_wash_favicon.png' %}" />
 
-    <script src="https://www.google.com/recaptcha/api.js?render=6Lc7NZwUAAAAALVtgW6NZcWyvJyYM64nRdWwVcAQ"></script>
-    <script>
-      grecaptcha.ready(function() {
-          grecaptcha.execute('6Lc7NZwUAAAAALVtgW6NZcWyvJyYM64nRdWwVcAQ', {action: 'homepage'}).then(function(token) {
-            ...
-          });
-      });
-    </script>
+    <!-- reCAPTCHA v2 -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    
   </head>
 
   <body class="color-scheme-EFF4F8">

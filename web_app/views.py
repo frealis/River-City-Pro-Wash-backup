@@ -5,11 +5,7 @@ from string import Template
 import bleach
 import os
 
-# Create your views here.
 def index(request):
-  return render(request, 'web_app/index.html')
-
-def test(request):
   if request.method == 'POST':
 
     # Gather & sanitize data submitted from the "Contact Us" form
@@ -50,4 +46,8 @@ def test(request):
     'GOOGLE_MAPS_API_KEY': os.getenv('GOOGLE_MAPS_API_KEY')
   }
 
-  return render(request, 'web_app/test.html', context)
+  # Change to REDIRECT
+  return render(request, 'web_app/index.html', context)
+
+def test(request):
+  return render(request, 'web_app/test.html')
