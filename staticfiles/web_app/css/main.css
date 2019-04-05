@@ -1,0 +1,134 @@
+/* ========== START: smooth scroll ========== */
+a.anchor {
+  display: block;
+  position: relative;
+  top: -90px;
+  visibility: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+/* ========== END: smooth scroll ========== */
+
+
+/* ========== START: remove spin buttons from number input field ========== */
+/* Remove number spin buttons for Firefox */
+input[type='number'] {
+  -moz-appearance:textfield;
+}
+
+/* Remove number spin buttons for Webkit browsers like Safari and Chrome */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* ========== END: remove spin buttons from number input field ========== */
+
+
+input[type='text'], input[type='email'] {
+  width: 100%;
+  margin: 8px 0;
+}
+
+
+/* ========== START: SVG placeholder images in carosel ========== */
+.bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+/* ========== END: SVG placeholder images in carosel ========== */
+
+.font_size20 {
+  font-size: 20px;
+}
+
+.font_size22 {
+  font-size: 22px;
+}
+
+.phone {
+  margin: 8px 0;
+  text-align: center;
+}
+
+.red {
+  color: red;
+}
+
+
+/* ========== START: SVG social media icons ========== */
+.svg_icon {
+  height: 30px;
+  width: 30px;
+  margin: 10px;
+}
+
+.svg_icon:hover {
+  opacity: 0.7;
+  text-decoration: none;
+
+  /* -moz-transform: scale(1.25); */
+  /* -ms-transform: scale(1.25); */
+  /* -o-transform: scale(1.25); */
+  -webkit-transform: scale(1.25);
+  transform: scale(1.25);
+
+  /* -ms-transition: transform 0.2s ease-in-out; */
+  /* -moz-transition: transform 0.2s ease-in-out; */
+  /* -o-transition: transform 0.2s ease-in-out; */
+  -webkit-transition: transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out;
+}
+/* ========== END: SVG social media icons ========== */
+
+
+.text-center {
+  text-align: center;
+}
+
+/* ========== START: color schemes from paletton.com ========== */
+
+/* RGB base: 698AA2 */
+.color-scheme-27506E {
+  background-color: #27506E; 
+  border-style: solid;
+  border-width: 0px;
+  color: white;
+}
+.color-scheme-CDDBE5 {
+  background-color: #CDDBE5; 
+  border-style: solid;
+  border-width: 0px;
+  color: #27506E;
+}
+.color-scheme-EFF4F8 {
+  background-color: #EFF4F8;
+  border-style: solid;
+  border-width: 0px;
+  color: #27506E;
+}
+
+/* ========== END: color schemes from paletton.com ========== */
+
+/* Google Maps - always set the map height explicitly to define the size of 
+the div element that contains the map. */
+#map {
+  height: 425px;
+}
+
+.svg_contact_us_icon {
+  margin-bottom: 4px;
+  margin-right: 4px;
+}
