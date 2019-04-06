@@ -6,13 +6,21 @@
 - This website was built using Django and uses a Postgres database. It has also been tested using Docker with Windows 10 (Home) and Docker Toolbox (https://docs.docker.com/toolbox/toolbox_install_windows/) which uses Oracle VM Virtualbox, and -not- Microsoft's Hyper-V.
 
 
-# Run the Web Application
+# Run the Web Application Locally
 
 - To start the web application locally, navigate to the root directory (which contains manage.py) and run:
 
   $ python manage.py runserver
 
-  ... and the website should be accessible at 127.0.0.1:8000. Alternatively, to run the web application using a Dockerfile, navigate to the root directory (which contains docker-compose.yml) and run:
+  ... and the website should be accessible at 127.0.0.1:8000. 
+
+- To start the web application locally using the Heroku Local CLI plugin:
+
+  $ heroku local web -f Procfile.windows
+
+  ... and the website should be accessible at localhost:5000.
+  
+- Alternatively, to run the web application using a Dockerfile, navigate to the root directory (which contains docker-compose.yml) and run:
 
   $ docker-compose up
 
@@ -74,27 +82,9 @@
   $ heroku ps:scale web=1 (to make sure at least 1 web dyno is running)
   $ heroku open
 
-# Configure to Deploy on Heroku
+# Generate a new random SECRET_KEY
 
-- https://devcenter.heroku.com/articles/django-app-configuration
-
-- Add a Procfile to the root directory with the line:
-
-  web: gunicorn river_city_pro_wash.wsgi
-
-- Install gunicorn & add to requirements.txt:
-
-  $ pip install gunicorn
-
-- Install django-heroku & add to requirements.txt:
-
-  $ pip install django-heroku
-
-- Add these two lines to settings.py at the top & bottom, respectively:
-
-  > import django-heroku
-  ...
-  > django_heroku.settings(locals())
+- https://foxrow.com/generating-django-secret-keys
 
 
 # Social Media Icon Credits
