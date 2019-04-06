@@ -4,3 +4,7 @@ psycopg2==2.7.5
 
 gunicorn
 django-heroku
+<<<<<<< HEAD
+=======
+requests
+>>>>>>> 69db0fbc7e46a7e857bf75577d0e59efacbc44a5
