@@ -60,7 +60,19 @@
 # Configure for deployment on Heroku
 
 - https://devcenter.heroku.com/articles/django-app-configuration
+- https://medium.com/agatha-codes/9-straightforward-steps-for-deploying-your-django-app-with-heroku-82b952652fb4
 
+- To run locally via heroku:
+
+  $ heroku local web -f Procfile.windows
+
+  ... which runs at localhost:5000
+
+- To upload to git/deploy and view online:
+
+  $ git push heroku master
+  $ heroku ps:scale web=1 (to make sure at least 1 web dyno is running)
+  $ heroku open
 
 # Social Media Icon Credits
 
