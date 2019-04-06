@@ -171,10 +171,5 @@ EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
-<<<<<<< HEAD
-# Activate Django-Heroku.
-django_heroku.settings(locals())
-=======
 # Activate Django-Heroku
 django_heroku.settings(locals())
->>>>>>> 69db0fbc7e46a7e857bf75577d0e59efacbc44a5
