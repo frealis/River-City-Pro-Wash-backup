@@ -58,6 +58,29 @@
   ... however, you might get an error code in yellow text that reads "... exited with code 1." which may have something to do with recently being inside of the database's container. If so, just Ctrl+C and run $ docker-compose up again.
 
 
+# Configure to Deploy on Heroku
+
+- https://devcenter.heroku.com/articles/django-app-configuration
+
+- Add a Procfile to the root directory with the line:
+
+  web: gunicorn river_city_pro_wash.wsgi
+
+- Install gunicorn & add to requirements.txt:
+
+  $ pip install gunicorn
+
+- Install django-heroku & add to requirements.txt:
+
+  $ pip install django-heroku
+
+- Add these two lines to settings.py at the top & bottom, respectively:
+
+  > import django-heroku
+  ...
+  > django_heroku.settings(locals())
+
+
 # Social Media Icon Credits
 
 - Instagram
