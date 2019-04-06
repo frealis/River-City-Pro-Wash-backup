@@ -1,1 +1,1 @@
-web: gunicorn web_app.wsgi --log-file -
+web: gunicorn river_city_pro_wash.wsgi --log-file -
