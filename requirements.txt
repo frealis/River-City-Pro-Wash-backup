@@ -1,6 +1,7 @@
 ﻿Django==2.2
 python-dotenv==0.10.1
 psycopg2==2.7.5
+bleach
 
 gunicorn
 django-heroku
