@@ -57,6 +57,10 @@
   
   ... however, you might get an error code in yellow text that reads "... exited with code 1." which may have something to do with recently being inside of the database's container. If so, just Ctrl+C and run $ docker-compose up again.
 
+# Configure for deployment on Heroku
+
+- https://devcenter.heroku.com/articles/django-app-configuration
+
 
 # Social Media Icon Credits
 
