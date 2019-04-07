@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import django_heroku
+import logging
 import os
 
 # Use python-dotenv to manage environment variables
@@ -41,8 +42,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', 'frozen-brushlands-44280.herokuapp.com'] # ---- Figure this out with AWS or Heroku or whoever
-
+# ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost', 'frozen-brushlands-44280.herokuapp.com'] # ---- Figure this out with AWS or Heroku or whoever
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -173,3 +174,37 @@ EMAIL_USE_SSL = True
 
 # Activate Django-Heroku
 django_heroku.settings(locals())
+
+# Logging
+LOGGING = {
+  'version': 1,
+  'disable_existing_loggers': False,
+  'formatters': {
+    'verbose': {
+      'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+      'datefmt' : "%d/%b/%Y %H:%M:%S"
+    },
+    'simple': {
+      'format': '%(levelname)s %(message)s'
+    },
+  },
+  'handlers': {
+    'file': {
+      'level': 'DEBUG',
+      'class': 'logging.FileHandler',
+      'filename': 'river_city_pro_wash.log',
+      'formatter': 'verbose'
+    },
+  },
+  'loggers': {
+    'django': {
+      'handlers':['file'],
+      'propagate': True,
+      'level':'DEBUG',
+    },
+    'MYAPP': {
+      'handlers': ['file'],
+      'level': 'DEBUG',
+    },
+  }
+}
