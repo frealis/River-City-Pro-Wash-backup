@@ -49,5 +49,5 @@ def index(request):
   # Change to REDIRECT
   return render(request, 'web_app/index.html', context)
 
-def test(request):
-  return render(request, 'web_app/test.html')
+def xtest(request):
+  return render(request, 'web_app/xtest.html')
