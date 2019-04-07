@@ -25,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
-# SECURE_HSTS_SECONDS = 518400
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_SECONDS = 518400
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 # SECURE_SSL_REDIRECT = True
@@ -42,7 +42,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# ALLOWED_HOSTS = ['0.0.0.0', '127.0.0.1', 'localhost', 'frozen-brushlands-44280.herokuapp.com'] # ---- Figure this out with AWS or Heroku or whoever
+# ALLOWED_HOSTS = ['frozen-brushlands-44280.herokuapp.com']
 ALLOWED_HOSTS = ['*']
 
 # Application definition
