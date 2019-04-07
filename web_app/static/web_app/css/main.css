@@ -58,6 +58,16 @@ input[type='text'], input[type='email'] {
   font-size: 22px;
 }
 
+.logo-text {
+  font-family: fantasy;
+  text-decoration: none;
+}
+
+.logo-text:hover {
+  color: white;
+  text-decoration: none;
+}
+
 .phone {
   margin: 8px 0;
   text-align: center;
@@ -105,7 +115,7 @@ input[type='text'], input[type='email'] {
   background-color: #27506E; 
   border-style: solid;
   border-width: 0px;
-  color: white;
+  color: #EFF4F8;
 }
 .color-scheme-CDDBE5 {
   background-color: #CDDBE5; 
