@@ -19,8 +19,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Retrieve message from "Contact Us" form and submit
   document.querySelector('#send_message').onclick = () => {
 
-    console.log('click');
-
     recaptcha = grecaptcha.getResponse();
     console.log(recaptcha);
 

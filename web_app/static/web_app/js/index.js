@@ -14,10 +14,27 @@ function noSpaces(event) {
   };
 };
 
+// Toggle navbar fixed-top class
+window.onscroll = () => {
+  console.log('----');
+  console.log('window.innerHeight: ', window.innerHeight);
+  console.log('window.scrollY: ', window.scrollY);
+  console.log('document.body.offsetHeight: ', document.body.offsetHeight);
+  if (window.scrollY >= 260) {
+    document.querySelector('#nav_bar').classList.add('fixed-top')
+    document.querySelector('#myCarousel').classList.add('margin-top56')
+  } else {
+    document.querySelector('#nav_bar').classList.remove('fixed-top')
+    document.querySelector('#myCarousel').classList.remove('margin-top56')
+  }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
 
   // Retrieve message from "Contact Us" form and submit
   document.querySelector('#send_message').onclick = () => {
+
+    console.log('click');
 
     recaptcha = grecaptcha.getResponse();
     console.log(recaptcha);
