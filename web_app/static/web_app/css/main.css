@@ -126,7 +126,7 @@ input[type='text'], input[type='email'] {
 
 
 
-. prevent_navbar_pushdown{
+.prevent_pushdown {
   position: absolute;
   width: 100%;
   z-index: 9999;

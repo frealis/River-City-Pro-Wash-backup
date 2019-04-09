@@ -28,7 +28,7 @@ window.onscroll = () => {
   // the navbar when it is toggled on from collapsed/small screen mode.
   if (window.scrollY < 260) {
     document.querySelector('#nav_bar').classList.remove('fixed-top')
-    document.querySelector('#nav_bar').classList.add('.prevent_navbar_pushdown')
+    document.querySelector('#nav_bar').classList.add('prevent_pushdown')
     // document.querySelector('#myCarousel').classList.remove('margin-top56')
 
     // if (document.querySelector('.show')) {
@@ -42,7 +42,7 @@ window.onscroll = () => {
     // };
 
   } else if (window.scrollY >= 260) {
-    document.querySelector('#nav_bar').classList.remove('.prevent_navbar_pushdown')
+    document.querySelector('#nav_bar').classList.remove('prevent_pushdown')
     document.querySelector('#nav_bar').classList.add('fixed-top')
     // document.querySelector('#myCarousel').classList.add('margin-top56')
 
