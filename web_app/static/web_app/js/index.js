@@ -4,7 +4,7 @@ function noLetters(event) {
   if (keycode < 48 || keycode > 57) {
     return false;
   };
-};
+}
 
 // Restrict phone number extention field to exclude spaces
 function noSpaces(event) {
@@ -12,7 +12,7 @@ function noSpaces(event) {
   if (keycode === 32) {
     return false;
   };
-};
+}
 
 // Toggle navbar fixed-top class (mostly taken from CS50 class example on front 
 // ends)
@@ -57,9 +57,24 @@ window.onscroll = () => {
     // };
     
   };
-};
+}
 
 document.addEventListener('DOMContentLoaded', function() {
+
+  // Check to see if screen is resized
+  window.addEventListener("resize", resize);
+  function resize() {
+    // Only collapse the navbar on a link click if the screen is less than 992px wide
+    // https://www.sitepoint.com/javascript-media-queries/
+    let mq = window.matchMedia( "(max-width: 992px)" );
+    if (mq.matches) {
+      document.querySelector('#navbarCollapse').setAttribute('data-toggle', 'collapse');
+      document.querySelector('#navbarCollapse').setAttribute('data-target', '#navbarCollapse');
+    } else {
+      document.querySelector('#navbarCollapse').removeAttribute('data-toggle', 'collapse');
+      document.querySelector('#navbarCollapse').removeAttribute('data-target', '#navbarCollapse');
+    };
+  }
 
   // Retrieve message from "Contact Us" form and submit
   document.querySelector('#send_message').onclick = () => {
