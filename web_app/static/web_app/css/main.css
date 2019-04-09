@@ -14,11 +14,25 @@ html, body, div, span, applet, object, iframe, p, blockquote, pre, a, abbr, acro
 
 
 /* ========== START: smooth scroll ======================================== */
-a.anchor {
+a.anchor-56 {
   display: block;
   position: relative;
   top: -56px;
   visibility: hidden;
+}
+
+a.anchor-336 {
+  display: block;
+  position: relative;
+  top: -336px;
+  visibility: hidden;
+}
+
+a.anchor-point{
+  /* This class is given to all anchors linked to by the navbar and is used
+  when scrolling to an anchor point whether to offset the disance by 56 pixels
+  (which is the height of the navbar itself) or 336 pixels (height of the navbar
+  plus the height of the navbar drop-down menu) */
 }
 
 html {
@@ -136,6 +150,10 @@ input[type='text'], input[type='email'] {
 
 .margin-top56 {
   margin-top: 56px;
+}
+
+.margin-top819 {
+  margin-top: 819px;
 }
 
 .phone {
