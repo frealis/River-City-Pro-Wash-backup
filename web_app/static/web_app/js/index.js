@@ -61,11 +61,23 @@ window.onscroll = () => {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-  // Check to see if screen is resized
+  // Check to see if screen is resized on window load
+  // Only collapse the navbar on a link click if the screen is less than 992px wide
+  // https://www.sitepoint.com/javascript-media-queries/
+  let mq = window.matchMedia( "(max-width: 992px)" );
+  if (mq.matches) {
+    document.querySelector('#navbarCollapse').setAttribute('data-toggle', 'collapse');
+    document.querySelector('#navbarCollapse').setAttribute('data-target', '#navbarCollapse');
+  } else {
+    document.querySelector('#navbarCollapse').removeAttribute('data-toggle', 'collapse');
+    document.querySelector('#navbarCollapse').removeAttribute('data-target', '#navbarCollapse');
+  };
+
+  // Re-check screen size with every window resize and change navbar if necessary.
+  // There may be a way to combine the code directly above and below with in a
+  // DO/WHILE loop, but since event listeners can't return anything I'm not sure
+  // how.
   window.addEventListener("resize", function() {
-    // Only collapse the navbar on a link click if the screen is less than 992px wide
-    // https://www.sitepoint.com/javascript-media-queries/
-    let mq = window.matchMedia( "(max-width: 992px)" );
     if (mq.matches) {
       document.querySelector('#navbarCollapse').setAttribute('data-toggle', 'collapse');
       document.querySelector('#navbarCollapse').setAttribute('data-target', '#navbarCollapse');
