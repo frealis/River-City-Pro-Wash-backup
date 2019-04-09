@@ -4,7 +4,7 @@ function noLetters(event) {
   if (keycode < 48 || keycode > 57) {
     return false;
   };
-};
+}
 
 // Restrict phone number extention field to exclude spaces
 function noSpaces(event) {
@@ -12,7 +12,7 @@ function noSpaces(event) {
   if (keycode === 32) {
     return false;
   };
-};
+}
 
 // Toggle navbar fixed-top class (mostly taken from CS50 class example on front 
 // ends)
@@ -23,33 +23,69 @@ window.onscroll = () => {
   console.log('document.body.offsetHeight: ', document.body.offsetHeight);
 
   // 260 is the distance in pixels from the top of the screen to the top of the
-  // navbar. Add 56 pixels worth of margin on top of the carosel section to account for
-  // the height of the navbar. The '.show' class is only added to the navbar
-  // when it is toggled on from collapsed/small screen mode.
+  // navbar. Add 56 pixels worth of margin on top of the carosel section to 
+  // account for the height of the navbar. The '.show' class is only added to 
+  // the navbar when it is toggled on from collapsed/small screen mode.
   if (window.scrollY < 260) {
     document.querySelector('#nav_bar').classList.remove('fixed-top')
-    document.querySelector('#myCarousel').classList.remove('margin-top56')
-    anchor_points = document.querySelectorAll('.anchor-point')
-    for (let i = 0; i < anchor_points.length; i++) {
-      anchor_points[i].classList.add('anchor-336');
-      if (anchor_points[i].classList.contains('anchor-56')) {
-        anchor_points[i].classList.remove('anchor-56');
-      };
-    };
+    document.querySelector('#nav_bar').classList.add('prevent_pushdown')
+    // document.querySelector('#myCarousel').classList.remove('margin-top56')
+
+    // if (document.querySelector('.show')) {
+    //   anchor_points = document.querySelectorAll('.anchor-point')
+    //   for (let i = 0; i < anchor_points.length; i++) {
+    //     anchor_points[i].classList.add('anchor-336');
+    //     if (anchor_points[i].classList.contains('anchor-56')) {
+    //       anchor_points[i].classList.remove('anchor-56');
+    //     };
+    //   };
+    // };
+
   } else if (window.scrollY >= 260) {
+    document.querySelector('#nav_bar').classList.remove('prevent_pushdown')
     document.querySelector('#nav_bar').classList.add('fixed-top')
-    document.querySelector('#myCarousel').classList.add('margin-top56')
-    anchor_points = document.querySelectorAll('.anchor-point')
-    for (let i = 0; i < anchor_points.length; i++) {
-      anchor_points[i].classList.add('anchor-56');
-      if (anchor_points[i].classList.contains('anchor-336')) {
-        anchor_points[i].classList.remove('anchor-336');
-      };
-    };
+    // document.querySelector('#myCarousel').classList.add('margin-top56')
+
+    // if (document.querySelector('.show')){
+    //   anchor_points = document.querySelectorAll('.anchor-point')
+    //   for (let i = 0; i < anchor_points.length; i++) {
+    //     anchor_points[i].classList.add('anchor-56');
+    //     if (anchor_points[i].classList.contains('anchor-336')) {
+    //       anchor_points[i].classList.remove('anchor-336');
+    //     };
+    //   };
+    // };
+    
   };
-};
+}
 
 document.addEventListener('DOMContentLoaded', function() {
+
+  // Check to see if screen is resized on window load
+  // Only collapse the navbar on a link click if the screen is less than 992px wide
+  // https://www.sitepoint.com/javascript-media-queries/
+  let mq = window.matchMedia( "(max-width: 992px)" );
+  if (mq.matches) {
+    document.querySelector('#navbarCollapse').setAttribute('data-toggle', 'collapse');
+    document.querySelector('#navbarCollapse').setAttribute('data-target', '#navbarCollapse');
+  } else {
+    document.querySelector('#navbarCollapse').removeAttribute('data-toggle', 'collapse');
+    document.querySelector('#navbarCollapse').removeAttribute('data-target', '#navbarCollapse');
+  };
+
+  // Re-check screen size with every window resize and change navbar if necessary.
+  // There may be a way to combine the code directly above and below with in a
+  // DO/WHILE loop, but since event listeners can't return anything I'm not sure
+  // how.
+  window.addEventListener("resize", function() {
+    if (mq.matches) {
+      document.querySelector('#navbarCollapse').setAttribute('data-toggle', 'collapse');
+      document.querySelector('#navbarCollapse').setAttribute('data-target', '#navbarCollapse');
+    } else {
+      document.querySelector('#navbarCollapse').removeAttribute('data-toggle', 'collapse');
+      document.querySelector('#navbarCollapse').removeAttribute('data-target', '#navbarCollapse');
+    };
+  });
 
   // Retrieve message from "Contact Us" form and submit
   document.querySelector('#send_message').onclick = () => {
