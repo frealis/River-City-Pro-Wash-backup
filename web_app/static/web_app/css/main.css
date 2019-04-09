@@ -126,6 +126,16 @@ input[type='text'], input[type='email'] {
 
 
 
+. prevent_navbar_pushdown{
+  position: absolute;
+  width: 100%;
+  z-index: 9999;
+}
+
+.font-size18 {
+  font-size: 18px;
+}
+
 .font-size20 {
   font-size: 20px;
 }
