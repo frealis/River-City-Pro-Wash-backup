@@ -14,46 +14,12 @@ function noSpaces(event) {
   };
 };
 
-// Apply the "fixed-top" class to the navbar after the screen has scrolled a
-// certain distance down the page (ie. the screen has scrolled past the header
-// logo).
-// https://stackoverflow.com/questions/14667829/how-to-create-a-sticky-navigation-bar-that-becomes-fixed-to-the-top-after-scroll
-// $(document).ready(function() {
-//   $(window).scroll(function () { 
-//     console.log($(window).scrollTop());
-
-//     if ($(window).scrollTop() > 10) {
-//       console.log('10');
-//       $('#nav_bar').addClass('fixed-top');
-//     }
-
-//     if ($(window).scrollTop() < 551) {
-//       $('#nav_bar').removeClass('fixed-top');
-//     }
-//   });
-// });
-
-
-
-window.onscroll = () => {
-  console.log('----');
-  console.log(window.innerHeight);
-  console.log(window.scrollY);
-  console.log(document.body.offsetHeight);
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-    document.querySelector('#test').style.color = 'green';
-  } else {
-    document.querySelector('#test').style.color = 'purple';
-  }
-}
-
-
 document.addEventListener('DOMContentLoaded', function() {
 
   // Retrieve message from "Contact Us" form and submit
   document.querySelector('#send_message').onclick = () => {
 
-    console.log('click')
+    console.log('click');
 
     recaptcha = grecaptcha.getResponse();
     console.log(recaptcha);

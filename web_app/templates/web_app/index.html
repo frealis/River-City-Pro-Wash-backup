@@ -1,14 +1,17 @@
-{% extends "web_app/base.html" %}
+<!-- {% extends "web_app/base.html" %} -->
 {% load static %}
 
 <!-- Title -->
 {% block title %} <title>River City Pro Wash</title> {% endblock %}
 
 <!-- JavaScript -->
-<!-- {% block js %} <script src="{% static 'js/index.js' %}"></script> {% endblock %} -->
+{% block js %} <script src="{% static 'js/index.js' %}"></script> {% endblock %}
 
 <!-- Body -->
 {% block body %}
+
+<!-- HEADER LOGO -->
+{% include "web_app/header_logo.html" %}
 
 <!-- NAVBAR -->
 {% include "web_app/navbar.html" %}
@@ -49,7 +52,6 @@
 
   </div><!-- end centering wrapper -->
 
-
   <!-- FOOTER -->
   <footer class="container">
     <p class="float-right"><a href="#">Back to top</a></p>
@@ -57,7 +59,5 @@
   </footer>
 
 </main>
-
-<div id="test"><b>TEST</b></div>
 
 {% endblock %}
