@@ -14,13 +14,12 @@ function noSpaces(event) {
   };
 }
 
-// Toggle navbar fixed-top class (mostly taken from CS50 class example on front 
-// ends)
+// Toggle navbar fixed-top class
 window.onscroll = () => {
-  console.log('----');
-  console.log('window.innerHeight: ', window.innerHeight);
-  console.log('window.scrollY: ', window.scrollY);
-  console.log('document.body.offsetHeight: ', document.body.offsetHeight);
+  // console.log('----');
+  // console.log('window.innerHeight: ', window.innerHeight);
+  // console.log('window.scrollY: ', window.scrollY);
+  // console.log('document.body.offsetHeight: ', document.body.offsetHeight);
 
   // 260 is the distance in pixels from the top of the screen to the top of the
   // navbar. Add 56 pixels worth of margin on top of the carosel section to 
@@ -90,11 +89,9 @@ document.addEventListener('DOMContentLoaded', function() {
   // Retrieve message from "Contact Us" form and submit
   document.querySelector('#send_message').onclick = () => {
 
-    console.log('click');
+    console.log('grecaptcha.getResponse(): ', grecaptcha.getResponse())
 
-    recaptcha = grecaptcha.getResponse();
-    console.log(recaptcha);
-
+    // Ensure that the reCAPTCHA v2 checkbox is ticked
     if (grecaptcha.getResponse() !== '') {
 
       // Initialize POST request, extract the CSRF value from the index.html DOM,
@@ -140,14 +137,15 @@ document.addEventListener('DOMContentLoaded', function() {
           required_fields[i].style.color="black";
         };
 
-        // Append user input to message_data (the FormData() object)
+        // Append user input & reCAPTCHA v2 token to message_data (the FormData() 
+        // object)
         const message_data = new FormData();
         message_data.append('name',       name);
         message_data.append('address',    address);
         message_data.append('phone',      phone);
         message_data.append('email',      email);
         message_data.append('message',    message);
-        message_data.append('success',    true);
+        message_data.append('recaptcha',  grecaptcha.getResponse());
 
         // View the contents of FormData() in browser console
         // for (let i of message_data.entries()) {
