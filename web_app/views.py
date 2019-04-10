@@ -36,9 +36,9 @@ def index(request):
       message = bleach.clean(request.POST['message'])
 
       # Save data submitted from the "Contact Us" form to database
-      # from web_app.models import Message
-      # m = Message(name=name, address=address, phone=phone, email=email, message=message)
-      # m.save()
+      from web_app.models import Message
+      m = Message(name=name, address=address, phone=phone, email=email, message=message)
+      m.save()
 
       # Set the email address for the site administrator
       email_admin = os.getenv("EMAIL_ADMIN")

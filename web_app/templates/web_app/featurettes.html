@@ -1,3 +1,4 @@
+{% load static %}
 
 <!-- Featurettes -->
 <hr class="featurette-divider">
@@ -7,24 +8,27 @@
     <a class="anchor-point anchor-56" id="our_reviews"></a>
     <!-- <h2 class="featurette-heading"><span class="text-muted"></span></h2> -->
     <h2>Our Reviews</h2>
-    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+    <!-- <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p> -->
   </div>
   <div class="col-md-5">
-    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image xlink:href="https://picsum.photos/600/900?random" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/></svg>
+    <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image xlink:href="https://picsum.photos/600/900?random" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/></svg> -->
   </div>
 </div>
 
 <hr class="featurette-divider">
 
 <div class="row featurette">
-  <div class="col-md-7 order-md-2">
+  <div class="col-md-7 order-md-2 mb-5">
     <a class="anchor-point anchor-56" id="about_us"></a>
     <!-- <h2 class="featurette-heading"><span class="text-muted"></span></h2> -->
     <h2>About Us</h2>
-    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+    <p class="lead">A YouGov survey has found that 24 percent of Americans believe that pineapple is one of the worst toppings you can put on a pizza. A survey of me, sitting here in front of my computer in comfy pants, has found that 100 percent of those people are wrong, because pineapple on pizza is amazing.</p>
+    <p class="lead">We will return to this, believe me, but first, some more about this survey: YouGov surveyed 1,212 American adults on January 22 and 23, 2019; “The figures have been weighted and are representative of all US adults (aged 18+).” They were asked to select up to three most-favorite toppings and up to three least-favorite toppings. The results are unsurprising: We love meat and hate produce.</p>
+    <p class="lead">It’s a broad generalization, but the four most popular toppings are pepperoni (the champ by a mile, selected by 53 percent of respondents), sausage (34 percent), mushroom (31 percent), and bacon (20 percent). Those most frequently named as a least-favorite option were anchovies (49 percent), eggplant (30 percent), and pineapple and artichokes (each sitting at 24 percent).</p>
+    <p> Source: <a href="https://thetakeout.com/pineapple-pizza-pepperoni-most-popular-topping-1832596191">Pineapple on pizza is delicious and I will gladly die on this hill</a></p>
   </div>
   <div class="col-md-5 order-md-1">
-    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image xlink:href="https://source.unsplash.com/random" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/></svg>
+    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image xlink:href="{% static 'img/hawaiian-pizza.jpg' %}" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/></svg>
   </div>
 </div>
 
@@ -34,11 +38,46 @@
   <div class="col-md-7">
     <a class="anchor-point anchor-56" id="faq"></a>
     <!-- <h2 class="featurette-heading"><span class="text-muted"></span></h2> -->
-    <h2>FAQ</h2>
-    <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+    <h2>FAQ </h2>
+    <span class="text-muted">(Sample taken from https://www.pristinecleanva.com/faq/)</span><br><br>
+    <!-- <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p> -->
+  
+    <p class="lead bold bold">Are your cleaning solutions safe for plants and animals?</p>
+    <p>Yes, all cleaning solutions are safe and diluted to 20% detergent and 80% water during the cleaning process for pressure washing houses and decks.  In my 10+ years in the industry no plants, animals, or property have been harmed.</p>
+
+    <p class="lead bold">What is the difference between a seal and a stain?</p>
+    <p>A seal is a clear finish that protects from moisture and UV rays for 1-2 years depending on the environment where the deck is located.  A stain lasts 3-5 years and is a penetrating finish that comes in a variety of colors.  Deck stains come in Semi Transparent and Solid options.  A semi transparent stain will show the grain of the wood while tinting it to your desired color.  A solid stain looks like paint but is made to adhere to wood and is the longest lasting product available for decks.  Stains and seals are applied by brush and airless sprayer.  All areas surrounding the deck are covered thoroughly with plastic, tape, and tarps.</p>
+
+    <p class="lead bold">How much furniture needs to be removed from the deck before washing?</p>
+    <p>We will move a table, four chairs, and a grill for you, at no charge.  Additional furniture, planters, decorative items, etc. should be removed from deck prior to our arrival or may be subject to a small fee for having our team remove the items.</p>
+
+    <p class="lead bold">What is covered in the deck cleaning and sealing/staining process?</p>
+    <p>The deck floor, inside and outside of the railings, and the support posts under the deck are treated.  The underside of the deck is not an industry standard but can be cleaned for an additional charge.</p>
+
+    <p class="lead bold">What is included in the house washing process?</p>
+    <p>The entire house is cleaned from the exterior gutters down to the foundation of the home.  Front walkways, chimneys, and basement walkouts are add-ons and may be subject to a small additional charge.  We use a Soft Wash System that uses low pressure and a mild detergent, ensuring no harmful high pressure will be used on your home. We offer a gutter detailing service as some gutters have “Tiger Stripes” that lighten during the cleaning but may still be visible depending on how old the home is, this process involves hand scrubbing each gutter as pressure washing alone sometimes cannot remove them.</p>
+
+    <p class="lead bold">How long does a deck/fence wash and stain take?</p>
+    <p>All cleaning is done on one day and the deck needs to dry before sealing/staining can be completed.  The timeline varies due to the weather and conditions must be done on a day with no chance of rain and winds cannot be harsh.  We have all projects completed in 1-2 weeks depending on weather conditions.</p>
+
+    <p class="lead bold">Do I need to be home during the washing/staining process?</p>
+    <p>Not unless you would like to be home.  We just need all windows shut and at least one exterior water source turned on.  We use ladders to get to second level decks and need no access inside the home.</p>
+
+    <p class="lead bold">Is Pristine Services insured?</p>
+    <p>Yes we are licensed and insured.</p>
+
+    <p class="lead bold">Do you clean all types of decks?</p>
+    <p>Yes, most decks are Southern Yellow Pine, we are also very experienced in cleaning composite decking as well as exotic hardwood decking such as IPE (Brazilian Hardwood) and mahogany, etc.  Some composite decks clean better than others as the brands have changed over the years, older composite decks may have permanent black spots than can be stained over with a solid stain.</p>
+
+    <p class="lead bold">Will a deck wash remove all of the current stain that is on my deck or does it need to be "stripped"?</p>
+    <p>Pressure washing alone uses a detergent and high pressure rinsing to remove mold, midew, algae, dust, etc.  To actually break down a water proofing stain that still remains in some areas of the deck we need to hand apply a deck stripper prior to deck washing.  The stripper breaks down the old product so it can be safely removed from the deck.  This process is usually necessary if a customer wants to go from a darker color to a lighter color or if the previous stain was applied unevenly.</p>
+
+    <p class="lead bold">Do you guarantee the deck stains to last a certain number of years?</p>
+    <p>We follow the manufacturers recommendations and application methods.  We also ensure to apply our stains and sealants in the right conditions to receive maximum adhesion and protection to the wood (making sure the deck is fully dry and temperature is warm enough, etc).  Given that we live in Northern Virginia and experience the harshest conditions of all seasons we cannot guarantee every stain will last as long as the label on the can says.  For example a deck that sits in the sun all day will fade quicker than a deck that gets daytime shade,  a deck that sits in the shade may mildew quicker due to the moist environment. We use top quality stains and seals and follow proper procedure in every application of our deck stain or seal process.</p>
+  
   </div>
   <div class="col-md-5">
-    <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image xlink:href="http://lorempixel.com/640/360" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/></svg>
+    <!-- <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 500x500"><title>Placeholder</title><image xlink:href="http://lorempixel.com/640/360" width="100%" height="100%" preserveAspectRatio="xMidYMin slice"/></svg> -->
   </div>
 </div>
 

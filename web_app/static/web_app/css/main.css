@@ -175,6 +175,10 @@ input[type='text'], input[type='email'] {
   color: red;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .text-center {
   text-align: center;
 }
