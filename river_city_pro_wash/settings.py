@@ -121,12 +121,15 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 #     'PORT': '5432',
 #   }
 # }
+<<<<<<< HEAD
 
 # Un-comment this if you want to run python manage.py check --deploy to 2x check
 # that security settings are in place before deployment
 DATABASES = {
   # nothing
 }
+=======
+>>>>>>> db9f1f1b900492225911fa9e0a91e874320469c5
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
