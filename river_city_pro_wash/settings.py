@@ -43,6 +43,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # this to FALSE, make sure you have an appropriate allowed site listed in the
 # ALLOWED_HOSTS[] array below.
 DEBUG = False
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 SECURE_SSL_REDIRECT = True
 # ALLOWED_HOSTS = ['frozen-brushlands-44280.herokuapp.com', '*', 'https://frozen-brushlands-44280.herokuapp.com/']
@@ -126,9 +127,9 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 
 # Un-comment this if you want to run python manage.py check --deploy to 2x check
 # that security settings are in place before deployment
-# DATABASES = {
+DATABASES = {
   # Emptiness goes here
-# }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
