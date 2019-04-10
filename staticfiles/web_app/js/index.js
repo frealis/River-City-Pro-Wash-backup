@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Retrieve message from "Contact Us" form and submit
   document.querySelector('#send_message').onclick = () => {
 
-    console.log('grecaptcha.getResponse(): ', grecaptcha.getResponse())
+    // console.log('grecaptcha.getResponse(): ', grecaptcha.getResponse())
 
     // Ensure that the reCAPTCHA v2 checkbox is ticked
     if (grecaptcha.getResponse() !== '') {

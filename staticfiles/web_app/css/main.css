@@ -175,6 +175,10 @@ input[type='text'], input[type='email'] {
   color: red;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .text-center {
   text-align: center;
 }
@@ -214,7 +218,7 @@ height: 260px;
 width: 100%
 }
 
-img.center {
+.center {
   display: block;
   margin-left: auto;
   margin-right: auto;
