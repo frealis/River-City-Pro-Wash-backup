@@ -6,3 +6,4 @@ bleach
 gunicorn
 django-heroku
 requests
+sendgrid
