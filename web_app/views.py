@@ -47,22 +47,41 @@ def index(request):
 
       # Send a notification message to the site administrator when "Contact Us" form
       # is submitted
-      send_mail(
-        'River City Pro Wash -- Contact Us form submission notification',
-        Template('Name: $name\nAddress: $address\nPhone: $phone\nEmail: $email\nMessage: $message').substitute(name=name, address=address, phone=phone, email=email, message=message),
-        email_admin,
-        [email_admin],
-        fail_silently=False,
-      )
+      # send_mail(
+      #   'River City Pro Wash -- Contact Us form submission notification',
+      #   Template('Name: $name\nAddress: $address\nPhone: $phone\nEmail: $email\nMessage: $message').substitute(name=name, address=address, phone=phone, email=email, message=message),
+      #   email_admin,
+      #   [email_admin],
+      #   fail_silently=False,
+      # )
 
       # Send a thank you message to the user who submitted the "Contact Us" form
-      send_mail(
-        'Thank you for contacting River City Pro Wash!',
-        Template('Dear $name,\n\nThank you for contacting River City Pro Wash! A member of our team will be in touch with you shortly.\n\nRegards,\nRiver City Pro Wash').substitute(name=name),
-        email_admin,
-        [email],
-        fail_silently=False,
-      )
+      # send_mail(
+      #   'Thank you for contacting River City Pro Wash!',
+      #   Template('Dear $name,\n\nThank you for contacting River City Pro Wash! A member of our team will be in touch with you shortly.\n\nRegards,\nRiver City Pro Wash').substitute(name=name),
+      #   email_admin,
+      #   [email],
+      #   fail_silently=False,
+      # )
+
+
+      from sendgrid import SendGridAPIClient
+      from sendgrid.helpers.mail import Mail
+
+      message = Mail(
+        from_email='from_email@example.com',
+        to_emails='to@example.com',
+        subject='Sending with Twilio SendGrid is Fun',
+        html_content='<strong>and easy to do anywhere, even with Python</strong>')
+      try:
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        response = sg.send(message)
+        print(response.status_code)
+        print(response.body)
+        print(response.headers)
+      except Exception as e:
+        print(e)
+
 
       # Just put this here to silence a server error message since it looks like
       # request.method == 'POST' requires some kind of HttpResponse object
