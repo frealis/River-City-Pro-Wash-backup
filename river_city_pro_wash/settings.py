@@ -111,16 +111,16 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 # }
 
 # Local database
-DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': os.getenv("POSTGRES_NAME"),
-    'USER': os.getenv("POSTGRES_USER"),
-    'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-    'HOST': '127.0.0.1',
-    'PORT': '5432',
-  }
-}
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': os.getenv("POSTGRES_NAME"),
+#     'USER': os.getenv("POSTGRES_USER"),
+#     'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+#     'HOST': '127.0.0.1',
+#     'PORT': '5432',
+#   }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
