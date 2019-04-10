@@ -61,6 +61,10 @@ def index(request):
       #   [email],
       #   fail_silently=False,
       # )
+      context = {
+        'test': 'TEST'
+      }
+      return render(request, 'web_app/xtest.html', context)
 
     else:
       print('=== reCAPTCHA failed ===')
