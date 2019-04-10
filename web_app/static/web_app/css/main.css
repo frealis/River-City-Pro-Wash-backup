@@ -98,7 +98,7 @@ input[type='text'], input[type='email'] {
       rgba(0, 0, 0, 0.15),
       rgba(0, 0, 0, 0.80)
     ),
-    /* url(https://picsum.photos/600/900?random); */
+    url(https://picsum.photos/600/900?random);
 }
 
 .darken_background_2 {
@@ -107,7 +107,7 @@ input[type='text'], input[type='email'] {
       rgba(0, 0, 0, 0.15),
       rgba(0, 0, 0, 0.80)
     ),
-    /* url(https://source.unsplash.com/random); */
+    url(https://source.unsplash.com/random);
 }
 
 .darken_background_3 {
@@ -116,7 +116,7 @@ input[type='text'], input[type='email'] {
       rgba(0, 0, 0, 0.15),
       rgba(0, 0, 0, 0.80)
     ),
-    /* url(http://lorempixel.com/640/360); */
+    url(http://lorempixel.com/640/360);
 }
 
 .text-shadow {
