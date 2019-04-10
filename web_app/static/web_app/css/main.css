@@ -65,7 +65,7 @@ input[type='text'], input[type='email'] {
 
 
 
-/* ========== START: SVG placeholder images in carosel ==================== */
+/* ========== START: SVG placeholder images in carousel ==================== */
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -80,13 +80,13 @@ input[type='text'], input[type='email'] {
     font-size: 3.5rem;
   }
 }
-/* ========== END: SVG placeholder images in carosel ==================== */
+/* ========== END: SVG placeholder images in carousel ==================== */
 
 
 
-/* ========== START: darken carosel images ============================== */
+/* ========== START: darken carousel images ============================== */
 /* https://css-tricks.com/design-considerations-text-images/ */
-.carosel_background {
+.carousel_background {
   height: auto;
   max-width: 100%;
   background-size: cover;
@@ -122,7 +122,7 @@ input[type='text'], input[type='email'] {
 .text-shadow {
   text-shadow: 1px 2px 2px black;
 }
-/* ========== END: darken carosel images ============================== */
+/* ========== END: darken carousel images ============================== */
 
 
 
