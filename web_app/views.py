@@ -27,7 +27,7 @@ def index(request):
     # RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')
 
     # reCAPTCHA v2 SECRET key, test
-    RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWex'
+    RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 
     a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')
     b = urllib.parse.urlencode({'secret': RECAPTCHA_SITE_SECRET, 'response': request.POST['recaptcha']}, True)
@@ -47,22 +47,22 @@ def index(request):
 
       # Send a notification message to the site administrator when "Contact Us" form
       # is submitted
-      # send_mail(
-      #   'River City Pro Wash -- Contact Us form submission notification',
-      #   Template('Name: $name\nAddress: $address\nPhone: $phone\nEmail: $email\nMessage: $message').substitute(name=name, address=address, phone=phone, email=email, message=message),
-      #   email_admin,
-      #   [email_admin],
-      #   fail_silently=False,
-      # )
+      send_mail(
+        'River City Pro Wash -- Contact Us form submission notification',
+        Template('Name: $name\nAddress: $address\nPhone: $phone\nEmail: $email\nMessage: $message').substitute(name=name, address=address, phone=phone, email=email, message=message),
+        email_admin,
+        [email_admin],
+        fail_silently=False,
+      )
 
       # Send a thank you message to the user who submitted the "Contact Us" form
-      # send_mail(
-      #   'Thank you for contacting River City Pro Wash!',
-      #   Template('Dear $name,\n\nThank you for contacting River City Pro Wash! A member of our team will be in touch with you shortly.\n\nRegards,\nRiver City Pro Wash').substitute(name=name),
-      #   email_admin,
-      #   [email],
-      #   fail_silently=False,
-      # )
+      send_mail(
+        'Thank you for contacting River City Pro Wash!',
+        Template('Dear $name,\n\nThank you for contacting River City Pro Wash! A member of our team will be in touch with you shortly.\n\nRegards,\nRiver City Pro Wash').substitute(name=name),
+        email_admin,
+        [email],
+        fail_silently=False,
+      )
 
       # Just put this here to silence a server error message since it looks like
       # request.method == 'POST' requires some kind of HttpResponse object
