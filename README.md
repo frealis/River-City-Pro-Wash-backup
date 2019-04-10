@@ -82,17 +82,29 @@
   $ heroku ps:scale web=1 (to make sure at least 1 web dyno is running)
   $ heroku open
 
-- When you set DEBUG = False and push this app to production, it will give a 500 error unless the ALLOWED_HOSTS =[] in settings.py includes the URL where this site is hosted. Some people also think that not having collected static files or making migrations may also produce this error. To do both:
+- When you set DEBUG = False and push this app to production, it will give a 500 error unless the ALLOWED_HOSTS =[] in settings.py includes the URL where this site is hosted. Some people also think that not having collected static files or not migrating the database may also produce this error. To do both:
 
-  $ heroku run python manage.py makemigrations
-  $ heroku run python manage.py migrate
   $ python manage.py collectstatic
+  $ git push heroku master (to push static files to Heroku server)
+  $ heroku run python manage.py migrate (to apply migration files)
 
   ... to troubleshoot:
 
   $ heroku logs --tail
 
   ... also note: if you have static files in the templates, ie. {% static 'whatever' %}, and they are commented out via HTML comment tags, they are still visible to the program and can cause issues, especially when Debug = False.
+
+- When altering models.py locally and updating your local database via:
+
+  $ python manage.py makemigrations
+  $ python manage.py migrate
+
+  ... you are basically a) creating a migration file with SQL instructions, and b) applying those instructions to alter the database. Heroku has analogous commands:
+
+  $ heroku run python manage.py makemigrations
+  $ heroku run python manage.py migrate
+
+  ... however, as long as you push your migration files from the /migration folder to Heroku, you can omit running the first command (makemigrations).
 
 # Generate a new random SECRET_KEY
 
