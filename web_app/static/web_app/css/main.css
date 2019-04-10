@@ -59,7 +59,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 input[type='text'], input[type='email'] {
-  width: 100%;
+  max-width: 100%;
   margin: 8px 0;
 }
 
@@ -128,7 +128,7 @@ input[type='text'], input[type='email'] {
 
 .prevent_pushdown {
   position: absolute;
-  width: 100%;
+  max-width: 100%;
   z-index: 9999;
 }
 
@@ -215,7 +215,7 @@ input[type='text'], input[type='email'] {
 /* ========== START: header logo ======================================== */
 .header-logo {
 height: 260px; 
-width: 100%
+max-width: 100%
 }
 
 .center {
