@@ -40,10 +40,10 @@ X_FRAME_OPTIONS = 'DENY'
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 SECURE_SSL_REDIRECT = True
-ALLOWED_HOSTS = ['frozen-brushlands-44280.herokuapp.com']
+ALLOWED_HOSTS = ['frozen-brushlands-44280.herokuapp.com', '*']
 # ALLOWED_HOSTS = ['*']
 
 # Application definition
