@@ -39,12 +39,14 @@ X_FRAME_OPTIONS = 'DENY'
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY")
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug turned on in production! -- If you set
+# this to FALSE, make sure you have an appropriate allowed site listed in the
+# ALLOWED_HOSTS[] array below.
 DEBUG = False
 
 SECURE_SSL_REDIRECT = True
 # ALLOWED_HOSTS = ['frozen-brushlands-44280.herokuapp.com', '*', 'https://frozen-brushlands-44280.herokuapp.com/']
-ALLOWED_HOSTS = ['https://frozen-brushlands-44280.herokuapp.com/']
+ALLOWED_HOSTS = ['.herokuapp.com/']
 
 # Application definition
 
