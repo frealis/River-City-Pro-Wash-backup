@@ -40,7 +40,7 @@ X_FRAME_OPTIONS = 'DENY'
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 SECURE_SSL_REDIRECT = True
 ALLOWED_HOSTS = ['frozen-brushlands-44280.herokuapp.com']
@@ -111,15 +111,21 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 # }
 
 # Local database
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': os.getenv("POSTGRES_NAME"),
+#     'USER': os.getenv("POSTGRES_USER"),
+#     'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+#     'HOST': '127.0.0.1',
+#     'PORT': '5432',
+#   }
+# }
+
+# Un-comment this if you want to run python manage.py check --deploy to 2x check
+# that security settings are in place before deployment
 DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': os.getenv("POSTGRES_NAME"),
-    'USER': os.getenv("POSTGRES_USER"),
-    'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-    'HOST': '127.0.0.1',
-    'PORT': '5432',
-  }
+  # nothing
 }
 
 # Password validation
