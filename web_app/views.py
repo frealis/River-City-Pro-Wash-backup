@@ -24,10 +24,10 @@ def index(request):
     # Authenticate reCAPTCHA v2 user's response
     
     # reCAPTCHA v2 SECRET key
-    # RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')
+    RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')
 
     # reCAPTCHA v2 SECRET key, test
-    RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
+    # RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 
     a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')
     b = urllib.parse.urlencode({'secret': RECAPTCHA_SITE_SECRET, 'response': request.POST['recaptcha']}, True)
