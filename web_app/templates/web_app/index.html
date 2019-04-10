@@ -1,4 +1,4 @@
-{% extends "web_app/base.html" %}
+<!-- {% extends "web_app/base.html" %} -->
 {% load static %}
 
 <!-- Title -->
@@ -10,13 +10,16 @@
 <!-- Body -->
 {% block body %}
 
+<!-- HEADER LOGO -->
+{% include "web_app/header_logo.html" %}
+
 <!-- NAVBAR -->
 {% include "web_app/navbar.html" %}
 
 <main role="main">
 
-  <!-- CAROSEL -->  
-  {% include "web_app/carosel.html" %}
+  <!-- carousel -->  
+  {% include "web_app/carousel.html" %}
 
   <!-- begin centering wrapper -->
   <div class="container marketing">
@@ -49,12 +52,8 @@
 
   </div><!-- end centering wrapper -->
 
-
   <!-- FOOTER -->
-  <footer class="container">
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&copy; 2018-2019 River City Pro Wash, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Acknowledgements</a></p>
-  </footer>
+  {% include "web_app/footer.html" %}
 
 </main>
 

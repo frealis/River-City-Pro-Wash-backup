@@ -2,52 +2,74 @@ from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render
 from string import Template
-import bleach
-import os
+from urllib.parse import parse_qs
 
+import bleach
+import json
+import os
+import urllib.request
+
+# Index route (this is a single page web application, so everything is here)
 def index(request):
   if request.method == 'POST':
 
-    # Gather & sanitize data submitted from the "Contact Us" form
-    name = bleach.clean(request.POST['name'])
-    address = bleach.clean(request.POST['address'])
-    phone = bleach.clean(request.POST['phone'])
-    email = bleach.clean(request.POST['email'])
-    message = bleach.clean(request.POST['message'])
+    # Authenticate reCAPTCHA v2 user's response
+    
+    # reCAPTCHA v2 SECRET key
+    # RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')
 
-    # Save data submitted from the "Contact Us" form to database
-    from web_app.models import Message
-    m = Message(name=name, address=address, phone=phone, email=email, message=message)
-    m.save()
+    # reCAPTCHA v2 SECRET key, test
+    RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 
-    # Set the email address for the site administrator
-    email_admin = os.getenv("EMAIL_ADMIN")
+    a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')
+    b = urllib.parse.urlencode({'secret': RECAPTCHA_SITE_SECRET, 'response': request.POST['recaptcha']}, True)
+    c = urllib.request.Request(a + '?' + b)
+    recaptcha_response = urllib.request.urlopen(c).read().decode("utf-8")
+    if json.loads(recaptcha_response).get("success") == True:
+      print(recaptcha_response)
 
-    # Send a notification message to the site administrator when "Contact Us" form
-    # is submitted
-    send_mail(
-      'River City Pro Wash -- Contact Us form submission notification',
-      Template('Name: $name\nAddress: $address\nPhone: $phone\nEmail: $email\nMessage: $message').substitute(name=name, address=address, phone=phone, email=email, message=message),
-      email_admin,
-      [email_admin],
-      fail_silently=False,
-    )
+      # Gather & sanitize data submitted from the "Contact Us" form
+      name = bleach.clean(request.POST['name'])
+      address = bleach.clean(request.POST['address'])
+      phone = bleach.clean(request.POST['phone'])
+      email = bleach.clean(request.POST['email'])
+      message = bleach.clean(request.POST['message'])
 
-    # Send a thank you message to the user who submitted the "Contact Us" form
-    send_mail(
-      'Thank you for contacting River City Pro Wash!',
-      Template('Dear $name,\n\nThank you for contacting River City Pro Wash! A member of our team will be in touch with you shortly.\n\nRegards,\nRiver City Pro Wash').substitute(name=name),
-      email_admin,
-      [email],
-      fail_silently=False,
-    )
+      # Save data submitted from the "Contact Us" form to database
+      # from web_app.models import Message
+      # m = Message(name=name, address=address, phone=phone, email=email, message=message)
+      # m.save()
 
-  context = {
-    'GOOGLE_MAPS_API_KEY': os.getenv('GOOGLE_MAPS_API_KEY')
-  }
+      # Set the email address for the site administrator
+      email_admin = os.getenv("EMAIL_ADMIN")
 
-  # Change to REDIRECT
-  return render(request, 'web_app/index.html', context)
+      # Send a notification message to the site administrator when "Contact Us" form
+      # is submitted
+      # send_mail(
+      #   'River City Pro Wash -- Contact Us form submission notification',
+      #   Template('Name: $name\nAddress: $address\nPhone: $phone\nEmail: $email\nMessage: $message').substitute(name=name, address=address, phone=phone, email=email, message=message),
+      #   email_admin,
+      #   [email_admin],
+      #   fail_silently=False,
+      # )
 
-def test(request):
-  return render(request, 'web_app/test.html')
+      # Send a thank you message to the user who submitted the "Contact Us" form
+      # send_mail(
+      #   'Thank you for contacting River City Pro Wash!',
+      #   Template('Dear $name,\n\nThank you for contacting River City Pro Wash! A member of our team will be in touch with you shortly.\n\nRegards,\nRiver City Pro Wash').substitute(name=name),
+      #   email_admin,
+      #   [email],
+      #   fail_silently=False,
+      # )
+
+    else:
+      print('=== reCAPTCHA failed ===')
+
+  if request.method == 'GET':
+    context = {
+      # Nothing to send
+    }
+    return render(request, 'web_app/index.html', context)
+
+def xtest(request):
+  return render(request, 'web_app/xtest.html')

@@ -1,11 +1,11 @@
 {% load static %}
 
 <!-- Contact Us -->
-<a class="anchor" id="contact_us"></a>
+<a class="anchor-point anchor-56" id="contact_us"></a>
 <h2>Contact Us</h2>
-<p><img src="{% static 'img/clock.svg' %}" class="svg_contact_us_icon" height="16px" width="16px"> Hours of Operation: 24 hours a day, 7 days a week, 365 days a year every 3 out of 4 years, 366 days every 4th year</p>
-<p><img src="{% static 'img/phone.svg' %}" class="svg_contact_us_icon" height="16px" width="16px"> (123) 546-7890</p>
-<h6>Fill out the form below to send us a message, ask a question, or request a free quote!</h6>
+<p><img src="{% static 'img/clock.svg' %}" class="mr-1" height="12px" width="12px"> Hours of Operation: 24 hours a day, 7 days a week, 365 days a year every 3 out of 4 years, 366 days every 4th year</p><br>
+<p><img src="{% static 'img/phone.svg' %}" class="mr-1" height="12px" width="12px"> (123) 456-7890</p><br>
+<h6>Fill out the form below to send us a message, ask a question, or request a free quote!</h6><br>
 
 <form id="contact_us_form">
   <span id="required_field">Name</span> <span class="red">*</span><br>
@@ -28,13 +28,14 @@
 
   <p><span class="red">*</span> indicates a required field</p>
   <span id="csrf">{% csrf_token %}</span>
+  <p></p>
   <p><span id="alert"></span></p>
   <p>
 
-    <!-- reCAPTCHA v2 -->
+    <!-- reCAPTCHA v2 SITE key -->
     <!-- <div class="g-recaptcha" data-sitekey="6LfRfJwUAAAAAFuvoDiqY3B2AABs1-tmWA7p9MHG"></div> -->
     
-    <!-- reCAPTCHA v2 test key -->
+    <!-- reCAPTCHA v2 SITE key, test -->
     <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
 
     <input id="send_message" class="btn btn-outline-success mt-2" type="submit">
