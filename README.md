@@ -92,6 +92,8 @@
 
   $ heroku logs --tail
 
+  ... also note: if you have static files in the templates, ie. {% static 'whatever' %}, and they are commented out via HTML comment tags, they are still visible to the program and can cause issues, especially when Debug = False.
+
 # Generate a new random SECRET_KEY
 
 - https://foxrow.com/generating-django-secret-keys

@@ -214,7 +214,7 @@ height: 260px;
 width: 100%
 }
 
-img.center {
+.center {
   display: block;
   margin-left: auto;
   margin-right: auto;
