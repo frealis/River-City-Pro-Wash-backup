@@ -1,6 +1,8 @@
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
 from string import Template
 from urllib.parse import parse_qs
 
@@ -24,10 +26,10 @@ def index(request):
     # Authenticate reCAPTCHA v2 user's response
     
     # reCAPTCHA v2 SECRET key
-    RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')
+    # RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')
 
     # reCAPTCHA v2 SECRET key, test
-    # RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
+    RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 
     a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')
     b = urllib.parse.urlencode({'secret': RECAPTCHA_SITE_SECRET, 'response': request.POST['recaptcha']}, True)
@@ -55,7 +57,7 @@ def index(request):
       #   fail_silently=False,
       # )
 
-      # Send a thank you message to the user who submitted the "Contact Us" form
+      # Use Gmail to send thank you email to client
       # send_mail(
       #   'Thank you for contacting River City Pro Wash!',
       #   Template('Dear $name,\n\nThank you for contacting River City Pro Wash! A member of our team will be in touch with you shortly.\n\nRegards,\nRiver City Pro Wash').substitute(name=name),
@@ -64,24 +66,29 @@ def index(request):
       #   fail_silently=False,
       # )
 
-
-      from sendgrid import SendGridAPIClient
-      from sendgrid.helpers.mail import Mail
-
+      # Use SendGrid to send notification to site administrator
       message = Mail(
-        from_email='from_email@example.com',
-        to_emails='to@example.com',
-        subject='Sending with Twilio SendGrid is Fun',
-        html_content='<strong>and easy to do anywhere, even with Python</strong>')
+        from_email=email_admin,
+        to_emails=email_admin,
+        subject='Thank you for contacting River City Pro Wash!',
+        html_content=Template('Name: $name\nAddress: $address\nPhone: $phone\nEmail: $email\nMessage: $message').substitute(name=name, address=address, phone=phone, email=email, message=message))
       try:
         sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
         response = sg.send(message)
-        print(response.status_code)
-        print(response.body)
-        print(response.headers)
       except Exception as e:
-        print(e)
+        print('=========== SendGrid exception: ', e)
 
+      # Use SendGrid to send thank you email to client
+      message = Mail(
+        from_email=email_admin,
+        to_emails=email,
+        subject='Thank you for contacting River City Pro Wash!',
+        html_content=Template('Dear $name,\n\nThank you for contacting River City Pro Wash! A member of our team will be in touch with you shortly.\n\nRegards,\nRiver City Pro Wash').substitute(name=name))
+      try:
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        response = sg.send(message)
+      except Exception as e:
+        print('=========== SendGrid exception: ', e)
 
       # Just put this here to silence a server error message since it looks like
       # request.method == 'POST' requires some kind of HttpResponse object
