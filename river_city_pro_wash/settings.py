@@ -44,7 +44,7 @@ DEBUG = False
 
 SECURE_SSL_REDIRECT = True
 # ALLOWED_HOSTS = ['frozen-brushlands-44280.herokuapp.com', '*', 'https://frozen-brushlands-44280.herokuapp.com/']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['https://frozen-brushlands-44280.herokuapp.com/']
 
 # Application definition
 

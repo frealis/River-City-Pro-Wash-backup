@@ -82,6 +82,10 @@
   $ heroku ps:scale web=1 (to make sure at least 1 web dyno is running)
   $ heroku open
 
+- When you set DEBUG = False and push this app to production, it will give a 500 error unless the ALLOWED_HOSTS =[] in settings.py includes the URL where this site is hosted. Some people also think that not having collected static files via python manage.py collectstatic may also produce this error. To troubleshoot:
+
+  $ heroku logs --tail
+
 # Generate a new random SECRET_KEY
 
 - https://foxrow.com/generating-django-secret-keys
