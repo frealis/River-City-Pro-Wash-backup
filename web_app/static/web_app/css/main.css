@@ -59,7 +59,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 input[type='text'], input[type='email'] {
-  max-width: 100%;
+  width: 100%;
   margin: 8px 0;
 }
 
@@ -128,7 +128,7 @@ input[type='text'], input[type='email'] {
 
 .prevent_pushdown {
   position: absolute;
-  max-width: 100%;
+  width: 100%;
   z-index: 9999;
 }
 
