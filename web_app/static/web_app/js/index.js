@@ -21,7 +21,8 @@ window.onscroll = () => {
   // console.log('window.scrollY: ', window.scrollY);
   // console.log('document.body.offsetHeight: ', document.body.offsetHeight);
 
-  var navbar_offset = navbar.offsetTop;
+  var navbar_offset = nav_bar.offsetTop;
+  console.log(navbar_offset);
 
   if (window.scrollY < navbar_offset) {
     document.querySelector('#nav_bar').classList.remove('fixed-top')
