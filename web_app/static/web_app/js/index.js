@@ -21,40 +21,15 @@ window.onscroll = () => {
   // console.log('window.scrollY: ', window.scrollY);
   // console.log('document.body.offsetHeight: ', document.body.offsetHeight);
 
-  // 260 is the distance in pixels from the top of the screen to the top of the
-  // navbar. Add 56 pixels worth of margin on top of the carosel section to 
-  // account for the height of the navbar. The '.show' class is only added to 
-  // the navbar when it is toggled on from collapsed/small screen mode.
-  if (window.scrollY < 260) {
+  var navbar_offset = navbar.offsetTop;
+
+  if (window.scrollY < navbar_offset) {
     document.querySelector('#nav_bar').classList.remove('fixed-top')
     document.querySelector('#nav_bar').classList.add('prevent_pushdown')
-    // document.querySelector('#myCarousel').classList.remove('margin-top56')
 
-    // if (document.querySelector('.show')) {
-    //   anchor_points = document.querySelectorAll('.anchor-point')
-    //   for (let i = 0; i < anchor_points.length; i++) {
-    //     anchor_points[i].classList.add('anchor-336');
-    //     if (anchor_points[i].classList.contains('anchor-56')) {
-    //       anchor_points[i].classList.remove('anchor-56');
-    //     };
-    //   };
-    // };
-
-  } else if (window.scrollY >= 260) {
+  } else if (window.scrollY >= navbar_offset) {
     document.querySelector('#nav_bar').classList.remove('prevent_pushdown')
     document.querySelector('#nav_bar').classList.add('fixed-top')
-    // document.querySelector('#myCarousel').classList.add('margin-top56')
-
-    // if (document.querySelector('.show')){
-    //   anchor_points = document.querySelectorAll('.anchor-point')
-    //   for (let i = 0; i < anchor_points.length; i++) {
-    //     anchor_points[i].classList.add('anchor-56');
-    //     if (anchor_points[i].classList.contains('anchor-336')) {
-    //       anchor_points[i].classList.remove('anchor-336');
-    //     };
-    //   };
-    // };
-    
   };
 }
 
