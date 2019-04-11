@@ -202,7 +202,7 @@ LOGGING = {
     'file': {
       'level': 'DEBUG',
       'class': 'logging.FileHandler',
-      'filename': 'river_city_pro_wash.log',
+      'filename': 'project.log',
       'formatter': 'verbose'
     },
   },
