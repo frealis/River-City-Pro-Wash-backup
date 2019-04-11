@@ -14,27 +14,26 @@ function noSpaces(event) {
   };
 }
 
-// Toggle navbar fixed-top class
-window.onscroll = () => {
-  // console.log('----');
-  // console.log('window.innerHeight: ', window.innerHeight);
-  // console.log('window.scrollY: ', window.scrollY);
-  // console.log('document.body.offsetHeight: ', document.body.offsetHeight);
+document.addEventListener('DOMContentLoaded', function() {
 
   var navbar_offset = nav_bar.offsetTop;
-  console.log(navbar_offset);
 
-  if (window.scrollY < navbar_offset) {
-    document.querySelector('#nav_bar').classList.remove('fixed-top')
-    document.querySelector('#nav_bar').classList.add('prevent_pushdown')
+  // Toggle navbar fixed-top class
+  window.onscroll = () => {
+    // console.log('----');
+    // console.log('window.innerHeight: ', window.innerHeight);
+    // console.log('window.scrollY: ', window.scrollY);
+    // console.log('document.body.offsetHeight: ', document.body.offsetHeight);
 
-  } else if (window.scrollY >= navbar_offset) {
-    document.querySelector('#nav_bar').classList.remove('prevent_pushdown')
-    document.querySelector('#nav_bar').classList.add('fixed-top')
-  };
-}
+    if (window.scrollY < navbar_offset) {
+      document.querySelector('#nav_bar').classList.remove('fixed-top')
+      document.querySelector('#nav_bar').classList.add('prevent_pushdown')
 
-document.addEventListener('DOMContentLoaded', function() {
+    } else if (window.scrollY >= navbar_offset) {
+      document.querySelector('#nav_bar').classList.remove('prevent_pushdown')
+      document.querySelector('#nav_bar').classList.add('fixed-top')
+    };
+  }
 
   // Check to see if screen is resized on window load
   // Only collapse the navbar on a link click if the screen is less than 992px wide
