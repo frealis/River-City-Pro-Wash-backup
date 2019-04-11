@@ -11,28 +11,74 @@ html, body, div, applet, object, iframe, blockquote, pre, a, abbr, acronym, addr
   background: transparent;
 }
 
+.bold {
+  font-weight: bold;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.font-size18 {
+  font-size: 18px;
+}
+
+.font-size20 {
+  font-size: 20px;
+}
+
+.font-size22 {
+  font-size: 22px;
+}
+
+/* Set dimensions for the logo at the top of the page */
+.header-logo {
+  height: 260px; 
+  max-width: 100%
+  }
+
+/* Increase the width of the email input field, also indirectly increases the 
+width of the name and address fields */
+input[type='text'], input[type='email'] {
+  width: 100%;
+  margin: 8px 0;
+}
+
+.margin-top56 {
+  margin-top: 56px;
+}
+
+/* Stop expanded navbar from pushing down content */
+.prevent_pushdown {
+  position: absolute;
+  width: 100%;
+  z-index: 9999;
+}
+
+.red {
+  color: red;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Google Maps - always set the map height explicitly to define the size of 
+the div element that contains the map. */
+#map {
+  height: 425px;
+}
+
 
 
 /* ========== START: smooth scroll ======================================== */
 a.anchor-56 {
   display: block;
   position: relative;
-  top: -56px;
+  top: -100px;
   visibility: hidden;
-}
-
-a.anchor-336 {
-  display: block;
-  position: relative;
-  top: -336px;
-  visibility: hidden;
-}
-
-a.anchor-point{
-  /* This class is given to all anchors linked to by the navbar and is used
-  when scrolling to an anchor point whether to offset the disance by 56 pixels
-  (which is the height of the navbar itself) or 336 pixels (height of the navbar
-  plus the height of the navbar drop-down menu) */
 }
 
 html {
@@ -55,13 +101,6 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0;
 }
 /* ========== END: remove spin buttons from number input field ========== */
-
-
-
-input[type='text'], input[type='email'] {
-  width: 100%;
-  margin: 8px 0;
-}
 
 
 
@@ -116,72 +155,13 @@ input[type='text'], input[type='email'] {
       rgba(0, 0, 0, 0.15),
       rgba(0, 0, 0, 0.80)
     ),
-    url(https://via.placeholder.com/800);
+    url(https://loremflickr.com/960/720);
 }
 
 .text-shadow {
   text-shadow: 1px 2px 2px black;
 }
 /* ========== END: darken carousel images ============================== */
-
-
-
-.prevent_pushdown {
-  position: absolute;
-  width: 100%;
-  z-index: 9999;
-}
-
-.font-size18 {
-  font-size: 18px;
-}
-
-.font-size20 {
-  font-size: 20px;
-}
-
-.font-size22 {
-  font-size: 22px;
-}
-
-.font-size60 {
-  font-size: 60px;
-}
-
-.logo-text {
-  font-family: fantasy;
-  text-decoration: none;
-}
-
-.logo-text:hover {
-  color: white;
-  text-decoration: none;
-}
-
-.margin-top56 {
-  margin-top: 56px;
-}
-
-.margin-top819 {
-  margin-top: 819px;
-}
-
-.phone {
-  margin: 8px 0;
-  text-align: center;
-}
-
-.red {
-  color: red;
-}
-
-.bold {
-  font-weight: bold;
-}
-
-.text-center {
-  text-align: center;
-}
 
 
 
@@ -212,21 +192,6 @@ input[type='text'], input[type='email'] {
 
 
 
-/* ========== START: header logo ======================================== */
-.header-logo {
-height: 260px; 
-max-width: 100%
-}
-
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-/* ========== END: header logo ======================================== */
-
-
-
 /* ========== START: colors ======================================== */
 
 /* 032339 123955 27516e 426a87 6a8ba2 cddbe5 eff4f8 */
@@ -249,11 +214,3 @@ max-width: 100%
 
 /* 262261 // 27a9e1 */
 /* ========== END: colors ======================================== */
-
-
-
-/* Google Maps - always set the map height explicitly to define the size of 
-the div element that contains the map. */
-#map {
-  height: 425px;
-}
