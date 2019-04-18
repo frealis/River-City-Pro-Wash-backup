@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
-import django_heroku
+# import django_heroku
 import logging
 import os
 
@@ -103,27 +103,27 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 # }
 
 # Dockerfile database
-# DATABASES = {
-#   'default': {
-#     'ENGINE': 'django.db.backends.postgresql',
-#     'NAME': 'postgres',
-#     'USER': 'postgres',
-#     'HOST': 'db',
-#     'PORT': '5432',
-#   }
-# }
-
-# Local database
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': os.getenv("POSTGRES_NAME"),
-    'USER': os.getenv("POSTGRES_USER"),
-    'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-    'HOST': '127.0.0.1',
+    'NAME': 'postgres',
+    'USER': 'postgres',
+    'HOST': 'db',
     'PORT': '5432',
   }
 }
+
+# Local database
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': os.getenv("POSTGRES_NAME"),
+#     'USER': os.getenv("POSTGRES_USER"),
+#     'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+#     'HOST': '127.0.0.1',
+#     'PORT': '5432',
+#   }
+# }
 
 # Un-comment this if you want to run python manage.py check --deploy to 2x check
 # that security settings are in place before deployment
@@ -183,7 +183,7 @@ EMAIL_USE_TLS = False
 EMAIL_USE_SSL = True
 
 # Activate Django-Heroku
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 # Logging
 LOGGING = {
