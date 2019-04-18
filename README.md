@@ -22,6 +22,9 @@
   
 - Alternatively, to run the web application using a Dockerfile, navigate to the root directory (which contains docker-compose.yml) and run:
 
+  $ docker-machine start default          // start up a virtualbox named 'default'
+  $ docker-machine env                    // make sure environment variables exist
+  $ docker-machine regenerate certs default // do this if prompted for new certs
   $ docker-compose up
 
   ... and the website should be accessible at 192.168.99.100:8000 (on Windows machines). However, there are a lot of caveats with running the web application from a Docker image which are explained below.
@@ -37,15 +40,20 @@
   
   ... Trying this with a Django application will pull a copy of the image from an online repository (if the image is not already available on the local drive) from https://hub.docker.com, but it will -not- automatically launch the application. This is regardless of whether or not a Postgres database is set up, or the port is mapped correctly on the command line (ie. 8000:8000 is my guess), or if it's something else. However, docker compose does work:
 
+  $ docker-compose build    // create a docker image
   $ docker-compose up
 
   ... when trying to launch the web app from a docker image. However, you maybe have to run it twice: run it, then Ctrl+C (kill) it, and then run it again. I'm not sure if this has to do with setting up a container and creating a Postgres database with the necessary tables for migration first, or if it's something else. 
+
+  ... also, if you make any changes (ex. added new dependencies in requirements.txt), you have to create a new docker image in order to reflect those changes via:
+
+  $ docker-compose build
 
 - This web app has been tested through Docker by launching an image and using a single container on a single virtual machine (a default machine that can be set up using the Docker Quickstart Terminal for Docker Toolbox), but swarms/services/stacks/nodes have not been tested. To view any existing virtual machines:
 
   $ docker-machine ls
 
-- When deciding whether to launch the application via manage.py or docker-compose, you have to make appropriate database settings adjustments in order to use Postgres; Docker, when set to create a Postgres database through docker-compose.yml, will initially create a database named 'postgres' (which is why you probably have to set the 'NAME': attribute of the DATABASE settings in settings.py to 'postgres', at least initially). To test this out, make sure that all images and containers are deleted from your local machine (run these following commands from any directory, it doesn't matter):
+- When deciding whether to launch the application via manage.py or docker-compose, you have to make appropriate database settings adjustments in order to use Postgres; Docker, when set to create a Postgres database through docker-compose.yml, will initially create a database named 'postgres' by default (which is why you probably have to set the 'NAME': attribute of the DATABASE settings in settings.py to 'postgres', at least initially). To test this out, make sure that all images and containers are deleted from your local machine (run these following commands from any directory, it doesn't matter):
 
   $ docker rm $(docker ps -a -q)    // Remove all containers
   $ docker rmi $(docker images -q)  // Remove all images
@@ -65,7 +73,7 @@
   
   ... however, you might get an error code in yellow text that reads "... exited with code 1." which may have something to do with recently being inside of the database's container. If so, just Ctrl+C and run $ docker-compose up again.
 
-# Configure for deployment on Heroku
+# Deploy to Heroku
 
 - https://devcenter.heroku.com/articles/django-app-configuration
 - https://medium.com/agatha-codes/9-straightforward-steps-for-deploying-your-django-app-with-heroku-82b952652fb4
@@ -105,6 +113,16 @@
   $ heroku run python manage.py migrate
 
   ... however, as long as you push your migration files from the /migration folder to Heroku, you can omit running the first command (makemigrations).
+
+# Deploy to AWS
+
+- From the AWS console, click "Build a web app" and scroll to the bottom. You can choose a platform (most likely Preconfigured > Python, or Preconfigured - Docker > Python) and upload a source bundle as a *.zip file. To put the project in a zip file using git from the command line, enter:
+
+  $ git archive -v -o myapp.zip --format=zip HEAD
+
+  ... https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/applications-sourcebundle.html#using-features.deployment.source.commandline
+
+  
 
 # Generate a new random SECRET_KEY
 
