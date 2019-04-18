@@ -22,6 +22,7 @@
   
 - Alternatively, to run the web application using a Dockerfile, navigate to the root directory (which contains docker-compose.yml) and run:
 
+  $ docker-machine start default  // start up a virtualbox named 'default'
   $ docker-compose up
 
   ... and the website should be accessible at 192.168.99.100:8000 (on Windows machines). However, there are a lot of caveats with running the web application from a Docker image which are explained below.
@@ -45,7 +46,7 @@
 
   $ docker-machine ls
 
-- When deciding whether to launch the application via manage.py or docker-compose, you have to make appropriate database settings adjustments in order to use Postgres; Docker, when set to create a Postgres database through docker-compose.yml, will initially create a database named 'postgres' (which is why you probably have to set the 'NAME': attribute of the DATABASE settings in settings.py to 'postgres', at least initially). To test this out, make sure that all images and containers are deleted from your local machine (run these following commands from any directory, it doesn't matter):
+- When deciding whether to launch the application via manage.py or docker-compose, you have to make appropriate database settings adjustments in order to use Postgres; Docker, when set to create a Postgres database through docker-compose.yml, will initially create a database named 'postgres' by default (which is why you probably have to set the 'NAME': attribute of the DATABASE settings in settings.py to 'postgres', at least initially). To test this out, make sure that all images and containers are deleted from your local machine (run these following commands from any directory, it doesn't matter):
 
   $ docker rm $(docker ps -a -q)    // Remove all containers
   $ docker rmi $(docker images -q)  // Remove all images
