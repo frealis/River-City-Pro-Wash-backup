@@ -1,7 +1,7 @@
-﻿Django
-python-dotenv
-psycopg2-binary
-bleach
-gunicorn
-requests
-sendgrid
+﻿Django==2.2
+python-dotenv==0.10.1
+psycopg2==2.7.5
+bleach==3.1.0
+gunicorn==19.9.0
+requests==2.20.1
+sendgrid==6.0.4

@@ -1,1 +1,0 @@
-web: gunicorn river_city_pro_wash.wsgi --log-file -
