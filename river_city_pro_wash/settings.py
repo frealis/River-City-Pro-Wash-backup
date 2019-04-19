@@ -26,14 +26,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-CSRF_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-SECURE_HSTS_SECONDS = 518400
-SESSION_COOKIE_SECURE = True
-X_FRAME_OPTIONS = 'DENY'
+# CSRF_COOKIE_SECURE = True
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+# SECURE_HSTS_SECONDS = 518400
+# SESSION_COOKIE_SECURE = True
+# X_FRAME_OPTIONS = 'DENY'
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -42,12 +42,14 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production! -- If you set
 # this to FALSE, make sure you have an appropriate allowed site listed in the
 # ALLOWED_HOSTS[] array below.
-DEBUG = False
+
+# DEBUG = False
+DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
-SECURE_SSL_REDIRECT = True
-ALLOWED_HOSTS = ['https://frozen-brushlands-44280.herokuapp.com/']
-# ALLOWED_HOSTS = ['*']
+# SECURE_SSL_REDIRECT = True
+# ALLOWED_HOSTS = ['https://frozen-brushlands-44280.herokuapp.com/']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -103,27 +105,27 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 # }
 
 # Dockerfile database
-DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'postgres',
-    'USER': 'postgres',
-    'HOST': 'db',
-    'PORT': '5432',
-  }
-}
-
-# Local database
 # DATABASES = {
 #   'default': {
 #     'ENGINE': 'django.db.backends.postgresql',
-#     'NAME': os.getenv("POSTGRES_NAME"),
-#     'USER': os.getenv("POSTGRES_USER"),
-#     'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-#     'HOST': '127.0.0.1',
+#     'NAME': 'postgres',
+#     'USER': 'postgres',
+#     'HOST': 'db',
 #     'PORT': '5432',
 #   }
 # }
+
+# Local database
+DATABASES = {
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': os.getenv("POSTGRES_NAME"),
+    'USER': os.getenv("POSTGRES_USER"),
+    'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+    'HOST': '127.0.0.1',
+    'PORT': '5432',
+  }
+}
 
 # Un-comment this if you want to run python manage.py check --deploy to 2x check
 # that security settings are in place before deployment
