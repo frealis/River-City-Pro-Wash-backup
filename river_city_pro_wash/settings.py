@@ -42,6 +42,8 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production! -- If you set
 # this to FALSE, make sure you have an appropriate allowed site listed in the
 # ALLOWED_HOSTS[] array below.
+
+# DEBUG = False
 DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
@@ -103,27 +105,27 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 # }
 
 # Dockerfile database
-DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'postgres',
-    'USER': 'postgres',
-    'HOST': 'db',
-    'PORT': '5432',
-  }
-}
-
-# Local database
 # DATABASES = {
 #   'default': {
 #     'ENGINE': 'django.db.backends.postgresql',
-#     'NAME': os.getenv("POSTGRES_NAME"),
-#     'USER': os.getenv("POSTGRES_USER"),
-#     'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-#     'HOST': '127.0.0.1',
+#     'NAME': 'postgres',
+#     'USER': 'postgres',
+#     'HOST': 'db',
 #     'PORT': '5432',
 #   }
 # }
+
+# Local database
+DATABASES = {
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': os.getenv("POSTGRES_NAME"),
+    'USER': os.getenv("POSTGRES_USER"),
+    'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+    'HOST': '127.0.0.1',
+    'PORT': '5432',
+  }
+}
 
 # Un-comment this if you want to run python manage.py check --deploy to 2x check
 # that security settings are in place before deployment
@@ -174,7 +176,11 @@ STATICFILES_DIRS = (
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
+<<<<<<< HEAD
 # Email settings for Gmail
+=======
+# Email
+>>>>>>> heroku-development
 # EMAIL_HOST = os.getenv("EMAIL_HOST")
 # EMAIL_PORT = os.getenv("EMAIL_PORT")
 # EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
