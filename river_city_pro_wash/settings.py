@@ -46,7 +46,7 @@ DEBUG = False
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
 SECURE_SSL_REDIRECT = True
-ALLOWED_HOSTS = ['https://frozen-brushlands-44280.herokuapp.com/']
+ALLOWED_HOSTS = ['https://river-city-pro-wash.herokuapp.com/']
 # ALLOWED_HOSTS = ['*']
 
 # Application definition
@@ -103,27 +103,27 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 # }
 
 # Dockerfile database
-DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'postgres',
-    'USER': 'postgres',
-    'HOST': 'db',
-    'PORT': '5432',
-  }
-}
-
-# Local database
 # DATABASES = {
 #   'default': {
 #     'ENGINE': 'django.db.backends.postgresql',
-#     'NAME': os.getenv("POSTGRES_NAME"),
-#     'USER': os.getenv("POSTGRES_USER"),
-#     'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-#     'HOST': '127.0.0.1',
+#     'NAME': 'postgres',
+#     'USER': 'postgres',
+#     'HOST': 'db',
 #     'PORT': '5432',
 #   }
 # }
+
+# Local database
+DATABASES = {
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': os.getenv("POSTGRES_NAME"),
+    'USER': os.getenv("POSTGRES_USER"),
+    'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+    'HOST': '127.0.0.1',
+    'PORT': '5432',
+  }
+}
 
 # Un-comment this if you want to run python manage.py check --deploy to 2x check
 # that security settings are in place before deployment
