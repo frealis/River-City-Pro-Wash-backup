@@ -98,7 +98,11 @@
 
   ... to troubleshoot:
 
-  $ heroku logs --tail
+  $ heroku logs --tail      // show recent logs
+  $ heroku releases         // show recent heroku releases, denoted v#, ex. v3
+  $ heroku rollback         // rollback to previous release
+  $ heroku rollback v#      // rollback to v#, ex. v10, v33, etc.
+  $ git diff # #            // compare previous heroku git commits by deploy #
 
   ... also note: if you have static files in the templates, ie. {% static 'whatever' %}, and they are commented out via HTML comment tags, they are still visible to the program and can cause issues, especially when Debug = False.
 
