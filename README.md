@@ -73,6 +73,8 @@
   
   ... however, you might get an error code in yellow text that reads "... exited with code 1." which may have something to do with recently being inside of the database's container. If so, just Ctrl+C and run $ docker-compose up again.
 
+- To login to the www.rivercityprowash.com/admin console while the application is running in a dockerized container, you'll have to create a user with both a username and a password -- when the database is set up in the docker container, it doesn't have a password by default because no password is specified in settings.py. 
+
 # Deploy to Heroku
 
 - https://devcenter.heroku.com/articles/django-app-configuration
