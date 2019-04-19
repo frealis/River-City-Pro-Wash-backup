@@ -1,6 +1,6 @@
-﻿Django==2.2
-python-dotenv==0.10.1
-psycopg2==2.7.5
+﻿Django
+python-dotenv
+psycopg2
 bleach
 
 gunicorn
