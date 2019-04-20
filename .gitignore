@@ -6,7 +6,5 @@ __pycache__/
 .dockerignore
 *.exe
 *.zip
-# Elastic Beanstalk Files
-.elasticbeanstalk/*
-!.elasticbeanstalk/*.cfg.yml
-!.elasticbeanstalk/*.global.yml
+venv
+.elasticbeanstalk/
