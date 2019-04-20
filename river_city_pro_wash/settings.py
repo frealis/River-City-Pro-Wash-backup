@@ -94,7 +94,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'river_city_pro_wash.application'
+WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 
 
 # Database
