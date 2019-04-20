@@ -176,7 +176,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'web_app/static/web_app'),
 )
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Email settings for Gmail
 # EMAIL_HOST = os.getenv("EMAIL_HOST")
