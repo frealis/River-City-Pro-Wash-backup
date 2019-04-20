@@ -48,7 +48,10 @@ DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
 # SECURE_SSL_REDIRECT = True
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+  '*',
+  'django-env.puyupvgzih.us-west-2.elasticbeanstalk.com',
+]
 
 # Application definition
 
