@@ -2,6 +2,10 @@ branch-defaults:
   test-aws-development:
     environment: rcpw-env
     group_suffix: null
+environment-defaults:
+  rcpw-env:
+    branch: null
+    repository: null
 global:
   application_name: rcpw
   branch: null

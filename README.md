@@ -146,7 +146,7 @@
   $ eb status       // get detailed information on current environment
   $ eb terminate    // terminate current environment
 
-  ... in contrast to Heroku, where changes are pushed via git and have to be from the 'master' branch, changes in AWS are deployed by packaging all of the files in an application (into a *.zip file or other archive), sending those files to some Amazon S3 server, and then finally sending the files to an AWS environment. The command to do this is:
+  ... in contrast to Heroku, where changes are pushed via git and have to be from the 'master' branch, changes in AWS are deployed by packaging all of the files in an application (into a *.zip file or other archive), sending those files to some Amazon S3 server, and then finally sending the files to an AWS environment. However, if you have git installed in the same directory that you're using to deploy to AWS, then your latest commit will get deployed https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-cli-git.html. The command to do this is:
 
   $ eb deploy
 
