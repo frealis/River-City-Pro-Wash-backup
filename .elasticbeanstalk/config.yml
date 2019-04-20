@@ -2,6 +2,8 @@ branch-defaults:
   aws-development:
     environment: rcpw-env
     group_suffix: null
+  master:
+    environment: rcpw-env2
 environment-defaults:
   rcpw-env:
     branch: null

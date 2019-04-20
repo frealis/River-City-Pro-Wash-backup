@@ -47,7 +47,10 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 
 SECURE_SSL_REDIRECT = True
 # ALLOWED_HOSTS = ['https://river-city-pro-wash.herokuapp.com/']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+  '*',
+  'rcpw-env2.7y35tjggrg.us-east-1.elasticbeanstalk.com',
+]
 
 # Application definition
 
