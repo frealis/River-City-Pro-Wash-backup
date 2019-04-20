@@ -169,7 +169,12 @@
   $ eb setenv key=value     // set a key=value environment variable
   $ eb printenv             // view environment variables
 
-- To switch AWS accounts from the command line, first navigate to C:/Users/<username>/.aws and modify the credentials file, ex:
+- To switch AWS accounts from the command line you can use "Named Profiles:
+
+  1. https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-configuration.html#eb-cli3-profile
+  2. https://stackoverflow.com/questions/29190202/how-to-change-the-aws-account-using-the-elastic-beanstalk-cli
+  
+  ... navigate to C:/Users/<username>/.aws and modify the credentials file in order to add additional named profiles. For example:
 
   [profile eb-cli]
   aws_access_key_id = XXXXXXXXXXXXX
@@ -179,11 +184,15 @@
   aws_access_key_id = XXXXXXXXXX
   aws_secret_access_key = XXXXXXXXXXXX
 
-  ... https://stackoverflow.com/questions/29190202/how-to-change-the-aws-account-using-the-elastic-beanstalk-cli
-
   ... then initialize a new elastic beanstalk session/instance (whatever it's called):
 
     $ eb init --profile <profile name>
+
+  ... or change the default named profile:
+
+    $ set AWS_EB_PROFILE=<profile name>
+
+  ... you can also modify the config file with same folder to choose a default region and output setting for each profile.
 
 
 # Generate a new random SECRET_KEY

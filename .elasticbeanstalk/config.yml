@@ -1,6 +1,7 @@
 branch-defaults:
   test-aws:
-    environment: null
+    environment: rcpw-env
+    group_suffix: null
   test-aws-development:
     environment: rcpw-env
     group_suffix: null
@@ -18,7 +19,7 @@ global:
   instance_profile: null
   platform_name: null
   platform_version: null
-  profile: rcpw
+  profile: null
   repository: null
   sc: git
   workspace_type: Application
