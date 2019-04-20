@@ -7,4 +7,3 @@ __pycache__/
 *.exe
 *.zip
 venv
-.elasticbeanstalk/

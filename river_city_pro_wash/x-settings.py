@@ -16,8 +16,8 @@ import os
 
 # Use python-dotenv to manage environment variables
 # https://github.com/theskumar/python-dotenv
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,7 +37,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+# SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = 'kms#@8-n4_l$)s4)8z4zo-70l-j$3+y+w7d0wdy%184m8i2684'
 
 # SECURITY WARNING: don't run with debug turned on in production! -- If you set
 # this to FALSE, make sure you have an appropriate allowed site listed in the
@@ -50,8 +51,6 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 # SECURE_SSL_REDIRECT = True
 ALLOWED_HOSTS = [
   '*',
-  'django-env.puyupvgzih.us-west-2.elasticbeanstalk.com',
-  'rcpw-env.7y35tjggrg.us-east-1.elasticbeanstalk.com',
 ]
 
 # Application definition
@@ -94,7 +93,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
+# WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 
 
 # Database
