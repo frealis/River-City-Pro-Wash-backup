@@ -29,6 +29,8 @@
 
   ... and the website should be accessible at 192.168.99.100:8000 (on Windows machines). However, there are a lot of caveats with running the web application from a Docker image which are explained below.
 
+- Local environment variables are managed using dotenv https://github.com/theskumar/python-dotenv.
+
 
 # Docker
 
@@ -75,7 +77,16 @@
 
 - To login to the www.rivercityprowash.com/admin console while the application is running in a dockerized container, you'll have to create a user with both a username and a password -- when the database is set up in the docker container, it doesn't have a password by default because no password is specified in settings.py. 
 
+
 # Deploy to Heroku
+
+- Heroku has a free service that can host 1 website at a time on what they refer to as a "dyno". It doesn't offer much processing power (something like 512 MB of RAM) and will basically turn the dyno off after 30 minutes or so of inactivity, but will turn back on with a subsequent HTTP request, although there is a lag time of 10 to 20 seconds for the dyno to start up again.
+
+- The nice thing about Heroku is that you can deploy it from the command line, and each deployment gets assigned a version number. Since each version is basically a git file, you can easily rollback to older versions or use other commands like 'git diff' to compare different versions:
+
+  $ heroku releases         // view the past 15 or so web app versions
+  $ heroku rollback v#      // rollback to a specific version, ex. v1, v3, etc.
+  $ git diff # #            // # # represent two different deploys
 
 - https://devcenter.heroku.com/articles/django-app-configuration
 - https://medium.com/agatha-codes/9-straightforward-steps-for-deploying-your-django-app-with-heroku-82b952652fb4
@@ -91,6 +102,8 @@
   $ git push heroku master
   $ heroku ps:scale web=1 (to make sure at least 1 web dyno is running)
   $ heroku open
+
+  ... note: when you push a web app to heroku, only the 'master' branch takes effect. Pushing code from any other branch is ignored by Heroku.
 
 - When you set DEBUG = False and push this app to production, it will give a 500 error unless the ALLOWED_HOSTS =[] in settings.py includes the URL where this site is hosted. Some people also think that not having collected static files or not migrating the database may also produce this error. To do both:
 
@@ -116,15 +129,44 @@
 
   ... however, as long as you push your migration files from the /migration folder to Heroku, you can omit running the first command (makemigrations).
 
+- Heroku environment variables can be viewed and set via:
+
+  $ heroku config                 // view environment variables on heroku server
+  $ heroku config:set key=value   // set environment variables on heroku server
+
+
 # Deploy to AWS
 
-- From the AWS console, click "Build a web app" and scroll to the bottom. You can choose a platform (most likely Preconfigured > Python, or Preconfigured - Docker > Python) and upload a source bundle as a *.zip file. To put the project in a zip file using git from the command line, enter:
+- Web apps deployed on AWS exist in an environment that you can specify when creating a new web application. New applications can be created either from the AWS console or from the command line. AWS has two types of command lines -- awscli (the general all-purpose AWS command line) and awsebcli (the Elastic Beanstalk web development command line). 
+
+- AWS has a free tier that is available for 12 months, and this basically allows for 1 website to be deployed at all times. This website will exist in an environment that can be shut off if needed -- terminating the environment will -not- terminate the application, but it will save on the allotted free tier hours that are granted each month for the first 12 months, so it's a good idea to turn it off when it's not needed. To view, get the status, and terminate an environment:
+
+  $ eb list         // list environments, -a or -all to view all, * marks active
+  $ eb use <env>    // switch between environments
+  $ eb status       // get detailed information on current environment
+  $ eb terminate    // terminate current environment
+
+  ... in contrast to Heroku, where changes are pushed via git and have to be from the 'master' branch, changes in AWS are deployed by packaging all of the files in an application (into a *.zip file or other archive), sending those files to some Amazon S3 server, and then finally sending the files to an AWS environment. The command to do this is:
+
+  $ eb deploy
+
+- To create a web app from the AWS console, click "Build a web app" and scroll to the bottom. You can choose a platform and upload a source bundle as a *.zip file. To put the project in a zip file using git from the command line, enter:
 
   $ git archive -v -o myapp.zip --format=zip HEAD
 
   ... https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/applications-sourcebundle.html#using-features.deployment.source.commandline
 
-  
+- To deploy from the command line, follow this guide: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html. Basically you have to create a new folder called .ebextensions and add a configuration file to it called django.config. The main commands involved with deploying an application using AWS Elastic Beanstalk are:
+
+  $ eb init         // initializes the EB CLI in the current directory
+  $ eb deploy       // packages web app as *.zip and sends to online AWS env
+  $ eb open         // opens the web app in a browser
+
+- To set and view environment variables:
+
+  $ eb setenv key=value     // set a key=value environment variable
+  $ eb printenv             // view environment variables
+
 
 # Generate a new random SECRET_KEY
 
