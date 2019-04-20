@@ -128,11 +128,13 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 #   }
 # }
 
-# Un-comment this if you want to run python manage.py check --deploy to 2x check
-# that security settings are in place before deployment
-# DATABASES = {
+# The manage.py code/script sometimes requires a DATABASES{} dictionary to exist
+# in order to run certain functions like python manage.py check or python manage.py
+# collectstatic. Enable this if all of the other DATABASES{} dictionaries are
+# disabled but you want to run some manage.py command/function.
+DATABASES = {
   # Emptiness goes here
-# }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
