@@ -51,6 +51,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 ALLOWED_HOSTS = [
   '*',
   'django-env.puyupvgzih.us-west-2.elasticbeanstalk.com',
+  'rcpw-env.7y35tjggrg.us-east-1.elasticbeanstalk.com',
 ]
 
 # Application definition
