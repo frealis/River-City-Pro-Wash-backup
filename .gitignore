@@ -6,3 +6,4 @@ __pycache__/
 .dockerignore
 *.exe
 *.zip
+venv/
