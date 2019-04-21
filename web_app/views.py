@@ -48,7 +48,8 @@ def index(request):
       m.save()
 
       # Set the email address for the site administrator
-      email_admin = os.getenv("EMAIL_ADMIN")
+      # email_admin = os.getenv("EMAIL_ADMIN")    # heroku
+      email_admin = os.environ("EMAIL_ADMIN")    # aws
 
       # Send a notification message to the site administrator when "Contact Us" form
       # is submitted
