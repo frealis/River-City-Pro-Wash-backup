@@ -16,8 +16,8 @@ import os
 
 # Use python-dotenv to manage environment variables
 # https://github.com/theskumar/python-dotenv
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,14 +26,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-# CSRF_COOKIE_SECURE = True
-# SECURE_BROWSER_XSS_FILTER = True
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_PRELOAD = True
-# SECURE_HSTS_SECONDS = 518400
-# SESSION_COOKIE_SECURE = True
-# X_FRAME_OPTIONS = 'DENY'
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_HSTS_SECONDS = 518400
+SESSION_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -45,8 +45,8 @@ SECRET_KEY = os.environ["SECRET_KEY"]   # aws
 # this to FALSE, make sure you have an appropriate allowed site listed in the
 # ALLOWED_HOSTS[] array below.
 
-# DEBUG = False
-DEBUG = True
+DEBUG = False
+# DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
 # SECURE_SSL_REDIRECT = True
