@@ -46,8 +46,8 @@ SECRET_KEY = os.environ["SECRET_KEY"]   # aws
 # this to FALSE, make sure you have an appropriate allowed site listed in the
 # ALLOWED_HOSTS[] array below.
 
-# DEBUG = False
-DEBUG = True
+DEBUG = False
+# DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True
 
 # SECURE_SSL_REDIRECT = True
