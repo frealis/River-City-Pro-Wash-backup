@@ -77,8 +77,7 @@ def index(request):
         subject='River City Pro Wash Contact Form Submission',
         html_content=Template('Name: $name<br>Address: $address<br>Phone: $phone<br>Email: $email<br>Message: $message').substitute(name=name, address=address, phone=phone, email=email, message=message))
       try:
-        # sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))    # heroku
-        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))    # aws
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
         response = sg.send(message)
       except Exception as e:
         print('=========== SendGrid exception: ', e)
