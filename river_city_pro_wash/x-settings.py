@@ -37,8 +37,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.getenv("SECRET_KEY")
+# SECRET_KEY = os.getenv("SECRET_KEY")    # heroku
+# SECRET_KEY = os.environ["SECRET_KEY"]   # aws
 SECRET_KEY = 'kms#@8-n4_l$)s4)8z4zo-70l-j$3+y+w7d0wdy%184m8i2684'
+
 
 # SECURITY WARNING: don't run with debug turned on in production! -- If you set
 # this to FALSE, make sure you have an appropriate allowed site listed in the
@@ -46,7 +48,7 @@ SECRET_KEY = 'kms#@8-n4_l$)s4)8z4zo-70l-j$3+y+w7d0wdy%184m8i2684'
 
 # DEBUG = False
 DEBUG = True
-DEBUG_PROPAGATE_EXCEPTIONS = True
+# DEBUG_PROPAGATE_EXCEPTIONS = True
 
 # SECURE_SSL_REDIRECT = True
 ALLOWED_HOSTS = [
@@ -93,7 +95,7 @@ TEMPLATES = [
     },
 ]
 
-# WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
+WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 
 
 # Database
@@ -175,7 +177,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'web_app/static/web_app'),
 )
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Email settings for Gmail
 # EMAIL_HOST = os.getenv("EMAIL_HOST")

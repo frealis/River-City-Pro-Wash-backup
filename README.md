@@ -179,7 +179,7 @@
   ... to use environment variables in AWS vs. Heroku (with python-dotenv installed), it basically looks like this:
 
     SECRET_KEY = os.getenv("SECRET_KEY")    # heroku (using python-dotenv)
-    SECRET_KEY = os.environ["SECRET_KEY"]   # aws (using nothing else I think)
+    SECRET_KEY = os.environ["SECRET_KEY"]   # aws
 
   ... for more information, go to http://docs.python.org/library/os.html.
 
