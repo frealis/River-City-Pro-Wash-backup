@@ -1,6 +1,6 @@
 branch-defaults:
   test-aws:
-    environment: rcpw-env
+    environment: rcpw-env-env
     group_suffix: null
   test-aws-development:
     environment: rcpw-env
@@ -9,8 +9,11 @@ environment-defaults:
   rcpw-env:
     branch: null
     repository: null
+  rcpw-env-env:
+    branch: null
+    repository: null
 global:
-  application_name: rcpw
+  application_name: rcpw-env
   branch: null
   default_ec2_keyname: null
   default_platform: Python 3.6
