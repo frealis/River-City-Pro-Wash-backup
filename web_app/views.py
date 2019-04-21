@@ -26,12 +26,15 @@ def index(request):
     # Authenticate reCAPTCHA v2 user's response
     
     # reCAPTCHA v2 SECRET key
-    RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')
+    # RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')    # heroku
+    RECAPTCHA_SITE_SECRET = os.environ['RECAPTCHA_SITE_SECRET']   # aws
 
     # reCAPTCHA v2 SECRET key, test
     # RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 
-    a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')
+    # a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')    # heroku
+    a = os.environ('RECAPTCHA_SITE_VERIFY_URL')     # aws
+
     b = urllib.parse.urlencode({'secret': RECAPTCHA_SITE_SECRET, 'response': request.POST['recaptcha']}, True)
     c = urllib.request.Request(a + '?' + b)
     recaptcha_response = urllib.request.urlopen(c).read().decode("utf-8")
@@ -73,7 +76,8 @@ def index(request):
         subject='River City Pro Wash Contact Form Submission',
         html_content=Template('Name: $name<br>Address: $address<br>Phone: $phone<br>Email: $email<br>Message: $message').substitute(name=name, address=address, phone=phone, email=email, message=message))
       try:
-        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
+        # sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))    # heroku
+        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))    # aws
         response = sg.send(message)
       except Exception as e:
         print('=========== SendGrid exception: ', e)

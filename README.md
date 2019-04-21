@@ -137,7 +137,7 @@
 
 # Deploy to AWS
 
-- Web apps deployed on AWS exist in an environment that you can specify when creating a new web application. New applications can be created either from the AWS console or from the command line. AWS has two types of command lines -- awscli (the general all-purpose AWS command line) and awsebcli (the Elastic Beanstalk web development command line). 
+- Web apps deployed on AWS exist in their own environment. New applications and their environments can be created either from the AWS console or from the command line. AWS has two types of command lines -- awscli (the general all-purpose AWS command line) and awsebcli (the Elastic Beanstalk web development command line). 
 
 - AWS has a free tier that is available for 12 months, and this basically allows for 1 website to be deployed at all times. This website will exist in an environment that can be shut off if needed -- terminating the environment will -not- terminate the application, but it will save on the allotted free tier hours that are granted each month for the first 12 months, so it's a good idea to turn it off when it's not needed. To view, get the status, and terminate an environment:
 
@@ -146,7 +146,9 @@
   $ eb status       // get detailed information on current environment
   $ eb terminate    // terminate current environment
 
-  ... in contrast to Heroku, where changes are pushed via git and have to be from the 'master' branch, changes in AWS are deployed by packaging all of the files in an application (into a *.zip file or other archive), sending those files to some Amazon S3 server, and then finally sending the files to an AWS environment. However, if you have git installed in the same directory that you're using to deploy to AWS, then your latest commit will get deployed https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-cli-git.html. The command to do this is:
+  ... in contrast to Heroku, where changes are pushed via git and have to be pushed from the 'master' branch, changes in AWS are deployed by packaging all of the files in an application into a *.zip file from whichever branch you currently happen to be on (as long as there is an .ebextensions/ folder in the same directory), sending those files to some Amazon S3 server, and then finally sending the files to an AWS environment. 
+  
+  ... however, if you have git installed in the same directory that is being deployed to AWS, then your latest commit will get deployed https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-cli-git.html. If you make changes to your current branch and do not commit them, then they will not be deployed to AWS using CLI commands. Anyways, to deploy the current version of the web app:
 
   $ eb deploy
 
@@ -169,9 +171,15 @@
   $ eb setenv key=value     // set a key=value environment variable
   $ eb printenv             // view environment variables
 
-  ... https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environments-cfg-softwaresettings.html?icmpid=docs_elasticbeanstalk_console
+  ... if using python-dotenv or some other local environment variable set-up, those settings won't work in AWS. Environment properties/variables can be set through the eb cli:
 
-  ... if using python-dotenv or some other local environment variable set-up, those settings won't work in AWS. Environment properties/variables can be set through the eb cli: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-container.html?shortFooter=true. Instead:
+    1. https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-container.html?shortFooter=true
+    2. https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environments-cfg-softwaresettings.html?icmpid=docs_elasticbeanstalk_console
+
+  ... to use environment variables in AWS vs. Heroku (with python-dotenv installed), it basically looks like this:
+
+    SECRET_KEY = os.getenv("SECRET_KEY")    # heroku (using python-dotenv)
+    SECRET_KEY = os.environ["SECRET_KEY"]   # aws (using nothing else I think)
 
   ... for more information, go to http://docs.python.org/library/os.html.
 
