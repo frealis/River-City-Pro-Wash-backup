@@ -50,6 +50,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURE_BROWSER_XSS_FILTER       = True
 # X_FRAME_OPTIONS                 = 'DENY'
 
+print('=========================================== settings.py ===============')
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = os.getenv("SECRET_KEY")    # heroku
