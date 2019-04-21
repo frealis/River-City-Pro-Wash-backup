@@ -50,7 +50,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURE_BROWSER_XSS_FILTER       = True
 # X_FRAME_OPTIONS                 = 'DENY'
 
-print('=========================================== settings.py ===============')
+SECURE_SSL_REDIRECT=False
+
+print('==========================================================')
+print('SECURE_SSL_REDIRECT: ', SECURE_SSL_REDIRECT)
+print('==========================================================')
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
