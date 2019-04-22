@@ -1,9 +1,7 @@
-from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
-from string import Template
 from urllib.parse import parse_qs
 
 import bleach
@@ -51,24 +49,12 @@ def index(request):
       # email_admin = os.getenv("EMAIL_ADMIN")    # heroku
       email_admin = os.environ("EMAIL_ADMIN")    # aws
 
-      # Send a notification message to the site administrator when "Contact Us" form
-      # is submitted
-      # send_mail(
-      #   'River City Pro Wash -- Contact Us form submission notification',
-      #   Template('Name: $name\nAddress: $address\nPhone: $phone\nEmail: $email\nMessage: $message').substitute(name=name, address=address, phone=phone, email=email, message=message),
-      #   email_admin,
-      #   [email_admin],
-      #   fail_silently=False,
-      # )
-
-      # Use Gmail to send thank you email to client
-      # send_mail(
-      #   'Thank you for contacting River City Pro Wash!',
-      #   Template('Dear $name,\n\nThank you for contacting River City Pro Wash! A member of our team will be in touch with you shortly.\n\nRegards,\nRiver City Pro Wash').substitute(name=name),
-      #   email_admin,
-      #   [email],
-      #   fail_silently=False,
-      # )
+      # Use Gmail to handle email, ./email_modules/gmail.py
+      # import sys
+      BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+      print('======== views.py BASE_DIR: ', BASE_DIR)
+      # sys.path.insert(0, BASE_DIR + '/web_app/email_module')
+      # import gmail
 
       # Use SendGrid to send notification to site administrator
       message = Mail(
