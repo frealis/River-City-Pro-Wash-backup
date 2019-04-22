@@ -25,19 +25,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-# CSRF_COOKIE_SECURE = True
-# SECURE_BROWSER_XSS_FILTER = True
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_PRELOAD = True
-# SECURE_HSTS_SECONDS = 518400
-# SESSION_COOKIE_SECURE = True
-# X_FRAME_OPTIONS = 'DENY'
-
 CORS_REPLACE_HTTPS_REFERER      = True
 HOST_SCHEME                     = "https://"
 SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT             = True
+SECURE_SSL_REDIRECT             = True # requires SLL certificate in AWS
 SESSION_COOKIE_SECURE           = True
 CSRF_COOKIE_SECURE              = True
 SECURE_HSTS_PRELOAD             = True
@@ -49,17 +40,10 @@ SECURE_CONTENT_TYPE_NOSNIFF     = True
 SECURE_BROWSER_XSS_FILTER       = True
 X_FRAME_OPTIONS                 = 'DENY'
 
-# SECURE_SSL_REDIRECT=False # if set to True on AWS the entire app is screwed
-
-print('==========================================================')
-print('SECURE_SSL_REDIRECT: ', SECURE_SSL_REDIRECT)
-print('==========================================================')
-
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = os.getenv("SECRET_KEY")    # heroku
 SECRET_KEY = os.environ["SECRET_KEY"]   # aws
-# SECRET_KEY = 'kms#@8-n4_l$)s4)8z4zo-70l-j$3+y+w7d0wdy%184m8i2684'
 
 
 # SECURITY WARNING: don't run with debug turned on in production! -- If you set
