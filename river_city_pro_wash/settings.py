@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import logging
 import os
 
+# Activate Django-Heroku
+# import django_heroku
+# django_heroku.settings(locals())
+
 # Use python-dotenv to manage environment variables
 # https://github.com/theskumar/python-dotenv
 from dotenv import load_dotenv
@@ -52,7 +56,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")    # heroku, local
 
 # DEBUG = False
 DEBUG = True
-# DEBUG_PROPAGATE_EXCEPTIONS = True
+DEBUG_PROPAGATE_EXCEPTIONS = True # bubble (?) DEBUG errors to the top/bottom
 
 ALLOWED_HOSTS = [
   '*',
@@ -111,7 +115,7 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 #     }
 # }
 
-# Dockerfile database
+# Heroku, Dockerfile Postgres database
 # DATABASES = {
 #   'default': {
 #     'ENGINE': 'django.db.backends.postgresql',
@@ -122,20 +126,21 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 #   }
 # }
 
-# Local database
-DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': os.getenv("POSTGRES_NAME"),
-    'USER': os.getenv("POSTGRES_USER"),
-    'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-    'HOST': '127.0.0.1',
-    'PORT': '5432',
-  }
-}
+# Local Postgres database
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': os.getenv("POSTGRES_NAME"),
+#     'USER': os.getenv("POSTGRES_USER"),
+#     'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+#     'HOST': '127.0.0.1',
+#     'PORT': '5432',
+#   }
+# }
 
 # Un-comment this if you want to run python manage.py check --deploy to 2x check
-# that security settings are in place before deployment
+# that security settings are in place before deployment without worrying about
+# whether or not a database is set up
 # DATABASES = {
   # Emptiness goes here
 # }
@@ -190,9 +195,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # EMAIL_USE_TLS = False
 # EMAIL_USE_SSL = True
 
-# Activate Django-Heroku
-# import django_heroku
-# django_heroku.settings(locals())
 
 # Logging
 LOGGING = {
