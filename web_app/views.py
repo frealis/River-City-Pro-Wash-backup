@@ -5,11 +5,10 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from string import Template
 from urllib.parse import parse_qs
+from web_app.models import Message
 
-import bleach
-import json
-import os
-import urllib.request
+import bleach, json, os, urllib.request
+
 
 # Index route (this is a single page web application, so everything is here)
 def index(request):
@@ -26,12 +25,15 @@ def index(request):
     # Authenticate reCAPTCHA v2 user's response
     
     # reCAPTCHA v2 SECRET key
-    RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')
+    # RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')    # heroku
+    # RECAPTCHA_SITE_SECRET = os.environ['RECAPTCHA_SITE_SECRET']   # aws
 
     # reCAPTCHA v2 SECRET key, test
-    # RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
+    RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 
-    a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')
+    a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')    # heroku, local
+    # a = os.environ('RECAPTCHA_SITE_VERIFY_URL')     # aws
+
     b = urllib.parse.urlencode({'secret': RECAPTCHA_SITE_SECRET, 'response': request.POST['recaptcha']}, True)
     c = urllib.request.Request(a + '?' + b)
     recaptcha_response = urllib.request.urlopen(c).read().decode("utf-8")
@@ -39,16 +41,18 @@ def index(request):
       recaptcha = 'Success'
       print('=== reCAPTCHA succeeded ===')
 
-      # Save data submitted from the "Contact Us" form to database
-      from web_app.models import Message
+      # Save data submitted from the "Contact Us" form to database -- if there is
+      # a problem with the database connection, then the rest of the code in 
+      # this function will not execute (ie. mail will not be sent)
       m = Message(name=name, address=address, phone=phone, email=email, message=message, ip=ip, recaptcha=recaptcha)
       m.save()
 
-      # Set the email address for the site administrator
-      email_admin = os.getenv("EMAIL_ADMIN")
+      # Set email administrator address
+      email_admin = os.getenv('EMAIL_ADMIN')    # heroku, local
+      # email_admin = os.environ('EMAIL_ADMIN')   # aws
 
-      # Send a notification message to the site administrator when "Contact Us" form
-      # is submitted
+      # Use Gmail to send a notification message to the site administrator when 
+      # "Contact Us" form is submitted
       # send_mail(
       #   'River City Pro Wash -- Contact Us form submission notification',
       #   Template('Name: $name\nAddress: $address\nPhone: $phone\nEmail: $email\nMessage: $message').substitute(name=name, address=address, phone=phone, email=email, message=message),
@@ -102,7 +106,6 @@ def index(request):
 
       # Save data submitted from the "Contact Us" form to database (reCAPTCHA
       # failed)
-      from web_app.models import Message
       m = Message(name=name, address=address, phone=phone, email=email, message=message, ip=ip, recaptcha=recaptcha)
       m.save()
 

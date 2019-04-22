@@ -29,6 +29,8 @@
 
   ... and the website should be accessible at 192.168.99.100:8000 (on Windows machines). However, there are a lot of caveats with running the web application from a Docker image which are explained below.
 
+- Local environment variables are managed using dotenv https://github.com/theskumar/python-dotenv.
+
 
 # Docker
 
@@ -73,7 +75,18 @@
   
   ... however, you might get an error code in yellow text that reads "... exited with code 1." which may have something to do with recently being inside of the database's container. If so, just Ctrl+C and run $ docker-compose up again.
 
+- To login to the www.rivercityprowash.com/admin console while the application is running in a dockerized container, you'll have to create a user with both a username and a password -- when the database is set up in the docker container, it doesn't have a password by default because no password is specified in settings.py. 
+
+
 # Deploy to Heroku
+
+- Heroku has a free service that can host 1 website at a time on what they refer to as a "dyno". It doesn't offer much processing power (something like 512 MB of RAM) and will basically turn the dyno off after 30 minutes or so of inactivity, but will turn back on with a subsequent HTTP request, although there is a lag time of 10 to 20 seconds for the dyno to start up again.
+
+- The nice thing about Heroku is that you can deploy it from the command line, and each deployment gets assigned a version number. Since each version is basically a git file, you can easily rollback to older versions or use other commands like 'git diff' to compare different versions:
+
+  $ heroku releases         // view the past 15 or so web app versions
+  $ heroku rollback v#      // rollback to a specific version, ex. v1, v3, etc.
+  $ git diff # #            // # # represent two different deploys
 
 - https://devcenter.heroku.com/articles/django-app-configuration
 - https://medium.com/agatha-codes/9-straightforward-steps-for-deploying-your-django-app-with-heroku-82b952652fb4
@@ -89,6 +102,8 @@
   $ git push heroku master
   $ heroku ps:scale web=1 (to make sure at least 1 web dyno is running)
   $ heroku open
+
+  ... note: when you push a web app to heroku, only the 'master' branch takes effect. Pushing code from any other branch is ignored by Heroku.
 
 - When you set DEBUG = False and push this app to production, it will give a 500 error unless the ALLOWED_HOSTS =[] in settings.py includes the URL where this site is hosted. Some people also think that not having collected static files or not migrating the database may also produce this error. To do both:
 
@@ -118,15 +133,85 @@
 
   ... however, as long as you push your migration files from the /migration folder to Heroku, you can omit running the first command (makemigrations).
 
+- Heroku environment variables can be viewed and set via:
+
+  $ heroku config                 // view environment variables on heroku server
+  $ heroku config:set key=value   // set environment variables on heroku server
+
+
 # Deploy to AWS
 
-- From the AWS console, click "Build a web app" and scroll to the bottom. You can choose a platform (most likely Preconfigured > Python, or Preconfigured - Docker > Python) and upload a source bundle as a *.zip file. To put the project in a zip file using git from the command line, enter:
+- Web apps deployed on AWS exist in their own environment. New applications and their environments can be created either from the AWS console or from the command line. AWS has two types of command lines -- awscli (the general all-purpose AWS command line) and awsebcli (the Elastic Beanstalk web development command line). 
 
-  $ git archive -v -o myapp.zip --format=zip HEAD
+- AWS has a free tier that is available for 12 months, and this basically allows for 1 website to be deployed at all times. This website will exist in an environment that can be shut off if needed -- terminating the environment will -not- terminate the application, but it will save on the allotted free tier hours that are granted each month for the first 12 months, so it's a good idea to turn it off when it's not needed. To view, get the status, and terminate an environment:
 
-  ... https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/applications-sourcebundle.html#using-features.deployment.source.commandline
+  $ eb list         // list environments, -a or -all to view all, * marks active
+  $ eb use <env>    // switch between environments
+  $ eb status       // get detailed information on current environment
+  $ eb terminate    // terminate current environment
 
+  ... in contrast to Heroku, where changes are pushed via git and have to be pushed from the 'master' branch, changes in AWS are deployed by packaging all of the application's files into a *.zip file from a) the current directory if it has been set up with the EB CLI , or b) the current git branch if git has been set up. Once the file has been zipped up, they get sent to an Amazon S3 bucket and then to an AWS environment. 
   
+  ... when updating the AWS site from a git repository, if you make changes to your current branch and do not commit them, then they will not be deployed to AWS using CLI commands.
+
+- To deploy from the command line, follow this guide: https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-django.html. Basically you have to create a new folder called .ebextensions and add a configuration file to it called django.config. The main commands involved with deploying an application using AWS Elastic Beanstalk are:
+
+  $ eb init         // initializes the EB CLI in the current directory
+  $ eb deploy       // packages web app as *.zip and sends to online AWS env
+  $ eb open         // opens the web app in a browser
+
+- AWS looks for static files generated by python manage.py collectstatic specifically in a folder called static/ located in the root directory of the project. It has to be static/, not staticfiles/. This requirement could be due to a configuration setting in nginx, Apache, or whatever runs a Python AWS server.
+
+- To set and view environment variables (aka 'Environment Properties'):
+
+  $ eb setenv key=value     // set a key=value environment variable
+  $ eb printenv             // view environment variables
+
+  ... to use environment variables in AWS vs. Heroku (with python-dotenv installed):
+
+  > SECRET_KEY = os.getenv("SECRET_KEY")    # heroku (using python-dotenv)
+  > SECRET_KEY = os.environ["SECRET_KEY"]   # aws
+
+    1. https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/create-deploy-python-container.html?shortFooter=true
+    2. https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/environments-cfg-softwaresettings.html?icmpid=docs_elasticbeanstalk_console
+    3. http://docs.python.org/library/os.html.
+
+- To switch AWS accounts from the command line you can use "Named Profiles". Navigate to C:/Users/<username>/.aws/ and modify the credentials file in order to add additional named profiles. For example:
+
+  [profile eb-cli]
+  aws_access_key_id = XXXXXXXXXXXXX
+  aws_secret_access_key = XXXXXXXXXXXX
+
+  [profile eb-cli2]
+  aws_access_key_id = XXXXXXXXXX
+  aws_secret_access_key = XXXXXXXXXXXX
+
+  ... then initialize a new elastic beanstalk application (or select one that already exists):
+
+    $ eb init --profile <profile name> <application name, optional>
+
+  ... or change the default named profile if the above command doesn't work:
+
+    $ set AWS_EB_PROFILE=<profile name>
+
+  1. https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3-configuration.html#eb-cli3-profile
+  2. https://stackoverflow.com/questions/29190202/how-to-change-the-aws-account-using-the-elastic-beanstalk-cli
+
+- To enable HTTPS with AWS Elastic Beanstalk in production, you have to:
+
+  1. Own a registered domain
+  2. Have an authenticated server certificate stored in the AWS Certificate Manager
+    a. Generate the certificate with the AWS Certificate Manager (ACM)
+    b. Generate the certificate somewhere else (OpenSSL)
+  3. Assign the certificate to the environment's load balancer
+
+  ... for development purposes, you can generate a self-signed certificate (aka a test certificate); however, if used in production then anyone who visits the site will get a warning that the site is unsafe. 
+
+  ... note (4/21/19): with Django, if you set SECURE_SSL_REDIRECT=True within the settings.py file an upload/deploy that file then the AWS Elastic Beanstalk application gets irreversibly screwed up, meaning that a GET request/visiting the page will hang and time out, even if you change the setting back to SECURE_SSL_REDIRECT=False. The only way that I know how to fix this is to erase the AWS Elastic Beanstalk application (the one created via eb init) and completely start over.
+
+  1. https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https.html
+  2. https://aws.amazon.com/certificate-manager/
+
 
 # Generate a new random SECRET_KEY
 
