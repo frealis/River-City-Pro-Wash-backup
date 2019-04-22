@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
-# import django_heroku
 import logging
 import os
 
@@ -26,18 +25,26 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-# CSRF_COOKIE_SECURE = True
-# SECURE_BROWSER_XSS_FILTER = True
-# SECURE_CONTENT_TYPE_NOSNIFF = True
-# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-# SECURE_HSTS_PRELOAD = True
-# SECURE_HSTS_SECONDS = 518400
-# SESSION_COOKIE_SECURE = True
-# X_FRAME_OPTIONS = 'DENY'
+# CORS_REPLACE_HTTPS_REFERER      = True
+# HOST_SCHEME                     = "https://"
+# SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT             = True # requires SLL certificate in AWS
+# SESSION_COOKIE_SECURE           = True
+# CSRF_COOKIE_SECURE              = True
+# SECURE_HSTS_PRELOAD             = True
+# SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
+# SECURE_HSTS_SECONDS             = 1000000
+# SECURE_FRAME_DENY               = True
+
+# SECURE_CONTENT_TYPE_NOSNIFF     = True
+# SECURE_BROWSER_XSS_FILTER       = True
+# X_FRAME_OPTIONS                 = 'DENY'
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")    # heroku, local
+# SECRET_KEY = os.environ["SECRET_KEY"]   # aws
+
 
 # SECURITY WARNING: don't run with debug turned on in production! -- If you set
 # this to FALSE, make sure you have an appropriate allowed site listed in the
@@ -45,11 +52,11 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 # DEBUG = False
 DEBUG = True
-DEBUG_PROPAGATE_EXCEPTIONS = True
+# DEBUG_PROPAGATE_EXCEPTIONS = True
 
-# SECURE_SSL_REDIRECT = True
-# ALLOWED_HOSTS = ['https://frozen-brushlands-44280.herokuapp.com/']
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+  '*',
+]
 
 # Application definition
 
@@ -173,10 +180,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'web_app/static/web_app'),
 )
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-
-# Email
+# Email settings for Gmail, local
 # EMAIL_HOST = os.getenv("EMAIL_HOST")
 # EMAIL_PORT = os.getenv("EMAIL_PORT")
 # EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
@@ -185,6 +191,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # EMAIL_USE_SSL = True
 
 # Activate Django-Heroku
+# import django_heroku
 # django_heroku.settings(locals())
 
 # Logging

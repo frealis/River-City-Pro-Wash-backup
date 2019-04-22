@@ -7,3 +7,10 @@ __pycache__/
 *.exe
 *.zip
 venv/
+*.pem
+*.crt
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
