@@ -20,7 +20,6 @@ load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-# print('===== BASE_DIR/: ', BASE_DIR + '\web_app\email_modules')
 
 
 # Quick-start development settings - unsuitable for production
@@ -43,8 +42,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.getenv("SECRET_KEY")    # heroku
-SECRET_KEY = os.environ["SECRET_KEY"]   # aws
+SECRET_KEY = os.getenv("SECRET_KEY")    # heroku, local
+# SECRET_KEY = os.environ["SECRET_KEY"]   # aws
 
 
 # SECURITY WARNING: don't run with debug turned on in production! -- If you set
@@ -105,12 +104,12 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # Dockerfile database
 # DATABASES = {
@@ -124,16 +123,16 @@ DATABASES = {
 # }
 
 # Local database
-# DATABASES = {
-#   'default': {
-#     'ENGINE': 'django.db.backends.postgresql',
-#     'NAME': os.getenv("POSTGRES_NAME"),
-#     'USER': os.getenv("POSTGRES_USER"),
-#     'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-#     'HOST': '127.0.0.1',
-#     'PORT': '5432',
-#   }
-# }
+DATABASES = {
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': os.getenv("POSTGRES_NAME"),
+    'USER': os.getenv("POSTGRES_USER"),
+    'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+    'HOST': '127.0.0.1',
+    'PORT': '5432',
+  }
+}
 
 # Un-comment this if you want to run python manage.py check --deploy to 2x check
 # that security settings are in place before deployment
@@ -183,7 +182,7 @@ STATICFILES_DIRS = (
 )
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-# Email settings for Gmail
+# Email settings for Gmail, local
 # EMAIL_HOST = os.getenv("EMAIL_HOST")
 # EMAIL_PORT = os.getenv("EMAIL_PORT")
 # EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
