@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
-# import django_heroku
 import logging
 import os
 
@@ -35,22 +34,22 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SESSION_COOKIE_SECURE = True
 # X_FRAME_OPTIONS = 'DENY'
 
-# CORS_REPLACE_HTTPS_REFERER      = True
-# HOST_SCHEME                     = "https://"
-# SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
-# SECURE_SSL_REDIRECT             = True
-# SESSION_COOKIE_SECURE           = True
-# CSRF_COOKIE_SECURE              = True
-# SECURE_HSTS_PRELOAD             = True
-# SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
-# SECURE_HSTS_SECONDS             = 1000000
-# SECURE_FRAME_DENY               = True
+CORS_REPLACE_HTTPS_REFERER      = True
+HOST_SCHEME                     = "https://"
+SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT             = True
+SESSION_COOKIE_SECURE           = True
+CSRF_COOKIE_SECURE              = True
+SECURE_HSTS_PRELOAD             = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
+SECURE_HSTS_SECONDS             = 1000000
+SECURE_FRAME_DENY               = True
 
-# SECURE_CONTENT_TYPE_NOSNIFF     = True
-# SECURE_BROWSER_XSS_FILTER       = True
-# X_FRAME_OPTIONS                 = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF     = True
+SECURE_BROWSER_XSS_FILTER       = True
+X_FRAME_OPTIONS                 = 'DENY'
 
-SECURE_SSL_REDIRECT=False
+# SECURE_SSL_REDIRECT=False # if set to True on AWS the entire app is screwed
 
 print('==========================================================')
 print('SECURE_SSL_REDIRECT: ', SECURE_SSL_REDIRECT)
@@ -71,7 +70,6 @@ DEBUG = False
 # DEBUG = True
 # DEBUG_PROPAGATE_EXCEPTIONS = True
 
-# SECURE_SSL_REDIRECT = True # enabling this on AWS screws up the entire app
 ALLOWED_HOSTS = [
   '*',
 ]
@@ -209,6 +207,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # EMAIL_USE_SSL = True
 
 # Activate Django-Heroku
+# import django_heroku
 # django_heroku.settings(locals())
 
 # Logging
