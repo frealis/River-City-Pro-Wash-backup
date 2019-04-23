@@ -187,7 +187,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'web_app/static/web_app'),
 )
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # heroku
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') # aws
 
 # Email settings for Gmail, local
 # EMAIL_HOST = os.getenv("EMAIL_HOST")
