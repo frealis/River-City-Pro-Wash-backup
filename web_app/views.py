@@ -1,3 +1,4 @@
+from botocore.exceptions import ClientError
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -7,7 +8,7 @@ from string import Template
 from urllib.parse import parse_qs
 from web_app.models import Message
 
-import bleach, json, os, urllib.request
+import bleach, boto3 json, os, urllib.request
 
 
 # Index route (this is a single page web application, so everything is here)
@@ -50,9 +51,6 @@ def index(request):
       # Set email administrator address
       # email_admin = os.getenv('EMAIL_ADMIN')    # heroku, local
       email_admin = os.environ['EMAIL_ADMIN']   # aws
-
-      import boto3
-      from botocore.exceptions import ClientError
 
       SENDER = "Sender Name <rvaprowash@gmail.com>"
       RECIPIENT = "rvaprowash@gmail.com"
