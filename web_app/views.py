@@ -32,7 +32,7 @@ def index(request):
     # RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 
     # a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')    # heroku, local
-    a = os.environ('RECAPTCHA_SITE_VERIFY_URL')     # aws
+    a = os.environ['RECAPTCHA_SITE_VERIFY_URL']     # aws
 
     b = urllib.parse.urlencode({'secret': RECAPTCHA_SITE_SECRET, 'response': request.POST['recaptcha']}, True)
     c = urllib.request.Request(a + '?' + b)
@@ -49,7 +49,7 @@ def index(request):
 
       # Set email administrator address
       # email_admin = os.getenv('EMAIL_ADMIN')    # heroku, local
-      email_admin = os.environ('EMAIL_ADMIN')   # aws
+      email_admin = os.environ['EMAIL_ADMIN']   # aws
 
       # Use Gmail to send a notification message to the site administrator when 
       # "Contact Us" form is submitted

@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import logging
 import os
 
-# Use python-dotenv to manage environment variables
+# Use python-dotenv to manage environment variables in heroku, local
 # https://github.com/theskumar/python-dotenv
 # from dotenv import load_dotenv
 # load_dotenv()
@@ -185,13 +185,10 @@ STATICFILES_DIRS = (
 )
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # heroku
 STATIC_ROOT = os.path.join(BASE_DIR, 'static') # aws
-<<<<<<< HEAD
-=======
 
 # Activate Django-Heroku
-import django_heroku
-django_heroku.settings(locals()) # this line has to occur after STATIC_ROOT
->>>>>>> heroku-production
+# import django_heroku
+# django_heroku.settings(locals()) # this line has to occur after STATIC_ROOT
 
 # Email settings for Gmail, local
 # EMAIL_HOST = os.getenv("EMAIL_HOST")
