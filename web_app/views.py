@@ -54,8 +54,8 @@ def index(request):
       import boto3
       from botocore.exceptions import ClientError
 
-      SENDER = "Sender Name <" + email_admin + ">"
-      RECIPIENT = '"' + email + '"'
+      SENDER = "Sender Name <rvaprowash@gmail.com>"
+      RECIPIENT = "rvaprowash@gmail.com"
       AWS_REGION = "us-east-1"
 
       # The subject line for the email.
