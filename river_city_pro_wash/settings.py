@@ -55,9 +55,7 @@ DEBUG = True
 DEBUG_PROPAGATE_EXCEPTIONS = True # bubble (?) DEBUG errors to the top/bottom
 
 ALLOWED_HOSTS = [
-  'www.rivercityprowash.com',
-  'rivercityprowash.com',
-  'rcpw-env-env.y5j52jmsr2.us-east-1.elasticbeanstalk.com',
+  '*'
 ]
 
 # Application definition
