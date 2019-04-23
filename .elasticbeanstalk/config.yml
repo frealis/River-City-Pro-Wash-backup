@@ -1,14 +1,29 @@
 branch-defaults:
+<<<<<<< HEAD
+  aws-development:
+    environment: rcpw-env
+    group_suffix: null
+  master:
+    environment: rcpw-env2
+=======
   test-aws:
     environment: rcpw-env-env
     group_suffix: null
   test-aws-development:
     environment: rcpw-env
     group_suffix: null
+>>>>>>> heroku-development
 environment-defaults:
   rcpw-env:
     branch: null
     repository: null
+<<<<<<< HEAD
+global:
+  application_name: River-City-Pro-Wash2
+  branch: null
+  default_ec2_keyname: null
+  default_platform: Python 3.4
+=======
   rcpw-env-env:
     branch: null
     repository: null
@@ -17,12 +32,17 @@ global:
   branch: null
   default_ec2_keyname: null
   default_platform: Python 3.6
+>>>>>>> heroku-development
   default_region: us-east-1
   include_git_submodules: true
   instance_profile: null
   platform_name: null
   platform_version: null
+<<<<<<< HEAD
+  profile: eb-cli
+=======
   profile: null
+>>>>>>> heroku-development
   repository: null
   sc: git
   workspace_type: Application
