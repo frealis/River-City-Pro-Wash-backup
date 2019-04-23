@@ -48,6 +48,8 @@ def index(request):
       from botocore.exceptions import ClientError
       import boto3
 
+      print('PRIOR =============================')
+
       SENDER = Template("Sender Name <$email_admin>").substitute(email_admin=email_admin)
       RECIPIENT = Template("$email").substitute(email=email)
       AWS_REGION = "us-east-1"
