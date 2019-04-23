@@ -9,6 +9,7 @@ __pycache__/
 venv/
 *.pem
 *.crt
+staticfiles/
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
