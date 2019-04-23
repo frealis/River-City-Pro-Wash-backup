@@ -13,10 +13,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import logging
 import os
 
-# Activate Django-Heroku
-import django_heroku
-django_heroku.settings(locals())
-
 # Use python-dotenv to manage environment variables
 # https://github.com/theskumar/python-dotenv
 from dotenv import load_dotenv
@@ -195,6 +191,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Heroku
 # EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 # EMAIL_USE_TLS = False
 # EMAIL_USE_SSL = True
+
+# Activate Django-Heroku
+import django_heroku
+django_heroku.settings(locals())
 
 
 # Logging
