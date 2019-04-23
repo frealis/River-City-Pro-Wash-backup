@@ -214,6 +214,23 @@
   1. https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/configuring-https.html
   2. https://aws.amazon.com/certificate-manager/
 
+- To set up AWS Simple Email Service (SES) you have to jump through a ton of hoops:
+
+  1. Install boto3, which is a Python package/module, and test it out.
+    > https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-using-sdk-python.html
+
+  2. Implement some kind of process to handle email bounces and complaints.
+    > http://docs.aws.amazon.com/ses/latest/DeveloperGuide/bounce-complaint-notifications.html
+    > https://docs.aws.amazon.com/ses/latest/DeveloperGuide/bouncecomplaintdashboard.html
+
+  3. Create a support ticket to move out of the Amazon SES "Sandbox" and increase your SES sending limits, which includes sending emails to addresses that have not been verified on your account (which is basically any customer's email address).
+    > https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html
+
+  4. Grant permission for your Elastic Beanstalk default instance profile, aka "aws-elasticbeanstalk-ec2-role", to send emails. This can also be used on any IAM account instead if you're playing it safe and using an IAM account instead of your root user account. Anyways, to do this, you have to add the "AmazonSESFullAccess" policy to whichever instance profile/account you're using, or create a custom policy that does the same thing.
+    > https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-instanceprofile.html#iam-instanceprofile-addperms
+    > https://docs.aws.amazon.com/ses/latest/DeveloperGuide/control-user-access.html
+
+
 
 
 # Generate a new random SECRET_KEY
