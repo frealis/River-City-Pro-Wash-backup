@@ -52,8 +52,8 @@ def index(request):
       RECIPIENT = Template("$email").substitute(email=email)
       AWS_REGION = "us-east-1"
 
-      print('=== SENDER: ', SENDER)
-      print('=== RECIPIENT: ', RECIPIENT)
+      print('=== SENDER: ')
+      print('=== RECIPIENT: ')
 
       # The subject line for the email.
       SUBJECT = "Amazon SES Test (SDK for Python)"
