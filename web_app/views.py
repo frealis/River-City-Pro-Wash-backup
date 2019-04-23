@@ -50,8 +50,10 @@ def index(request):
 
       print('PRIOR =============================')
 
-      SENDER = Template("Sender Name <$email_admin>").substitute(email_admin=email_admin)
-      RECIPIENT = Template("$email").substitute(email=email)
+      SENDER = "Sender Name <rvaprowash@gmail.com>"
+      RECIPIENT = "rvaprowash@gmail.com"
+      # SENDER = Template("Sender Name <$email_admin>").substitute(email_admin=email_admin)
+      # RECIPIENT = Template("$email").substitute(email=email)
       AWS_REGION = "us-east-1"
 
       print('=== SENDER: ')
