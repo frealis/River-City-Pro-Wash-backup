@@ -6,3 +6,4 @@ gunicorn==19.9.0
 requests==2.20.1
 sendgrid==6.0.4
 django-heroku==0.3.1
+boto3>=1.9.134

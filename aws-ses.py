@@ -1,7 +1,6 @@
 from botocore.exceptions import ClientError
 import boto3
 
-
 SENDER = "Sender Name <rvaprowash@gmail.com>"
 RECIPIENT = "rvaprowash@gmail.com"
 AWS_REGION = "us-east-1"
