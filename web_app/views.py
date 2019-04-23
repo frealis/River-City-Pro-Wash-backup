@@ -25,11 +25,11 @@ def index(request):
     # Authenticate reCAPTCHA v2 user's response
     
     # reCAPTCHA v2 SECRET key
-    # RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')    # heroku
+    RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')    # heroku
     # RECAPTCHA_SITE_SECRET = os.environ['RECAPTCHA_SITE_SECRET']   # aws
 
     # reCAPTCHA v2 SECRET key, test
-    RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
+    # RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 
     a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')    # heroku, local
     # a = os.environ('RECAPTCHA_SITE_VERIFY_URL')     # aws
