@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import logging
 import os
 
+# Activate Django-Heroku
+# import django_heroku
+# django_heroku.settings(locals())
+
 # Use python-dotenv to manage environment variables
 # https://github.com/theskumar/python-dotenv
 # from dotenv import load_dotenv
@@ -55,7 +59,9 @@ DEBUG = False
 # DEBUG_PROPAGATE_EXCEPTIONS = True # bubble (?) DEBUG errors to the top/bottom
 
 ALLOWED_HOSTS = [
-  'river-city-pro-wash.herokuapp.com/',
+  'www.rivercityprowash.com',
+  'rivercityprowash.com',
+  'rcpw-env-env.y5j52jmsr2.us-east-1.elasticbeanstalk.com',
 ]
 
 # Application definition
@@ -181,8 +187,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'web_app/static/web_app'),
 )
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # AWS 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Heroku
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # heroku
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') # aws
 
 # Email settings for Gmail, local
 # EMAIL_HOST = os.getenv("EMAIL_HOST")
@@ -191,10 +197,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Heroku
 # EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 # EMAIL_USE_TLS = False
 # EMAIL_USE_SSL = True
-
-# Activate Django-Heroku
-import django_heroku
-django_heroku.settings(locals()) # this line has to occur after STATIC_ROOT
 
 
 # Logging
