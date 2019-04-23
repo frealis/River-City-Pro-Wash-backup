@@ -51,48 +51,74 @@ def index(request):
       # email_admin = os.getenv('EMAIL_ADMIN')    # heroku, local
       email_admin = os.environ['EMAIL_ADMIN']   # aws
 
-      # Use Gmail to send a notification message to the site administrator when 
-      # "Contact Us" form is submitted
-      # send_mail(
-      #   'River City Pro Wash -- Contact Us form submission notification',
-      #   Template('Name: $name\nAddress: $address\nPhone: $phone\nEmail: $email\nMessage: $message').substitute(name=name, address=address, phone=phone, email=email, message=message),
-      #   email_admin,
-      #   [email_admin],
-      #   fail_silently=False,
-      # )
+      import boto3
+      from botocore.exceptions import ClientError
 
-      # Use Gmail to send thank you email to client
-      # send_mail(
-      #   'Thank you for contacting River City Pro Wash!',
-      #   Template('Dear $name,\n\nThank you for contacting River City Pro Wash! A member of our team will be in touch with you shortly.\n\nRegards,\nRiver City Pro Wash').substitute(name=name),
-      #   email_admin,
-      #   [email],
-      #   fail_silently=False,
-      # )
+      SENDER = "Sender Name <" + email_admin + ">"
+      RECIPIENT = '"' + email + '"'
+      AWS_REGION = "us-east-1"
 
-      # Use SendGrid to send notification to site administrator
-      message = Mail(
-        from_email=email_admin,
-        to_emails=email_admin,
-        subject='River City Pro Wash Contact Form Submission',
-        html_content=Template('Name: $name<br>Address: $address<br>Phone: $phone<br>Email: $email<br>Message: $message').substitute(name=name, address=address, phone=phone, email=email, message=message))
+      # The subject line for the email.
+      SUBJECT = "Amazon SES Test (SDK for Python)"
+
+      # The email body for recipients with non-HTML email clients.
+      BODY_TEXT = ("Amazon SES Test (Python)\r\n"
+                  "This email was sent with Amazon SES using the "
+                  "AWS SDK for Python (Boto)."
+                  )
+                  
+      # The HTML body of the email.
+      BODY_HTML = """<html>
+      <head></head>
+      <body>
+        <h1>Amazon SES Test (SDK for Python)</h1>
+        <p>This email was sent with
+          <a href='https://aws.amazon.com/ses/'>Amazon SES</a> using the
+          <a href='https://aws.amazon.com/sdk-for-python/'>
+            AWS SDK for Python (Boto)</a>.</p>
+      </body>
+      </html>
+                  """            
+
+      # The character encoding for the email.
+      CHARSET = "UTF-8"
+
+      # Create a new SES resource and specify a region.
+      client = boto3.client('ses',region_name=AWS_REGION)
+
+      # Try to send the email.
       try:
-        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-        response = sg.send(message)
-      except Exception as e:
-        print('=========== SendGrid exception: ', e)
-
-      # Use SendGrid to send thank you email to client
-      message = Mail(
-        from_email=email_admin,
-        to_emails=email,
-        subject='Thank you for contacting River City Pro Wash!',
-        html_content=Template('Dear $name,<br><br>Thank you for contacting River City Pro Wash! A member of our team will be in touch with you shortly.<br><br>Regards,<br>River City Pro Wash<br><br>').substitute(name=name))
-      try:
-        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-        response = sg.send(message)
-      except Exception as e:
-        print('=========== SendGrid exception: ', e)
+          #Provide the contents of the email.
+          response = client.send_email(
+              Destination={
+                  'ToAddresses': [
+                      RECIPIENT,
+                  ],
+              },
+              Message={
+                  'Body': {
+                      'Html': {
+                          'Charset': CHARSET,
+                          'Data': BODY_HTML,
+                      },
+                      'Text': {
+                          'Charset': CHARSET,
+                          'Data': BODY_TEXT,
+                      },
+                  },
+                  'Subject': {
+                      'Charset': CHARSET,
+                      'Data': SUBJECT,
+                  },
+              },
+              Source=SENDER,
+          )
+      # Display an error if something goes wrong.	
+      except ClientError as e:
+          print(e.response['Error']['Message'])
+      else:
+          print("Email sent! Message ID:"),
+          print(response['MessageId'])
 
       # Just put this here to silence a server error message since it looks like
       # request.method == 'POST' requires some kind of HttpResponse object
