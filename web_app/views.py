@@ -8,7 +8,7 @@ from string import Template
 from urllib.parse import parse_qs
 from web_app.models import Message
 
-import bleach, boto3 json, os, urllib.request
+import bleach, boto3, json, os, urllib.request
 
 
 # Index route (this is a single page web application, so everything is here)
