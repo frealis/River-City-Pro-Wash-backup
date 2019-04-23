@@ -43,9 +43,7 @@ def index(request):
 
       # Set email administrator address
       # email_admin = os.getenv('EMAIL_ADMIN')    # heroku, local
-      # email_admin = os.environ('EMAIL_ADMIN')   # aws
-
-
+      email_admin = os.environ['EMAIL_ADMIN']   # aws
 
       from botocore.exceptions import ClientError
       import boto3
@@ -62,7 +60,7 @@ def index(request):
                   "This email was sent with Amazon SES using the "
                   "AWS SDK for Python (Boto)."
                   )
-            
+                  
       # The HTML body of the email.
       BODY_HTML = """<html>
       <head></head>
@@ -118,11 +116,10 @@ def index(request):
 
 
       # Save data submitted from the "Contact Us" form to database -- if there is
-      # a problem with the database connection, then the rest of the code in 
-      # this function will not execute (ie. mail will not be sent)
+      # a problem with the database connection, then the rest of the code below 
+      # within this function will not execute
       m = Message(name=name, address=address, phone=phone, email=email, message=message, ip=ip, recaptcha=recaptcha)
       m.save()
-
 
       # Just put this here to silence a server error message since it looks like
       # request.method == 'POST' requires some kind of HttpResponse object
