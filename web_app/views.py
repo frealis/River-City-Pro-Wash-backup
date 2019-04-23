@@ -41,12 +41,6 @@ def index(request):
       recaptcha = 'Success'
       print('=== reCAPTCHA succeeded ===')
 
-      # Save data submitted from the "Contact Us" form to database -- if there is
-      # a problem with the database connection, then the rest of the code in 
-      # this function will not execute (ie. mail will not be sent)
-      m = Message(name=name, address=address, phone=phone, email=email, message=message, ip=ip, recaptcha=recaptcha)
-      m.save()
-
       # Set email administrator address
       # email_admin = os.getenv('EMAIL_ADMIN')    # heroku, local
       email_admin = os.environ['EMAIL_ADMIN']   # aws
@@ -119,6 +113,13 @@ def index(request):
       else:
         print("Email sent! Message ID:"),
         print(response['MessageId'])
+
+
+      # Save data submitted from the "Contact Us" form to database -- if there is
+      # a problem with the database connection, then the rest of the code below 
+      # within this function will not execute
+      m = Message(name=name, address=address, phone=phone, email=email, message=message, ip=ip, recaptcha=recaptcha)
+      m.save()
 
       # Just put this here to silence a server error message since it looks like
       # request.method == 'POST' requires some kind of HttpResponse object
