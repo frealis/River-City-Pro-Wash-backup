@@ -63,7 +63,9 @@ def index(request):
                   "Thank you for contacting River City Pro Wash! "
                   "A member of our team will contact you shortly.\n\n"
                   "Regards,\n"
-                  "River City Pro Wash").substitute(name=name)
+                  "River City Pro Wash\n\n"
+                  "(804) 239-6085\n"
+                  "www.rivercityprowash.com").substitute(name=name)
                   )
 
       # The email body for administrators with non-HTML email clients.
@@ -83,7 +85,9 @@ def index(request):
           Thank you for contacting River City Pro Wash!
           A member of our team will contact you shortly.<br><br>
           Regards,<br>
-          River City Pro Wash
+          River City Pro Wash<br><br>
+          (804) 239-6085<br>
+          www.rivercityprowash.com
         </p>
       </body>
       </html>
