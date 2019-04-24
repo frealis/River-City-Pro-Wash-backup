@@ -59,22 +59,19 @@ def index(request):
       ADMIN_SUBJECT = "Contact Us Form Submission Notification"
 
       # The email body for recipients with non-HTML email clients.
-      BODY_TEXT = (Template(
-                  "Dear $name,\r\n\n"
-                  "Thank you for contacting River City Pro Wash! A member of our team will contact you shortly.\n\n"
+      BODY_TEXT = (Template("Dear $name\r\n\n"
+                  "Thank you for contacting River City Pro Wash! "
+                  "A member of our team will contact you shortly.\n\n"
                   "Regards,\n"
-                  "River City Pro Wash\n\n"
-                  "(804) 239-6085\n"
-                  "www.rivercityprowash.com").substitute(name=name)
+                  "River City Pro Wash").substitute(name=name)
                   )
 
       # The email body for administrators with non-HTML email clients.
-      ADMIN_BODY_TEXT = (Template(
-                  "Name: $name"
-                  "Address: $address"
-                  "Phone: $phone"
-                  "Email: $email"
-                  "Message: $message").substitute(name=name, address=address, phone=phone, email=email, message=message)
+      ADMIN_BODY_TEXT = (Template("Dear $name\r\n\n"
+                  "Thank you for contacting River City Pro Wash! "
+                  "A member of our team will contact you shortly.\n\n"
+                  "Regards,\n"
+                  "River City Pro Wash").substitute(name=name)
                   )
             
       # The HTML body of the email sent to the customer.
@@ -86,9 +83,7 @@ def index(request):
           Thank you for contacting River City Pro Wash!
           A member of our team will contact you shortly.<br><br>
           Regards,<br>
-          River City Pro Wash<br><br>
-          (804) 239-6085<br>
-          www.rivercityprowash.com
+          River City Pro Wash
         </p>
       </body>
       </html>
