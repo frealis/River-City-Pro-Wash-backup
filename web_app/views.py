@@ -67,11 +67,11 @@ def index(request):
                   )
 
       # The email body for administrators with non-HTML email clients.
-      ADMIN_BODY_TEXT = (Template("Dear $name\r\n\n"
-                  "Thank you for contacting River City Pro Wash! "
-                  "A member of our team will contact you shortly.\n\n"
-                  "Regards,\n"
-                  "River City Pro Wash").substitute(name=name)
+      ADMIN_BODY_TEXT = (Template("Name: $name\n"
+                  "Address: $address\n"
+                  "Phone: $phone\n"
+                  "Email: $email\n"
+                  "Message: $message").substitute(name=name, address=address, phone=phone, email=email, message=message)
                   )
             
       # The HTML body of the email sent to the customer.
