@@ -230,6 +230,7 @@
     > https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/iam-instanceprofile.html#iam-instanceprofile-addperms
     > https://docs.aws.amazon.com/ses/latest/DeveloperGuide/control-user-access.html
 
+  5. Verify the domain that the email is coming from -- I'm not exactly sure if this is necessary, but if you go to the SES console you can verify domains from there.
 
 
 

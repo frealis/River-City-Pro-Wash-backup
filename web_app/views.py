@@ -43,7 +43,7 @@ def index(request):
 
       # Set email administrator address
       # email_admin = os.getenv('EMAIL_ADMIN')    # heroku, local
-      email_admin = os.environ('EMAIL_ADMIN')   # aws
+      # email_admin = os.environ('EMAIL_ADMIN')   # aws
 
       from botocore.exceptions import ClientError
       import boto3
