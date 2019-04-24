@@ -48,39 +48,61 @@ def index(request):
       from botocore.exceptions import ClientError
       import boto3
 
-      print('PRIOR =============================')
-      print('email_admin: ', email_admin)
-
-      # SENDER = "Sender Name <rvaprowash@gmail.com>"
-      # RECIPIENT = "rvaprowash@gmail.com"
       SENDER = Template("Sender Name <$email_admin>").substitute(email_admin=email_admin)
       RECIPIENT = Template("$email").substitute(email=email)
       AWS_REGION = "us-east-1"
 
-      print('=== SENDER: ', SENDER)
-      print('=== RECIPIENT: ', RECIPIENT)
-
       # The subject line for the email.
-      SUBJECT = "Amazon SES Test (SDK for Python)"
+      SUBJECT = "Thank you for contacting River City Pro Wash!"
+
+      # The subject line for the site administrator.
+      ADMIN_SUBJECT = "Contact Us Form Submission Notification"
 
       # The email body for recipients with non-HTML email clients.
-      BODY_TEXT = ("Amazon SES Test (Python)\r\n"
-                  "This email was sent with Amazon SES using the "
-                  "AWS SDK for Python (Boto)."
+      BODY_TEXT = (Template("Dear $name\r\n\n"
+                  "Thank you for contacting River City Pro Wash! "
+                  "A member of our team will contact you shortly.\n\n"
+                  "Regards,\n"
+                  "River City Pro Wash").substitute(name=name)
+                  )
+
+      # The email body for administrators with non-HTML email clients.
+      ADMIN_BODY_TEXT = (Template("Dear $name\r\n\n"
+                  "Thank you for contacting River City Pro Wash! "
+                  "A member of our team will contact you shortly.\n\n"
+                  "Regards,\n"
+                  "River City Pro Wash").substitute(name=name)
                   )
             
-      # The HTML body of the email.
+      # The HTML body of the email sent to the customer.
       BODY_HTML = """<html>
       <head></head>
       <body>
-        <h1>Amazon SES Test (SDK for Python)</h1>
-        <p>This email was sent with
-          <a href='https://aws.amazon.com/ses/'>Amazon SES</a> using the
-          <a href='https://aws.amazon.com/sdk-for-python/'>
-            AWS SDK for Python (Boto)</a>.</p>
+        <p>
+          Dear """ + Template('$name').substitute(name=name) + """<br><br>
+          Thank you for contacting River City Pro Wash!
+          A member of our team will contact you shortly.<br><br>
+          Regards,<br>
+          River City Pro Wash
+        </p>
       </body>
       </html>
-                  """            
+                  """
+
+      # The HTML body of the email sent to the site administrator.
+      ADMIN_BODY_HTML = """<html>
+      <head></head>
+      <body>
+        <p>
+          Name: """ + Template('$name').substitute(name=name) + """<br>
+          Address: """ + Template('$address').substitute(address=address) + """<br>
+          Phone: """ + Template('$phone').substitute(phone=phone) + """<br>
+          Email: """ + Template('$email').substitute(email=email) + """<br>
+          Message: """ + Template('$message').substitute(message=message) + """<br>
+        </p>
+      </body>
+      </html>
+                        """    
 
       # The character encoding for the email.
       CHARSET = "UTF-8"
@@ -90,31 +112,38 @@ def index(request):
 
       # Try to send the email.
       try:
-        #Provide the contents of the email.
+
+        # Send thank-you email to customer.
         response = client.send_email(
           Destination={
-            'ToAddresses': [
-              RECIPIENT,
-            ],
+            'ToAddresses': [RECIPIENT,],
           },
           Message={
             'Body': {
-              'Html': {
-                'Charset': CHARSET,
-                'Data': BODY_HTML,
-              },
-              'Text': {
-                'Charset': CHARSET,
-                'Data': BODY_TEXT,
-              },
+              'Html': {'Charset': CHARSET, 'Data': BODY_HTML,},
+              'Text': {'Charset': CHARSET, 'Data': BODY_TEXT,},
             },
-            'Subject': {
-              'Charset': CHARSET,
-              'Data': SUBJECT,
-            },
+            'Subject': {'Charset': CHARSET, 'Data': SUBJECT,},
           },
           Source=SENDER,
         )
+
+        # Send notification to site administrator when 'Contact Us' form is
+        # submitted.
+        response = client.send_email(
+          Destination={
+            'ToAddresses': [SENDER,],
+          },
+          Message={
+            'Body': {
+              'Html': {'Charset': CHARSET, 'Data': ADMIN_BODY_HTML,},
+              'Text': {'Charset': CHARSET, 'Data': ADMIN_BODY_TEXT,},
+            },
+            'Subject': {'Charset': CHARSET, 'Data': ADMIN_SUBJECT,},
+          },
+          Source=SENDER,
+        )
+
       # Display an error if something goes wrong.	
       except ClientError as e:
         print(e.response['Error']['Message'])
