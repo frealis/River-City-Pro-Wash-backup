@@ -138,6 +138,12 @@
   $ heroku config                 // view environment variables on heroku server
   $ heroku config:set key=value   // set environment variables on heroku server
 
+- To connect to the Heroku Postgres database from the command line:
+
+  $ heroku pg:psql
+  
+  1. https://devcenter.heroku.com/articles/heroku-postgresql
+
 
 # Deploy to AWS
 
@@ -231,6 +237,16 @@
     > https://docs.aws.amazon.com/ses/latest/DeveloperGuide/control-user-access.html
 
   5. Verify the domain that the email is coming from -- I'm not exactly sure if this is necessary, but if you go to the SES console you can verify domains from there.
+
+- To connect to a Postgres database from the command line or pgadmin, you have to make it public (which involves a VPC, or "virtual private cloud", and a subnet). To access from the CLI:
+
+  $ psql --host=<DB instance endpoint> --port=<port> --username=<master user name> --password --dbname=<database name> 
+
+  ... dbname is "postgres" by default.
+  
+  1. https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html
+  2. https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreatePostgreSQLInstance.html
+  3. https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.Non-VPC2VPC
 
 
 
