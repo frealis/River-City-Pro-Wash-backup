@@ -49,6 +49,7 @@ def index(request):
       import boto3
 
       print('PRIOR =============================')
+      print('email_admin: ', email_admin)
 
       # SENDER = "Sender Name <rvaprowash@gmail.com>"
       # RECIPIENT = "rvaprowash@gmail.com"
