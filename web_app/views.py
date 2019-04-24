@@ -43,17 +43,17 @@ def index(request):
 
       # Set email administrator address
       # email_admin = os.getenv('EMAIL_ADMIN')    # heroku, local
-      # email_admin = os.environ('EMAIL_ADMIN')   # aws
+      email_admin = os.environ['EMAIL_ADMIN']   # aws
 
       from botocore.exceptions import ClientError
       import boto3
 
       print('PRIOR =============================')
 
-      SENDER = "Sender Name <rvaprowash@gmail.com>"
-      RECIPIENT = "rvaprowash@gmail.com"
-      # SENDER = Template("Sender Name <$email_admin>").substitute(email_admin=email_admin)
-      # RECIPIENT = Template("$email").substitute(email=email)
+      # SENDER = "Sender Name <rvaprowash@gmail.com>"
+      # RECIPIENT = "rvaprowash@gmail.com"
+      SENDER = Template("Sender Name <$email_admin>").substitute(email_admin=email_admin)
+      RECIPIENT = Template("$email").substitute(email=email)
       AWS_REGION = "us-east-1"
 
       print('=== SENDER: ')
