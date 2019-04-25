@@ -248,6 +248,12 @@
   2. https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_CreatePostgreSQLInstance.html
   3. https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_VPC.WorkingWithRDSInstanceinaVPC.html#USER_VPC.Non-VPC2VPC
 
+- To SSH into an AWS instance, the instance has to support ssh and the VPC has to allow the connection (from some IP, I think?). Anyways, the first time you try to connect, you might get a connection error. AWS seems to record this error and add your IP address (or whatever it is) to a list of "known hosts" so that you can connect on the next attempt. Related CLI commands:
+
+  $ eb ssh --interactive    // re-create instance settings to include SSH
+  $ eb ssh                  // SSH into the instance once things are working
+
+  1. https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-ssh.html
 
 
 # Generate a new random SECRET_KEY
