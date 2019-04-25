@@ -252,6 +252,7 @@
 
   $ eb ssh --interactive    // re-create instance settings to include SSH
   $ eb ssh                  // SSH into the instance once things are working
+  $ sudo find / -name <insert main file name here> // find a file
 
   1. https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-ssh.html
 
