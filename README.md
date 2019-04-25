@@ -250,11 +250,24 @@
 
 - To SSH into an AWS instance, the instance has to support ssh and the VPC has to allow the connection (from some IP, I think?). Anyways, the first time you try to connect, you might get a connection error. AWS seems to record this error and add your IP address (or whatever it is) to a list of "known hosts" so that you can connect on the next attempt. Related CLI commands:
 
+  $ eb list                 // list available environments
+  $ eb use <environment>    // switch to an environment
   $ eb ssh --interactive    // re-create instance settings to include SSH
-  $ eb ssh                  // SSH into the instance once things are working
+  $ eb ssh <environment>    // SSH into the environment once things are working
   $ sudo find / -name <insert main file name here> // find a file
+  $ sudo su                 // change to superuser (optional)
+  $ logout/exit            
 
   1. https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb3-ssh.html
+  2. https://stackoverflow.com/questions/19997343/run-manage-py-from-aws-eb-linux-instance
+
+- To update the environment to a different platform (ie. to change from Python 2.7 to 3.6, for example):
+
+  $ aws elasticbeanstalk list-available-solution-stacks // list environments
+  $ aws elasticbeanstalk update-environment \
+  --environment-name <environment name> \
+  --solution-stack-name <solution stack> \
+  --region <region name>    // optional
 
 
 # Generate a new random SECRET_KEY
