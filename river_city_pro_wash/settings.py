@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import logging
 import os
 
-# Use python-dotenv to manage environment variables
+# Use python-dotenv to manage environment variables in heroku, local
 # https://github.com/theskumar/python-dotenv
 from dotenv import load_dotenv
 load_dotenv()
@@ -50,12 +50,14 @@ SECRET_KEY = os.getenv("SECRET_KEY")    # heroku, local
 # this to FALSE, make sure you have an appropriate allowed site listed in the
 # ALLOWED_HOSTS[] array below.
 
-# DEBUG = False
-DEBUG = True
-DEBUG_PROPAGATE_EXCEPTIONS = True # bubble (?) DEBUG errors to the top/bottom
+DEBUG = False
+# DEBUG = True
+# DEBUG_PROPAGATE_EXCEPTIONS = True # bubble (?) DEBUG errors to the top/bottom
 
 ALLOWED_HOSTS = [
-  '*'
+  'www.rivercityprowash.com',
+  'rivercityprowash.com',
+  'rcpw-env-env.y5j52jmsr2.us-east-1.elasticbeanstalk.com',
 ]
 
 # Application definition
@@ -111,13 +113,14 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 #     }
 # }
 
-# Heroku, Dockerfile Postgres database
+# AWS Postgres database
 # DATABASES = {
 #   'default': {
 #     'ENGINE': 'django.db.backends.postgresql',
-#     'NAME': 'postgres',
-#     'USER': 'postgres',
-#     'HOST': 'db',
+#     'NAME': os.environ['AWS_POSTGRES_NAME'],
+#     'USER': os.environ['AWS_POSTGRES_USER'],
+#     'PASSWORD': os.environ['AWS_POSTGRES_PASSWORD'],
+#     'HOST': os.environ['AWS_POSTGRES_HOST'],
 #     'PORT': '5432',
 #   }
 # }
@@ -182,7 +185,7 @@ STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'web_app/static/web_app'),
 )
 # STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # heroku
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static') # aws
+STATIC_ROOT = os.path.join(BASE_DIR, 'static') # aws
 
 # Activate Django-Heroku
 # import django_heroku
@@ -190,35 +193,35 @@ STATICFILES_DIRS = (
 
 
 # Logging
-LOGGING = {
-  'version': 1,
-  'disable_existing_loggers': False,
-  'formatters': {
-    'verbose': {
-      'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-      'datefmt' : "%d/%b/%Y %H:%M:%S"
-    },
-    'simple': {
-      'format': '%(levelname)s %(message)s'
-    },
-  },
-  'handlers': {
-    'file': {
-      'level': 'DEBUG',
-      'class': 'logging.FileHandler',
-      'filename': 'project.log',
-      'formatter': 'verbose'
-    },
-  },
-  'loggers': {
-    'django': {
-      'handlers':['file'],
-      'propagate': True,
-      'level':'DEBUG',
-    },
-    'MYAPP': {
-      'handlers': ['file'],
-      'level': 'DEBUG',
-    },
-  }
-}
+# LOGGING = {
+#   'version': 1,
+#   'disable_existing_loggers': False,
+#   'formatters': {
+#     'verbose': {
+#       'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+#       'datefmt' : "%d/%b/%Y %H:%M:%S"
+#     },
+#     'simple': {
+#       'format': '%(levelname)s %(message)s'
+#     },
+#   },
+#   'handlers': {
+#     'file': {
+#       'level': 'DEBUG',
+#       'class': 'logging.FileHandler',
+#       'filename': 'project.log',
+#       'formatter': 'verbose'
+#     },
+#   },
+#   'loggers': {
+#     'django': {
+#       'handlers':['file'],
+#       'propagate': True,
+#       'level':'DEBUG',
+#     },
+#     'MYAPP': {
+#       'handlers': ['file'],
+#       'level': 'DEBUG',
+#     },
+#   }
+# }

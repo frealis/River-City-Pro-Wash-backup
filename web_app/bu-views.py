@@ -29,7 +29,7 @@ def index(request):
     RECAPTCHA_SITE_SECRET = os.environ['RECAPTCHA_SITE_SECRET']   # aws
 
     # reCAPTCHA v2 SECRET key, test
-    RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
+    # RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
 
     # a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')    # heroku, local
     a = os.environ['RECAPTCHA_SITE_VERIFY_URL']     # aws
@@ -48,72 +48,31 @@ def index(request):
       from botocore.exceptions import ClientError
       import boto3
 
-      SENDER = Template("River City Pro Wash <$email_admin>").substitute(email_admin=email_admin)
-      RECIPIENT = Template("$email").substitute(email=email)
+      SENDER = "Sender Name <rvaprowash@gmail.com>"
+      RECIPIENT = "rvaprowash@gmail.com"
       AWS_REGION = "us-east-1"
 
       # The subject line for the email.
-      SUBJECT = "Thank you for contacting River City Pro Wash!"
-
-      # The subject line for the site administrator.
-      ADMIN_SUBJECT = "Contact Us Form Submission Notification"
+      SUBJECT = "Amazon SES Test (SDK for Python)"
 
       # The email body for recipients with non-HTML email clients.
-      BODY_TEXT = (Template("Dear $name\r\n\n"
-                  "Thank you for contacting River City Pro Wash! "
-                  "A member of our team will contact you shortly.\n\n"
-                  "Regards,\n"
-                  "River City Pro Wash\n\n"
-                  "(804) 239-6085\n"
-                  "www.rivercityprowash.com").substitute(name=name)
+      BODY_TEXT = ("Amazon SES Test (Python)\r\n"
+                  "This email was sent with Amazon SES using the "
+                  "AWS SDK for Python (Boto)."
                   )
-
-      # The email body for administrators with non-HTML email clients.
-      ADMIN_BODY_TEXT = (Template("Name: $name\n"
-                  "Address: $address\n"
-                  "Phone: $phone\n"
-                  "Email: $email\n"
-                  "Message: $message").substitute(name=name, address=address, phone=phone, email=email, message=message)
-                  )
-            
-      # The HTML body of the email sent to the customer.
+                  
+      # The HTML body of the email.
       BODY_HTML = """<html>
       <head></head>
       <body>
-        <p>
-          Dear """ + Template('$name').substitute(name=name) + """<br><br>
-          Thank you for contacting River City Pro Wash!
-          A member of our team will contact you shortly.<br><br>
-          Regards,<br>
-          River City Pro Wash<br><br>
-          (804) 239-6085<br>
-          www.rivercityprowash.com
-        </p>
+        <h1>Amazon SES Test (SDK for Python)</h1>
+        <p>This email was sent with
+          <a href='https://aws.amazon.com/ses/'>Amazon SES</a> using the
+          <a href='https://aws.amazon.com/sdk-for-python/'>
+            AWS SDK for Python (Boto)</a>.</p>
       </body>
       </html>
-                  """
-
-      phone_str = str(phone)
-      phone_list = list(phone_str)
-      phone_ac = phone_list[0] + phone_list[1] + phone_list[2]
-      phone_3d = phone_list[3] + phone_list[4] + phone_list[5]
-      phone_4d = phone_list[6] + phone_list[7] + phone_list[8] + phone_list[9]
-      phone_pretty = Template('($phone_ac) $phone_3d - $phone_4d').substitute(phone_ac=phone_ac, phone_3d=phone_3d, phone_4d=phone_4d)
-
-      # The HTML body of the email sent to the site administrator.
-      ADMIN_BODY_HTML = """<html>
-      <head></head>
-      <body>
-        <p>
-          Name: """ + Template('$name').substitute(name=name) + """<br>
-          Address: """ + Template('$address').substitute(address=address) + """<br>
-          Phone: """ + Template('$phone').substitute(phone=phone_pretty) + """<br>
-          Email: """ + Template('$email').substitute(email=email) + """<br>
-          Message: """ + Template('$message').substitute(message=message) + """<br>
-        </p>
-      </body>
-      </html>
-                        """    
+                  """            
 
       # The character encoding for the email.
       CHARSET = "UTF-8"
@@ -123,38 +82,31 @@ def index(request):
 
       # Try to send the email.
       try:
-
-        # Send thank-you email to customer.
+        #Provide the contents of the email.
         response = client.send_email(
           Destination={
-            'ToAddresses': [RECIPIENT,],
+            'ToAddresses': [
+              RECIPIENT,
+            ],
           },
           Message={
             'Body': {
-              'Html': {'Charset': CHARSET, 'Data': BODY_HTML,},
-              'Text': {'Charset': CHARSET, 'Data': BODY_TEXT,},
+              'Html': {
+                'Charset': CHARSET,
+                'Data': BODY_HTML,
+              },
+              'Text': {
+                'Charset': CHARSET,
+                'Data': BODY_TEXT,
+              },
             },
-            'Subject': {'Charset': CHARSET, 'Data': SUBJECT,},
+            'Subject': {
+              'Charset': CHARSET,
+              'Data': SUBJECT,
+            },
           },
           Source=SENDER,
         )
-
-        # Send notification to site administrator when 'Contact Us' form is
-        # submitted.
-        response = client.send_email(
-          Destination={
-            'ToAddresses': [SENDER,],
-          },
-          Message={
-            'Body': {
-              'Html': {'Charset': CHARSET, 'Data': ADMIN_BODY_HTML,},
-              'Text': {'Charset': CHARSET, 'Data': ADMIN_BODY_TEXT,},
-            },
-            'Subject': {'Charset': CHARSET, 'Data': ADMIN_SUBJECT,},
-          },
-          Source=SENDER,
-        )
-
       # Display an error if something goes wrong.	
       except ClientError as e:
         print(e.response['Error']['Message'])
@@ -164,11 +116,10 @@ def index(request):
 
 
       # Save data submitted from the "Contact Us" form to database -- if there is
-      # a problem with the database connection, then the rest of the code in 
-      # this function will not execute (ie. mail will not be sent)
+      # a problem with the database connection, then the rest of the code below 
+      # within this function will not execute
       m = Message(name=name, address=address, phone=phone, email=email, message=message, ip=ip, recaptcha=recaptcha)
       m.save()
-
 
       # Just put this here to silence a server error message since it looks like
       # request.method == 'POST' requires some kind of HttpResponse object

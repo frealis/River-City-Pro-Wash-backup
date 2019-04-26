@@ -1,11 +1,16 @@
 branch-defaults:
 <<<<<<< HEAD
+<<<<<<< HEAD
   aws-development:
     environment: rcpw-env
     group_suffix: null
   master:
     environment: rcpw-env2
 =======
+=======
+  aws-production:
+    environment: rcpw-env-env
+>>>>>>> aws-production
   test-aws:
     environment: rcpw-env-env
     group_suffix: null
