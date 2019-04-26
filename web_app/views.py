@@ -21,8 +21,6 @@ def index(request):
     email = bleach.clean(request.POST['email'])
     message = bleach.clean(request.POST['message'])
     ip = request.META['REMOTE_ADDR']
-
-    # Authenticate reCAPTCHA v2 user's response
     
     # reCAPTCHA v2 SECRET key
     RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'  # local
@@ -40,8 +38,8 @@ def index(request):
       print('=== reCAPTCHA succeeded ===')
 
       # Set email administrator address
-      # email_admin = os.getenv('EMAIL_ADMIN')    # heroku, local
-      email_admin = os.environ['EMAIL_ADMIN']   # aws
+      email_admin = os.getenv('EMAIL_ADMIN')    # heroku, local
+      # email_admin = os.environ['EMAIL_ADMIN']   # aws
 
       from botocore.exceptions import ClientError
       import boto3

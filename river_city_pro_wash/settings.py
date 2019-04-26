@@ -50,14 +50,15 @@ SECRET_KEY = os.getenv("SECRET_KEY")    # heroku, local
 # this to FALSE, make sure you have an appropriate allowed site listed in the
 # ALLOWED_HOSTS[] array below.
 
-DEBUG = False
-# DEBUG = True
-# DEBUG_PROPAGATE_EXCEPTIONS = True # bubble (?) DEBUG errors to the top/bottom
+# DEBUG = False
+DEBUG = True
+DEBUG_PROPAGATE_EXCEPTIONS = True # bubble (?) DEBUG errors to the top/bottom
 
 ALLOWED_HOSTS = [
-  'www.rivercityprowash.com',
-  'rivercityprowash.com',
-  'rcpw-env-env.y5j52jmsr2.us-east-1.elasticbeanstalk.com',
+  # 'www.rivercityprowash.com',
+  # 'rivercityprowash.com',
+  # 'rcpw-env-env.y5j52jmsr2.us-east-1.elasticbeanstalk.com',
+  '*',
 ]
 
 # Application definition
@@ -167,13 +168,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'EST'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -192,36 +189,36 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static') # aws
 # django_heroku.settings(locals()) # this line has to occur after STATIC_ROOT
 
 
-# Logging
-# LOGGING = {
-#   'version': 1,
-#   'disable_existing_loggers': False,
-#   'formatters': {
-#     'verbose': {
-#       'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-#       'datefmt' : "%d/%b/%Y %H:%M:%S"
-#     },
-#     'simple': {
-#       'format': '%(levelname)s %(message)s'
-#     },
-#   },
-#   'handlers': {
-#     'file': {
-#       'level': 'DEBUG',
-#       'class': 'logging.FileHandler',
-#       'filename': 'project.log',
-#       'formatter': 'verbose'
-#     },
-#   },
-#   'loggers': {
-#     'django': {
-#       'handlers':['file'],
-#       'propagate': True,
-#       'level':'DEBUG',
-#     },
-#     'MYAPP': {
-#       'handlers': ['file'],
-#       'level': 'DEBUG',
-#     },
-#   }
-# }
+# Logging -- must DISABLE in AWS
+LOGGING = {
+  'version': 1,
+  'disable_existing_loggers': False,
+  'formatters': {
+    'verbose': {
+      'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+      'datefmt' : "%d/%b/%Y %H:%M:%S"
+    },
+    'simple': {
+      'format': '%(levelname)s %(message)s'
+    },
+  },
+  'handlers': {
+    'file': {
+      'level': 'DEBUG',
+      'class': 'logging.FileHandler',
+      'filename': 'project.log',
+      'formatter': 'verbose'
+    },
+  },
+  'loggers': {
+    'django': {
+      'handlers':['file'],
+      'propagate': True,
+      'level':'DEBUG',
+    },
+    'MYAPP': {
+      'handlers': ['file'],
+      'level': 'DEBUG',
+    },
+  }
+}
