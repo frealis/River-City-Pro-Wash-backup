@@ -15,8 +15,8 @@ import os
 
 # Use python-dotenv to manage environment variables in heroku, local
 # https://github.com/theskumar/python-dotenv
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -25,40 +25,40 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
-# CORS_REPLACE_HTTPS_REFERER      = True
-# HOST_SCHEME                     = "https://"
-# SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
-# SECURE_SSL_REDIRECT             = True # requires SLL certificate in AWS
-# SESSION_COOKIE_SECURE           = True
-# CSRF_COOKIE_SECURE              = True
-# SECURE_HSTS_PRELOAD             = True
-# SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
-# SECURE_HSTS_SECONDS             = 1000000
-# SECURE_FRAME_DENY               = True
+CORS_REPLACE_HTTPS_REFERER      = True
+HOST_SCHEME                     = "https://"
+SECURE_PROXY_SSL_HEADER         = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT             = True # requires SLL certificate in AWS
+SESSION_COOKIE_SECURE           = True
+CSRF_COOKIE_SECURE              = True
+SECURE_HSTS_PRELOAD             = True
+SECURE_HSTS_INCLUDE_SUBDOMAINS  = True
+SECURE_HSTS_SECONDS             = 1000000
+SECURE_FRAME_DENY               = True
 
-# SECURE_CONTENT_TYPE_NOSNIFF     = True
-# SECURE_BROWSER_XSS_FILTER       = True
-# X_FRAME_OPTIONS                 = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF     = True
+SECURE_BROWSER_XSS_FILTER       = True
+X_FRAME_OPTIONS                 = 'DENY'
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")    # heroku, local
-# SECRET_KEY = os.environ["SECRET_KEY"]   # aws
+# SECRET_KEY = os.getenv("SECRET_KEY")    # heroku, local
+SECRET_KEY = os.environ["SECRET_KEY"]   # aws
 
 
 # SECURITY WARNING: don't run with debug turned on in production! -- If you set
 # this to FALSE, make sure you have an appropriate allowed site listed in the
 # ALLOWED_HOSTS[] array below.
 
-# DEBUG = False
-DEBUG = True
-DEBUG_PROPAGATE_EXCEPTIONS = True # bubble (?) DEBUG errors to the top/bottom
+DEBUG = False
+# DEBUG = True
+# DEBUG_PROPAGATE_EXCEPTIONS = True # bubble (?) DEBUG errors to the top/bottom
 
 ALLOWED_HOSTS = [
-  # 'www.rivercityprowash.com',
-  # 'rivercityprowash.com',
-  # 'rcpw-env-env.y5j52jmsr2.us-east-1.elasticbeanstalk.com',
-  '*',
+  'www.rivercityprowash.com',
+  'rivercityprowash.com',
+  'rcpw-env-env.y5j52jmsr2.us-east-1.elasticbeanstalk.com',
+  # '*',
 ]
 
 # Application definition
@@ -115,28 +115,28 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 # }
 
 # AWS Postgres database
-# DATABASES = {
-#   'default': {
-#     'ENGINE': 'django.db.backends.postgresql',
-#     'NAME': os.environ['AWS_POSTGRES_NAME'],
-#     'USER': os.environ['AWS_POSTGRES_USER'],
-#     'PASSWORD': os.environ['AWS_POSTGRES_PASSWORD'],
-#     'HOST': os.environ['AWS_POSTGRES_HOST'],
-#     'PORT': '5432',
-#   }
-# }
-
-# Local Postgres database
 DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
-    'NAME': os.getenv("POSTGRES_NAME"),
-    'USER': os.getenv("POSTGRES_USER"),
-    'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-    'HOST': '127.0.0.1',
+    'NAME': os.environ['AWS_POSTGRES_NAME'],
+    'USER': os.environ['AWS_POSTGRES_USER'],
+    'PASSWORD': os.environ['AWS_POSTGRES_PASSWORD'],
+    'HOST': os.environ['AWS_POSTGRES_HOST'],
     'PORT': '5432',
   }
 }
+
+# Local Postgres database
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': os.getenv("POSTGRES_NAME"),
+#     'USER': os.getenv("POSTGRES_USER"),
+#     'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+#     'HOST': '127.0.0.1',
+#     'PORT': '5432',
+#   }
+# }
 
 # Un-comment this if you want to run python manage.py check --deploy to 2x check
 # that security settings are in place before deployment without worrying about
@@ -190,35 +190,35 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static') # aws
 
 
 # Logging -- must DISABLE in AWS
-LOGGING = {
-  'version': 1,
-  'disable_existing_loggers': False,
-  'formatters': {
-    'verbose': {
-      'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
-      'datefmt' : "%d/%b/%Y %H:%M:%S"
-    },
-    'simple': {
-      'format': '%(levelname)s %(message)s'
-    },
-  },
-  'handlers': {
-    'file': {
-      'level': 'DEBUG',
-      'class': 'logging.FileHandler',
-      'filename': 'project.log',
-      'formatter': 'verbose'
-    },
-  },
-  'loggers': {
-    'django': {
-      'handlers':['file'],
-      'propagate': True,
-      'level':'DEBUG',
-    },
-    'MYAPP': {
-      'handlers': ['file'],
-      'level': 'DEBUG',
-    },
-  }
-}
+# LOGGING = {
+#   'version': 1,
+#   'disable_existing_loggers': False,
+#   'formatters': {
+#     'verbose': {
+#       'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+#       'datefmt' : "%d/%b/%Y %H:%M:%S"
+#     },
+#     'simple': {
+#       'format': '%(levelname)s %(message)s'
+#     },
+#   },
+#   'handlers': {
+#     'file': {
+#       'level': 'DEBUG',
+#       'class': 'logging.FileHandler',
+#       'filename': 'project.log',
+#       'formatter': 'verbose'
+#     },
+#   },
+#   'loggers': {
+#     'django': {
+#       'handlers':['file'],
+#       'propagate': True,
+#       'level':'DEBUG',
+#     },
+#     'MYAPP': {
+#       'handlers': ['file'],
+#       'level': 'DEBUG',
+#     },
+#   }
+# }
