@@ -1,6 +1,8 @@
+// ================ RESTRICT PHONE NUMBER INPUT ================================
+
 // Restrict phone number field to numbers 0 through 9
 function noLetters(event) {
-  var keycode = event.which;
+  let keycode = event.which;
   if (keycode < 48 || keycode > 57) {
     return false;
   };
@@ -8,7 +10,7 @@ function noLetters(event) {
 
 // Restrict phone number extention field to exclude spaces
 function noSpaces(event) {
-  var keycode = event.which;
+  let keycode = event.which;
   if (keycode === 32) {
     return false;
   };
@@ -16,9 +18,13 @@ function noSpaces(event) {
 
 document.addEventListener('DOMContentLoaded', function() {
 
-  var navbar_offset = nav_bar.offsetTop;
+  // ================ STICKY NAVBAR ==============================================
 
-  // Toggle navbar fixed-top class
+  // Get the navbar's vertical positioning from the top of the screen
+  let navbar_offset = nav_bar.offsetTop;
+
+  // Toggle navbar fixed-top class (aka make the navbar "sticky" as user scrolls 
+  // down and the navbar reaches the top of the screen)
   window.onscroll = () => {
     // console.log('----');
     // console.log('window.innerHeight: ', window.innerHeight);
@@ -60,6 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
       document.querySelector('#navbarCollapse').removeAttribute('data-target', '#navbarCollapse');
     };
   });
+
+  // ================ 'CONTACT US' FORM SUBMISSION ===============================
 
   // Retrieve message from "Contact Us" form and submit
   document.querySelector('#send_message').onclick = () => {
@@ -153,4 +161,46 @@ document.addEventListener('DOMContentLoaded', function() {
       return false;
     };
   };
+
+  // ================ 'OUR WORK' IMAGE MODAL =====================================
+  // https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2
+
+  // Get the modal-related DOM elements
+  let close = document.querySelector('.close');
+  let modal = document.querySelector('#modal');
+  let modal_image = document.querySelector('#modal_image');
+  let modal_link = document.querySelectorAll('.modal-link');
+
+  // Add event listeners to all images that display the modal when clicked
+  for (let i = 0; i < modal_link.length; i++) {
+    modal_link[i].addEventListener('click', function(event) {
+
+      // Clear the previous modal image
+      modal_image.innerHTML = '';
+
+      // Create the modal <img> element and add it to the DOM
+      let img = document.createElement('img');
+      let img_id = event.target.id;
+      img.classList.add('center');
+      img.style.width = '100%';
+      img.src = '/static/img/' + img_id + '.jpg';
+      modal_image.appendChild(img);
+
+      // Display the modal
+      modal.style.display = "block";
+    })
+  };
+
+  // When the user clicks on <span> (x), close the modal
+  close.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
 });

@@ -33,6 +33,14 @@ html, body, div, applet, object, iframe, blockquote, pre, a, abbr, acronym, addr
   font-size: 22px;
 }
 
+.green {
+  color: green;
+}
+
+.green-bg {
+  background-color: green;
+}
+
 /* Set dimensions for the logo at the top of the page */
 .header-logo {
   height: 280px; 
@@ -50,6 +58,10 @@ input[type='text'], input[type='email'] {
   margin-top: 56px;
 }
 
+.margin-bottom10 {
+  margin-bottom: 10px;
+}
+
 /* Stop expanded navbar from pushing down content */
 .prevent_pushdown {
   position: absolute;
@@ -59,6 +71,10 @@ input[type='text'], input[type='email'] {
 
 .red {
   color: red;
+}
+
+.red-bg {
+  background-color: red;
 }
 
 .text-center {
@@ -125,6 +141,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* ========== START: darken carousel images ============================== */
 /* https://css-tricks.com/design-considerations-text-images/ */
+
 .carousel_background {
   height: auto;
   max-width: 100%;
@@ -214,3 +231,80 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* 262261 // 27a9e1 */
 /* ========== END: colors ======================================== */
+
+
+
+/* ========== START: modal ======================================== */
+/* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal2 */
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 999; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: #EFF4F8;
+  margin: auto;
+  padding: 0;
+  /* border: 3px solid #000b2e; */
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.3),0 6px 20px 0 rgba(0,0,0,0.3);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.3s;
+  animation-name: animatetop;
+  animation-duration: 0.3s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {top:-300px; opacity:0} 
+  to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+  from {top:-300px; opacity:0}
+  to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+  color: #EFF4F8;
+  float: right;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #EFF4F8;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-header {
+  padding: 10px;
+  background-color: #000b2e;
+  color: #EFF4F8;
+}
+
+.modal-body {padding: 0;}
+
+.modal-footer {
+  padding: 10px;
+  background-color: #000b2e;
+  color: #EFF4F8;
+}
+
+/* ========== END: modal ======================================== */
