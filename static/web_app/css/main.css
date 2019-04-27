@@ -11,6 +11,13 @@ html, body, div, applet, object, iframe, blockquote, pre, a, abbr, acronym, addr
   background: transparent;
 }
 
+/* Increase the width of the email input field, also indirectly increases the 
+width of the name and address fields */
+input[type='text'], input[type='email'] {
+  width: 100%;
+  margin: 8px 0;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -46,13 +53,6 @@ html, body, div, applet, object, iframe, blockquote, pre, a, abbr, acronym, addr
   height: 280px; 
   max-width: 100%
   }
-
-/* Increase the width of the email input field, also indirectly increases the 
-width of the name and address fields */
-input[type='text'], input[type='email'] {
-  width: 100%;
-  margin: 8px 0;
-}
 
 .margin-top56 {
   margin-top: 56px;
@@ -293,18 +293,30 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
-.modal-header {
-  padding: 10px;
-  background-color: #000b2e;
-  color: #EFF4F8;
-}
-
 .modal-body {padding: 0;}
 
 .modal-footer {
   padding: 10px;
   background-color: #000b2e;
   color: #EFF4F8;
+}
+
+.modal-header {
+  padding: 10px;
+  background-color: #000b2e;
+  color: #EFF4F8;
+}
+
+.modal-link {
+  /* width: 100%; */
+  width: 225px;
+}
+
+@media (max-width: 767px) {
+  .modal-link {
+    /* width: 60%; */
+    width: 225px;
+  }
 }
 
 /* ========== END: modal ======================================== */
