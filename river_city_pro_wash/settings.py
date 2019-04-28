@@ -50,9 +50,9 @@ SECRET_KEY = os.getenv("SECRET_KEY")    # heroku, local
 # this to FALSE, make sure you have an appropriate allowed site listed in the
 # ALLOWED_HOSTS[] array below.
 
-# DEBUG = False
-DEBUG = True
-DEBUG_PROPAGATE_EXCEPTIONS = True # bubble (?) DEBUG errors to the top/bottom
+DEBUG = False
+# DEBUG = True
+# DEBUG_PROPAGATE_EXCEPTIONS = True # bubble (?) DEBUG errors to the top/bottom
 
 ALLOWED_HOSTS = [
   # 'www.rivercityprowash.com',
@@ -107,12 +107,12 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 # AWS Postgres database
 # DATABASES = {
@@ -127,16 +127,16 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 # }
 
 # Local Postgres database
-DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': os.getenv("POSTGRES_NAME"),
-    'USER': os.getenv("POSTGRES_USER"),
-    'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
-    'HOST': '127.0.0.1',
-    'PORT': '5432',
-  }
-}
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': os.getenv("POSTGRES_NAME"),
+#     'USER': os.getenv("POSTGRES_USER"),
+#     'PASSWORD': os.getenv("POSTGRES_PASSWORD"),
+#     'HOST': '127.0.0.1',
+#     'PORT': '5432',
+#   }
+# }
 
 # Un-comment this if you want to run python manage.py check --deploy to 2x check
 # that security settings are in place before deployment without worrying about
@@ -181,12 +181,12 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'web_app/static/web_app'),
 )
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # heroku
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') # aws
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # heroku
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static') # aws
 
 # Activate Django-Heroku
-# import django_heroku
-# django_heroku.settings(locals()) # this line has to occur after STATIC_ROOT
+import django_heroku
+django_heroku.settings(locals()) # this line has to occur after STATIC_ROOT
 
 
 # Logging -- must DISABLE in AWS

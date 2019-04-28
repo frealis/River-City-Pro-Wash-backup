@@ -39,16 +39,15 @@
     <!-- <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div> -->
 
     <!-- <input id="send_message" class="btn btn-outline-success mt-2" type="submit"> -->
-    <!-- <input id="send_message" class="btn btn-outline-success mt-2"> -->
     <p><a id="send_message" class="btn btn-lg btn-primary" role="button">Submit</a></p>
 
     <script>
       grecaptcha.ready(function() {
 
         // aws
-        // grecaptcha.execute('6Lfsp6AUAAAAAKqgw2iGIvkiYepchQRy0LF2CnLj', {action: 'homepage'});
+        grecaptcha.execute('6Lfsp6AUAAAAAKqgw2iGIvkiYepchQRy0LF2CnLj', {action: 'homepage'});
         // test
-        grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', {action: 'homepage'}).then(function(token) {
+        // grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', {action: 'homepage'}).then(function(token) {
           console.log(token);
         });
       });
