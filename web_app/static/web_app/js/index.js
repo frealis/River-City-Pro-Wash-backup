@@ -147,10 +147,12 @@ document.addEventListener('DOMContentLoaded', function() {
       // Display error message and highlight required fields if any of them are
       // empty
       } else {
-        document.querySelector('#alert').innerHTML = "Please fill in all required fields.";
-        document.querySelector('#alert').className = "alert alert-danger";
         required_fields = document.querySelectorAll(".required_field");
         console.log(required_fields);
+        
+        document.querySelector('#alert').innerHTML = "Please fill in all required fields.";
+        document.querySelector('#alert').className = "alert alert-danger";
+
         for (let i = 0; i < required_fields.length; i++) {
           required_fields[i].style.color="red";
         };
