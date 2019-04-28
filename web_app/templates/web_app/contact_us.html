@@ -8,7 +8,7 @@
 <h6>Fill out the form below to send us a message, ask a question, or request a free quote!</h6><br>
 
 <form id="contact_us_form">
-  <span id="required_field">Name</span> <span class="red">*</span><br>
+  <span class="required_field">Name</span> <span class="red">*</span><br>
   <input id="name" name="name"type="text" maxlength="64"><br>
   Address<br>
   <input id="address" name="address" type="text" maxlength="200"><br>
@@ -21,9 +21,9 @@
   <input id="phone_4d" name="phone_4d" class="phone" type="tel" maxlength="4" size="1" onkeypress="return noLetters(event)">
   ext.
   <input id="phone_ext" name="phone_ext" class="phone" type="tel" maxlength="12" size="4" onkeypress="return noSpaces(event)"><br>
-  <span id="required_field">Email Address</span> <span class="red">*</span><br>
+  <span class="required_field">Email Address</span> <span class="red">*</span><br>
   <input id="email" name="email" type="email" maxlength="64"><br>
-  <span id="required_field">Message</span> <span class="red">*</span><br>
+  <span class="required_field">Message</span> <span class="red">*</span><br>
   <textarea id="message" name="message" class="mt-2" type="text" style="width: 100%; height: 120px" placeholder="Enter a message" maxlength="800"></textarea><br>
 
   <p><span class="red">*</span> indicates a required field</p>
@@ -33,10 +33,10 @@
   <p>
 
     <!-- reCAPTCHA v2 SITE key -->
-    <div class="g-recaptcha" data-sitekey="6LfRfJwUAAAAAFuvoDiqY3B2AABs1-tmWA7p9MHG"></div>
+    <!-- <div class="g-recaptcha" data-sitekey="6LfRfJwUAAAAAFuvoDiqY3B2AABs1-tmWA7p9MHG"></div> -->
     
     <!-- reCAPTCHA v2 SITE key, test -->
-    <!-- <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div> -->
+    <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
 
     <input id="send_message" class="btn btn-outline-success mt-2" type="submit">
     

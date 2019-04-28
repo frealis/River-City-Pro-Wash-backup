@@ -18,6 +18,10 @@ input[type='text'], input[type='email'] {
   margin: 8px 0;
 }
 
+input[type='tel'] {
+  margin: 8px 0;
+}
+
 .bold {
   font-weight: bold;
 }
