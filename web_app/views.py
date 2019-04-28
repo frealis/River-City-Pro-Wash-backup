@@ -35,7 +35,7 @@ def index(request):
     recaptcha_response = urllib.request.urlopen(c).read().decode("utf-8")
     if json.loads(recaptcha_response).get("success") == True:
 
-      # Set 'recaptcha' value to be stored in database
+      # Set recaptcha = 'Success' to be stored in database
       recaptcha = 'Success'
       print('=== reCAPTCHA succeeded ===')
 
@@ -60,7 +60,7 @@ def index(request):
 
     else:
 
-      # Set 'recaptcha' value to be stored in database
+      # Set recaptcha = 'Fail' to be stored in database
       recaptcha = 'Fail'
       print('=== reCAPTCHA failed ===')
 

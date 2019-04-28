@@ -81,6 +81,8 @@ document.addEventListener('DOMContentLoaded', function() {
     request.open('POST', '/');
     request.setRequestHeader("X-CSRFToken", csrf_token);
 
+    console.log(recaptcha);
+
     // Retrieve user input from the "Contact Us" form
     let name      = document.querySelector('#name').value;
     let address   = document.querySelector('#address').value;
@@ -112,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // color in case the user had previously submitted an incomplete form.
       document.querySelector('#alert').innerHTML = "";
       document.querySelector('#alert').className = "";
-      required_fields = document.querySelectorAll('#required_field');
+      required_fields = document.querySelectorAll('.required_field');
       for (let i = 0; i < required_fields.length; i++) {
         required_fields[i].style.color="black";
       };
