@@ -128,8 +128,8 @@ document.addEventListener('DOMContentLoaded', function() {
         message_data.append('phone',      phone);
         message_data.append('email',      email);
         message_data.append('message',    message);
-        // message_data.append('recaptcha',  grecaptcha.getResponse());
-        message_data.append('recaptcha',  grecaptcha.getResponse);
+        message_data.append('recaptcha',  grecaptcha.getResponse());
+        // message_data.append('recaptcha',  grecaptcha.getResponse);
 
         // View the contents of FormData() in browser console using the strange
         // *.entries() method.
