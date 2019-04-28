@@ -6,9 +6,11 @@ __pycache__/
 .dockerignore
 *.exe
 *.zip
-venv/
 *.pem
 *.crt
+staticfiles/
+venv/
+*.txt
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
