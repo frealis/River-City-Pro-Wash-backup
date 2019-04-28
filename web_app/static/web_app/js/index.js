@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', function() {
       message_data.append('phone',      phone);
       message_data.append('email',      email);
       message_data.append('message',    message);
-      message_data.append('recaptcha',  ;
+      message_data.append('recaptcha',  'recaptcha');
 
       // View the contents of FormData() in browser console using the strange
       // *.entries() method.
@@ -143,7 +143,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Display error message and highlight required fields by changing the text
     // color to red if any of them are empty
     } else {
-      alert('else');
       document.querySelector('#alert').innerHTML = "Please fill in all required fields.";
       document.querySelector('#alert').className = "alert alert-danger";
       required_fields = document.querySelectorAll('.required_field');
