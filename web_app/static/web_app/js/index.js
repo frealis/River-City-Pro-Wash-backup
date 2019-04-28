@@ -72,6 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Retrieve message from "Contact Us" form and submit
   document.querySelector('#send_message').onclick = () => {
 
+    alert('click');
+
     // Initialize POST request, extract the CSRF value from the index.html DOM,
     // and put that into the header of the POST request
     const request = new XMLHttpRequest();
