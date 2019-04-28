@@ -33,11 +33,11 @@
   
   <!-- Store CSRF and reCAPTCHA v3 tokens -->
   <span id="csrf">{% csrf_token %}</span>
-  <input type="hidden" id="g-recaptcha-token"></span>
+  <input type="hidden" id="g-recaptcha-token">
 </form>
 
 <script>
-  
+
   // Get the reCAPTCHA v3 token. This has to occur after loading the google
   // recaptcha script that makes this possible in the first place (it's 
   // currently somewhere in the <head> tags within base.html).
@@ -49,7 +49,7 @@
     // local
     // grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', {action: 'homepage'}).then(function(token) {
       
-      document.querySelector('#g-recaptcha-token').innerHTML = token;
+      document.querySelector('#g-recaptcha-token').value = token;
     });
   });
 
