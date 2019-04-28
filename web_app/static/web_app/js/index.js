@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
         required_fields = document.querySelectorAll(".required-field");
         console.log('x', required_fields);
         
-        document.querySelector('#alert').innerHTML = "Please fill in all required fields.";
+        document.querySelector('#alert').innerHTML = "Pleasex fill in all required fields.";
         document.querySelector('#alert').className = "alert alert-danger";
 
         for (let i = 0; i < required_fields.length; i++) {
