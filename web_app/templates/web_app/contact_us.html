@@ -29,23 +29,9 @@
   <p><span class="red">*</span> indicates a required field</p>
   <p><span id="alert"></span></p>
   <p><input id="send_message" class="btn btn-outline-success mt-2" type="submit"></p>
-    <!-- <p><a id="send_message" class="btn btn-lg btn-primary" role="button">Submit</a></p> -->
+  <!-- <p><a id="send_message" class="btn btn-lg btn-primary" role="button">Submit</a></p> -->
   
   <!-- Store CSRF and reCAPTCHA v3 tokens -->
   <span id="csrf">{% csrf_token %}</span>
   <input type="hidden" id="g-recaptcha-token"></span>
 </form>
-
-<script>
-  grecaptcha.ready(function() {
-
-    // aws, heroku
-    grecaptcha.execute('6Lfsp6AUAAAAAKqgw2iGIvkiYepchQRy0LF2CnLj', {action: 'homepage'}).then(function(token) {
-    
-    // local
-    // grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', {action: 'homepage'}).then(function(token) {
-      
-      document.querySelector('#g-recaptcha-token').innerHTML = token;
-    });
-  });
-</script>

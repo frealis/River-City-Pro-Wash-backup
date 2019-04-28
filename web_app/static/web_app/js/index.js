@@ -72,6 +72,21 @@ document.addEventListener('DOMContentLoaded', function() {
   // Retrieve message from "Contact Us" form and submit
   document.querySelector('#send_message').onclick = () => {
 
+    // Get the reCAPTCHA v3 token. This has to occur after loading the google
+    // recaptcha script that makes this possible in the first place (it's 
+    // currently somewhere in the <head> tags within base.html).
+    grecaptcha.ready(function() {
+
+      // aws, heroku
+      grecaptcha.execute('6Lfsp6AUAAAAAKqgw2iGIvkiYepchQRy0LF2CnLj', {action: 'homepage'}).then(function(token) {
+      
+      // local
+      // grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', {action: 'homepage'}).then(function(token) {
+        
+        document.querySelector('#g-recaptcha-token').innerHTML = token;
+      });
+    });
+
     // Initialize POST request, extract the CSRF value from the index.html DOM
     // and put that into the header of the POST request, extract the reCAPTCHA v3
     // value from the index.html DOM
