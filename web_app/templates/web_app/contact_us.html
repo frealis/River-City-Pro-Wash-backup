@@ -33,7 +33,7 @@
   
   <!-- Store CSRF and reCAPTCHA v3 tokens -->
   <span id="csrf">{% csrf_token %}</span>
-  <input type="hidden" id="g-recaptcha-token" name="g-recaptcha-token"></span>
+  <input type="hidden" id="g-recaptcha-token"></span>
 </form>
 
 <script>
@@ -46,8 +46,6 @@
     // grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', {action: 'homepage'}).then(function(token) {
       
       document.querySelector('#g-recaptcha-token').innerHTML = token;
-      console.log(token);
-
     });
   });
 </script>
