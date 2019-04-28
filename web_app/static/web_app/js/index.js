@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Display error message and highlight required fields by changing the text
     // color to red if any of them are empty
     } else {
+      alert('else');
       document.querySelector('#alert').innerHTML = "Please fill in all required fields.";
       document.querySelector('#alert').className = "alert alert-danger";
       required_fields = document.querySelectorAll('.required_field');
