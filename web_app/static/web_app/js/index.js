@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // value from the index.html DOM
     const request = new XMLHttpRequest();
     const csrf_token = document.querySelector('#csrf').childNodes[0]['value'];
-    const recaptcha = document.querySelector('#g-recaptcha-token').value
+    const recaptcha = document.querySelector('#g-recaptcha-token').value;
     request.open('POST', '/');
     request.setRequestHeader("X-CSRFToken", csrf_token);
 
