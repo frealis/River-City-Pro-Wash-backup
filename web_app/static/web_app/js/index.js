@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // empty
       } else {
         required_fields = document.querySelectorAll(".required-field");
-        console.log(required_fields);
+        console.log('x', required_fields);
         
         document.querySelector('#alert').innerHTML = "Please fill in all required fields.";
         document.querySelector('#alert').className = "alert alert-danger";
