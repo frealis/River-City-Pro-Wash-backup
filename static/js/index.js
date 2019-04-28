@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // case the user had previously submitted an incomplete form
         document.querySelector('#alert').innerHTML = "";
         document.querySelector('#alert').className = "";
-        required_fields = document.querySelectorAll('#required_field');
+        required_fields = document.querySelectorAll('.required_field');
         for (let i = 0; i < required_fields.length; i++) {
           required_fields[i].style.color="black";
         };
@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
       } else {
         document.querySelector('#alert').innerHTML = "Please fill in all required fields.";
         document.querySelector('#alert').className = "alert alert-danger";
-        required_fields = document.querySelectorAll('#required_field');
+        required_fields = document.querySelectorAll(".required-field");
         for (let i = 0; i < required_fields.length; i++) {
           required_fields[i].style.color="red";
         };
