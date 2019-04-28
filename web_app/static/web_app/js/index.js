@@ -72,12 +72,12 @@ document.addEventListener('DOMContentLoaded', function() {
   // Retrieve message from "Contact Us" form and submit
   document.querySelector('#send_message').onclick = () => {
 
-    alert('click');
-
-    // Initialize POST request, extract the CSRF value from the index.html DOM,
-    // and put that into the header of the POST request
+    // Initialize POST request, extract the CSRF value from the index.html DOM
+    // and put that into the header of the POST request, extract the reCAPTCHA v3
+    // value from the index.html DOM
     const request = new XMLHttpRequest();
     const csrf_token = document.querySelector('#csrf').childNodes[0]['value'];
+    const recaptcha = document.querySelector('#g-recaptcha-token').value
     request.open('POST', '/');
     request.setRequestHeader("X-CSRFToken", csrf_token);
 
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
       message_data.append('phone',      phone);
       message_data.append('email',      email);
       message_data.append('message',    message);
-      message_data.append('recaptcha',  'recaptcha');
+      message_data.append('recaptcha',  recaptcha);
 
       // View the contents of FormData() in browser console using the strange
       // *.entries() method.
