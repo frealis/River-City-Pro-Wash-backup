@@ -21,78 +21,40 @@ def index(request):
     email = bleach.clean(request.POST['email'])
     message = bleach.clean(request.POST['message'])
     ip = request.META['REMOTE_ADDR']
-
-    # Authenticate reCAPTCHA v2 user's response
     
     # reCAPTCHA v2 SECRET key
-    RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')    # heroku
+    # RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'  # local
+    # RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')    # heroku
     # RECAPTCHA_SITE_SECRET = os.environ['RECAPTCHA_SITE_SECRET']   # aws
 
-    # reCAPTCHA v2 SECRET key, test
-    # RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'
-
     a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')    # heroku, local
-    # a = os.environ('RECAPTCHA_SITE_VERIFY_URL')     # aws
+    # a = os.environ['RECAPTCHA_SITE_VERIFY_URL']     # aws
+
+    #reCAPTCHA v3 SECRET key
+    RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'  # local
+    # RECAPTCHA_SITE_SECRET = '6Lfsp6AUAAAAAFzqAlZMsy3-zkCU-jZjvkeX2wWd'  # aws
 
     b = urllib.parse.urlencode({'secret': RECAPTCHA_SITE_SECRET, 'response': request.POST['recaptcha']}, True)
     c = urllib.request.Request(a + '?' + b)
     recaptcha_response = urllib.request.urlopen(c).read().decode("utf-8")
     if json.loads(recaptcha_response).get("success") == True:
+
+      # Set 'recaptcha' value to be stored in database
       recaptcha = 'Success'
       print('=== reCAPTCHA succeeded ===')
+
+      # Set email administrator address
+      # email_admin = os.getenv('EMAIL_ADMIN')    # heroku, local
+      # email_admin = os.environ['EMAIL_ADMIN']   # aws
+
+      # === AWS email settings go here ===
 
       # Save data submitted from the "Contact Us" form to database -- if there is
       # a problem with the database connection, then the rest of the code in 
       # this function will not execute (ie. mail will not be sent)
-      m = Message(name=name, address=address, phone=phone, email=email, message=message, ip=ip, recaptcha=recaptcha)
-      m.save()
+      # m = Message(name=name, address=address, phone=phone, email=email, message=message, ip=ip, recaptcha=recaptcha)
+      # m.save()
 
-      # Set email administrator address
-      email_admin = os.getenv('EMAIL_ADMIN')    # heroku, local
-      # email_admin = os.environ('EMAIL_ADMIN')   # aws
-
-      # Use Gmail to send a notification message to the site administrator when 
-      # "Contact Us" form is submitted
-      # send_mail(
-      #   'River City Pro Wash -- Contact Us form submission notification',
-      #   Template('Name: $name\nAddress: $address\nPhone: $phone\nEmail: $email\nMessage: $message').substitute(name=name, address=address, phone=phone, email=email, message=message),
-      #   email_admin,
-      #   [email_admin],
-      #   fail_silently=False,
-      # )
-
-      # Use Gmail to send thank you email to client
-      # send_mail(
-      #   'Thank you for contacting River City Pro Wash!',
-      #   Template('Dear $name,\n\nThank you for contacting River City Pro Wash! A member of our team will be in touch with you shortly.\n\nRegards,\nRiver City Pro Wash').substitute(name=name),
-      #   email_admin,
-      #   [email],
-      #   fail_silently=False,
-      # )
-
-      # Use SendGrid to send notification to site administrator
-      message = Mail(
-        from_email=email_admin,
-        to_emails=email_admin,
-        subject='River City Pro Wash Contact Form Submission',
-        html_content=Template('Name: $name<br>Address: $address<br>Phone: $phone<br>Email: $email<br>Message: $message').substitute(name=name, address=address, phone=phone, email=email, message=message))
-      try:
-        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-        response = sg.send(message)
-      except Exception as e:
-        print('=========== SendGrid exception: ', e)
-
-      # Use SendGrid to send thank you email to client
-      message = Mail(
-        from_email=email_admin,
-        to_emails=email,
-        subject='Thank you for contacting River City Pro Wash!',
-        html_content=Template('Dear $name,<br><br>Thank you for contacting River City Pro Wash! A member of our team will be in touch with you shortly.<br><br>Regards,<br>River City Pro Wash<br><br>').substitute(name=name))
-      try:
-        sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
-        response = sg.send(message)
-      except Exception as e:
-        print('=========== SendGrid exception: ', e)
 
       # Just put this here to silence a server error message since it looks like
       # request.method == 'POST' requires some kind of HttpResponse object
@@ -101,13 +63,15 @@ def index(request):
       return response
 
     else:
+
+      # Set 'recaptcha' value to be stored in database
       recaptcha = 'Fail'
       print('=== reCAPTCHA failed ===')
 
       # Save data submitted from the "Contact Us" form to database (reCAPTCHA
       # failed)
-      m = Message(name=name, address=address, phone=phone, email=email, message=message, ip=ip, recaptcha=recaptcha)
-      m.save()
+      # m = Message(name=name, address=address, phone=phone, email=email, message=message, ip=ip, recaptcha=recaptcha)
+      # m.save()
 
       # Just put this here to silence a server error message since it looks like
       # request.method == 'POST' requires some kind of HttpResponse object

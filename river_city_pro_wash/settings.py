@@ -13,10 +13,6 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 import logging
 import os
 
-# Activate Django-Heroku
-# import django_heroku
-# django_heroku.settings(locals())
-
 # Use python-dotenv to manage environment variables
 # https://github.com/theskumar/python-dotenv
 # from dotenv import load_dotenv
@@ -59,9 +55,10 @@ DEBUG = False
 # DEBUG_PROPAGATE_EXCEPTIONS = True # bubble (?) DEBUG errors to the top/bottom
 
 ALLOWED_HOSTS = [
-  'www.rivercityprowash.com',
-  'rivercityprowash.com',
-  'rcpw-env-env.y5j52jmsr2.us-east-1.elasticbeanstalk.com',
+  # 'www.rivercityprowash.com',
+  # 'rivercityprowash.com',
+  # 'rcpw-env-env.y5j52jmsr2.us-east-1.elasticbeanstalk.com',
+  '*',
 ]
 
 # Application definition
@@ -110,23 +107,24 @@ WSGI_APPLICATION = 'river_city_pro_wash.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
-
-# Heroku, Dockerfile Postgres database
 DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'postgres',
-    'USER': 'postgres',
-    'HOST': 'db',
-    'PORT': '5432',
-  }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
+
+# AWS Postgres database
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': os.environ['AWS_POSTGRES_NAME'],
+#     'USER': os.environ['AWS_POSTGRES_USER'],
+#     'PASSWORD': os.environ['AWS_POSTGRES_PASSWORD'],
+#     'HOST': os.environ['AWS_POSTGRES_HOST'],
+#     'PORT': '5432',
+#   }
+# }
 
 # Local Postgres database
 # DATABASES = {
@@ -170,13 +168,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'EST'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
 
@@ -187,8 +181,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
   os.path.join(BASE_DIR, 'web_app/static/web_app'),
 )
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # heroku
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') # aws
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # heroku
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static') # aws
 
 # Email settings for Gmail, local
 # EMAIL_HOST = os.getenv("EMAIL_HOST")
@@ -198,8 +192,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static') # aws
 # EMAIL_USE_TLS = False
 # EMAIL_USE_SSL = True
 
+# Activate Django-Heroku
+# import django_heroku
+# django_heroku.settings(locals())
 
-# Logging
+# Logging -- must DISABLE in AWS
 LOGGING = {
   'version': 1,
   'disable_existing_loggers': False,
