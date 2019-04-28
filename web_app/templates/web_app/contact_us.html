@@ -27,27 +27,27 @@
   <textarea id="message" name="message" class="mt-2" type="text" style="width: 100%; height: 120px" placeholder="Enter a message" maxlength="800"></textarea><br>
 
   <p><span class="red">*</span> indicates a required field</p>
-  <span id="csrf">{% csrf_token %}</span>
-  <p></p>
   <p><span id="alert"></span></p>
-  <p>
-
-    <input id="send_message" class="btn btn-outline-success mt-2" type="submit">
+  <p><input id="send_message" class="btn btn-outline-success mt-2" type="submit"></p>
     <!-- <p><a id="send_message" class="btn btn-lg btn-primary" role="button">Submit</a></p> -->
-
-    <script>
-      grecaptcha.ready(function() {
-
-        // aws, heroku
-        grecaptcha.execute('6Lfsp6AUAAAAAKqgw2iGIvkiYepchQRy0LF2CnLj', {action: 'homepage'}).then(function(token) {
-        
-          // local
-        // grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', {action: 'homepage'}).then(function(token) {
-          console.log(token);
-        });
-      });
-    </script>
-
-
-  </p>
+  
+  <!-- Store CSRF and reCAPTCHA v3 tokens -->
+  <span id="csrf">{% csrf_token %}</span>
+  <span id="g-recaptcha-token"></span>
 </form>
+
+<script>
+  grecaptcha.ready(function() {
+
+    // aws, heroku
+    grecaptcha.execute('6Lfsp6AUAAAAAKqgw2iGIvkiYepchQRy0LF2CnLj', {action: 'homepage'}).then(function(token) {
+    
+    // local
+    // grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', {action: 'homepage'}).then(function(token) {
+      
+      document.querySelector('#g-recaptcha-token').innerHTML = token;
+      console.log(token);
+
+    });
+  });
+</script>
