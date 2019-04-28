@@ -32,21 +32,16 @@
   <p><span id="alert"></span></p>
   <p>
 
-    <!-- reCAPTCHA v2 SITE key -->
-    <div class="g-recaptcha" data-sitekey="6LfRfJwUAAAAAFuvoDiqY3B2AABs1-tmWA7p9MHG"></div>
-    
-    <!-- reCAPTCHA v2 SITE key, test -->
-    <!-- <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div> -->
-
     <input id="send_message" class="btn btn-outline-success mt-2" type="submit">
     <!-- <p><a id="send_message" class="btn btn-lg btn-primary" role="button">Submit</a></p> -->
 
     <script>
       grecaptcha.ready(function() {
 
-        // aws/ heroku
+        // aws, heroku
         grecaptcha.execute('6Lfsp6AUAAAAAKqgw2iGIvkiYepchQRy0LF2CnLj', {action: 'homepage'}).then(function(token) {
-        // test
+        
+          // local
         // grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', {action: 'homepage'}).then(function(token) {
           console.log(token);
         });

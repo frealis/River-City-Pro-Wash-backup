@@ -22,17 +22,13 @@ def index(request):
     message = bleach.clean(request.POST['message'])
     ip = request.META['REMOTE_ADDR']
     
-    # reCAPTCHA v2 SECRET key
+    # reCAPTCHA v3 SECRET key
     # RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'  # local
-    # RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')    # heroku
+    RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')    # heroku
     # RECAPTCHA_SITE_SECRET = os.environ['RECAPTCHA_SITE_SECRET']   # aws
 
     a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')    # heroku, local
     # a = os.environ['RECAPTCHA_SITE_VERIFY_URL']     # aws
-
-    #reCAPTCHA v3 SECRET key
-    # RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'  # local
-    RECAPTCHA_SITE_SECRET = '6Lfsp6AUAAAAAFzqAlZMsy3-zkCU-jZjvkeX2wWd'  # aws, heroku
 
     b = urllib.parse.urlencode({'secret': RECAPTCHA_SITE_SECRET, 'response': request.POST['recaptcha']}, True)
     c = urllib.request.Request(a + '?' + b)

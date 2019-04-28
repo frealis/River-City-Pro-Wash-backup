@@ -72,8 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Retrieve message from "Contact Us" form and submit
   document.querySelector('#send_message').onclick = () => {
 
-    // console.log('grecaptcha.getResponse(): ', grecaptcha.getResponse())
-
     // Ensure that the reCAPTCHA v2 checkbox is ticked
     if (grecaptcha.getResponse() !== '') {
 
@@ -121,14 +119,14 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // Append user input & reCAPTCHA v2 token to message_data (the FormData() 
-        // object).
+        // object) -- reCAPTCHA v2 creates a window.grecaptcha object
         const message_data = new FormData();
         message_data.append('name',       name);
         message_data.append('address',    address);
         message_data.append('phone',      phone);
         message_data.append('email',      email);
         message_data.append('message',    message);
-        message_data.append('recaptcha',  grecaptcha.getResponse());
+        // message_data.append('recaptcha',  grecaptcha.getResponse());
         // message_data.append('recaptcha',  grecaptcha.getResponse);
 
         // View the contents of FormData() in browser console using the strange
