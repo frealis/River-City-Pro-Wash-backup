@@ -36,9 +36,24 @@
     <!-- <div class="g-recaptcha" data-sitekey="6LfRfJwUAAAAAFuvoDiqY3B2AABs1-tmWA7p9MHG"></div> -->
     
     <!-- reCAPTCHA v2 SITE key, test -->
-    <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+    <!-- <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div> -->
 
-    <input id="send_message" class="btn btn-outline-success mt-2" type="submit">
-    
+    <!-- <input id="send_message" class="btn btn-outline-success mt-2" type="submit"> -->
+    <!-- <input id="send_message" class="btn btn-outline-success mt-2"> -->
+    <p><a id="send_message" class="btn btn-lg btn-primary" role="button">Submit</a></p>
+
+    <script>
+      grecaptcha.ready(function() {
+
+        // aws
+        // grecaptcha.execute('6Lfsp6AUAAAAAKqgw2iGIvkiYepchQRy0LF2CnLj', {action: 'homepage'});
+        // test
+        grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', {action: 'homepage'}).then(function(token) {
+          console.log(token);
+        });
+      });
+    </script>
+
+
   </p>
 </form>

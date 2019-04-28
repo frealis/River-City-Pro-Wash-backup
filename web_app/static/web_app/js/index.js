@@ -111,8 +111,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#email').value = '';
         document.querySelector('#message').value = '';
 
-        // Clear the error message and revert required field headers to default in
-        // case the user had previously submitted an incomplete form
+        // Clear the error message and revert required field headers to default 
+        // color in case the user had previously submitted an incomplete form.
         document.querySelector('#alert').innerHTML = "";
         document.querySelector('#alert').className = "";
         required_fields = document.querySelectorAll('#required_field');
@@ -121,22 +121,24 @@ document.addEventListener('DOMContentLoaded', function() {
         };
 
         // Append user input & reCAPTCHA v2 token to message_data (the FormData() 
-        // object)
+        // object).
         const message_data = new FormData();
         message_data.append('name',       name);
         message_data.append('address',    address);
         message_data.append('phone',      phone);
         message_data.append('email',      email);
         message_data.append('message',    message);
-        message_data.append('recaptcha',  grecaptcha.getResponse());
+        // message_data.append('recaptcha',  grecaptcha.getResponse());
+        message_data.append('recaptcha',  grecaptcha.getResponse);
 
-        // View the contents of FormData() in browser console
+        // View the contents of FormData() in browser console using the strange
+        // *.entries() method.
         // for (let i of message_data.entries()) {
         //   console.log(i);
         // };
 
         // Send a "Message successfully sent!" alert to the DOM in the event of a
-        // successful "Contact Us" form submission
+        // successful "Contact Us" form submission.
         document.querySelector('#alert').innerHTML = "Your message has been sent!";
         document.querySelector('#alert').className = "alert alert-success";
 
