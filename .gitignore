@@ -8,7 +8,6 @@ __pycache__/
 *.zip
 *.pem
 *.crt
-staticfiles/
 venv/
 *.txt
 
