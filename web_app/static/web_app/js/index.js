@@ -81,6 +81,11 @@ document.addEventListener('DOMContentLoaded', function() {
     request.open('POST', '/');
     request.setRequestHeader("X-CSRFToken", csrf_token);
 
+    //
+    grecaptcha.execute('6Lfsp6AUAAAAAKqgw2iGIvkiYepchQRy0LF2CnLj', {action: 'homepage'}).then(function(token) {
+      document.querySelector('#g-recaptcha-token').value = token;
+    });
+
     // console.log(recaptcha);
 
     // Retrieve user input from the "Contact Us" form

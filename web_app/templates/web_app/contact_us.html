@@ -38,19 +38,15 @@
 
 <script>
 
-  // Get the reCAPTCHA v3 token. This has to occur after loading the google
+  // Create the reCAPTCHA v3 token. This has to occur after loading the google
   // recaptcha script that makes this possible in the first place (it's 
   // currently somewhere in the <head> tags within base.html).
   grecaptcha.ready(function() {
 
-    // aws, heroku
+    // Create a reCAPTCHA v3 token as soon as grecaptcha is "ready"
     grecaptcha.execute('6Lfsp6AUAAAAAKqgw2iGIvkiYepchQRy0LF2CnLj', {action: 'homepage'}).then(function(token) {
-
-    // local
-    // grecaptcha.execute('6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI', {action: 'homepage'}).then(function(token) {
-      
       document.querySelector('#g-recaptcha-token').value = token;
     });
   });
-
+  
 </script>
