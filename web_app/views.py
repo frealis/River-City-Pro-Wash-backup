@@ -23,8 +23,8 @@ def index(request):
     ip = request.META['REMOTE_ADDR']
     
     # reCAPTCHA v3 SECRET key
-    # RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'  # local
-    RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')    # heroku
+    RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'  # local
+    # RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')    # heroku
     # RECAPTCHA_SITE_SECRET = os.environ['RECAPTCHA_SITE_SECRET']   # aws
 
     a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')    # heroku, local
@@ -45,7 +45,7 @@ def index(request):
       # email_admin = os.getenv('EMAIL_ADMIN')    # heroku, local
       # email_admin = os.environ['EMAIL_ADMIN']   # aws
 
-      # === AWS email settings go here ===
+      # === Email settings go here ===
 
       # Save data submitted from the "Contact Us" form to database -- if there is
       # a problem with the database connection, then the rest of the code in 
