@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Ensure that the Name, Email Address, and Message fields are not empty in
     // the "Contact Us" form
-    if (name !== '' && email !== '' && message !== '') {
+    if (name !== '' && address !== '' && email !== '' && message !== '') {
 
       // Clear "Contact Us" form data after submission
       document.querySelector('#name').value = '';
