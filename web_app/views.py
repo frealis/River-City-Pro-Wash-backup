@@ -23,8 +23,8 @@ def index(request):
     ip = request.META['REMOTE_ADDR']
     
     # reCAPTCHA v3 SECRET key
-    RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWex'  # local
-    # RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')    # heroku
+    # RECAPTCHA_SITE_SECRET = '6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe'  # local
+    RECAPTCHA_SITE_SECRET = os.getenv('RECAPTCHA_SITE_SECRET')    # heroku
     # RECAPTCHA_SITE_SECRET = os.environ['RECAPTCHA_SITE_SECRET']   # aws
 
     a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')    # heroku, local
@@ -34,7 +34,6 @@ def index(request):
     c = urllib.request.Request(a + '?' + b)
     recaptcha_response = urllib.request.urlopen(c).read().decode("utf-8")
 
-    print('=================== RECAPTCHA_SITE_SECRET: ', RECAPTCHA_SITE_SECRET)
     print('=================== recaptcha_response: ', recaptcha_response)
     if json.loads(recaptcha_response).get("success") == True:
 
