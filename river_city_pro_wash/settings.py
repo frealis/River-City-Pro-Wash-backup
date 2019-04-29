@@ -15,8 +15,8 @@ import os
 
 # Use python-dotenv to manage environment variables in heroku, local
 # https://github.com/theskumar/python-dotenv
-# from dotenv import load_dotenv
-# load_dotenv()
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,8 +42,8 @@ X_FRAME_OPTIONS                 = 'DENY'
 
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.getenv("SECRET_KEY")    # heroku, local
-SECRET_KEY = os.environ["SECRET_KEY"]   # aws
+SECRET_KEY = os.getenv("SECRET_KEY")    # heroku, local
+# SECRET_KEY = os.environ["SECRET_KEY"]   # aws
 
 
 # SECURITY WARNING: don't run with debug turned on in production! -- If you set
