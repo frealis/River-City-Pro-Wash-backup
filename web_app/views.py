@@ -165,6 +165,8 @@ def index(request):
         print("Email sent! Message ID:"),
         print(response['MessageId'])
 
+      phone = phone_ac + phone_3d + phone_4d + phone_ext
+
       # Save data submitted from the "Contact Us" form to database -- if there is
       # a problem with the database connection, then the rest of the code in 
       # this function will not execute (ie. mail will not be sent)
