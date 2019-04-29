@@ -95,7 +95,7 @@ def index(request):
       </html>
                   """
 
-      if (phone):
+      if phone:
         phone_str = str(phone)
         phone_list = list(phone_str)
         phone_ac = phone_list[0] + phone_list[1] + phone_list[2]
