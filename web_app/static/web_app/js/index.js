@@ -100,10 +100,10 @@ document.addEventListener('DOMContentLoaded', function() {
     let phone_ac  = document.querySelector('#phone_ac').value;
     let phone_3d  = document.querySelector('#phone_3d').value;
     let phone_4d  = document.querySelector('#phone_4d').value;
-    let phone     = phone_ac + phone_3d + phone_4d
+    // let phone     = phone_ac + phone_3d + phone_4d
+    phone_ext     = '';
     if (document.querySelector('#phone_ext').value !== '') {
       let phone_ext = document.querySelector('#phone_ext').value;
-      phone += ' ext. ' + phone_ext;
     };
     let email     = document.querySelector('#email').value;
     let message   = document.querySelector('#message').value;
@@ -118,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.querySelector('#phone_ac').value = '';
       document.querySelector('#phone_3d').value = '';
       document.querySelector('#phone_4d').value = '';
+      document.querySelector('#phone_ext').value = '';
       document.querySelector('#email').value = '';
       document.querySelector('#message').value = '';
 
@@ -137,7 +138,10 @@ document.addEventListener('DOMContentLoaded', function() {
       const message_data = new FormData();
       message_data.append('name',       name);
       message_data.append('address',    address);
-      message_data.append('phone',      phone);
+      message_data.append('phone_ac',   phone_ac);
+      message_data.append('phone_3d',   phone_3d);
+      message_data.append('phone_4d',   phone_4d);
+      message_data.append('phone_ext',   phone_ext);
       message_data.append('email',      email);
       message_data.append('message',    message);
       message_data.append('recaptcha_token',  recaptcha_token);

@@ -16,7 +16,10 @@ def index(request):
     # Gather & sanitize data submitted from the "Contact Us" form
     name = bleach.clean(request.POST['name'])
     address = bleach.clean(request.POST['address'])
-    phone = bleach.clean(request.POST['phone'])
+    phone_ac = bleach.clean(request.POST['phone_ac'])
+    phone_3d = bleach.clean(request.POST['phone_3d'])
+    phone_4d = bleach.clean(request.POST['phone4d'])
+    phone_ext = bleach.clean(request.POST['phone_ext'])
     email = bleach.clean(request.POST['email'])
     message = bleach.clean(request.POST['message'])
     ip = request.META['REMOTE_ADDR']
@@ -36,8 +39,6 @@ def index(request):
     if json.loads(recaptcha_response).get("success") == True:
       recaptcha = 'Success'
       recaptcha_score = json.loads(recaptcha_response).get("score")
-      print('=== phone: ', phone)
-      print('=== recaptcha_score: ', recaptcha_score)
       print('=== reCAPTCHA succeeded ===')
 
       # Set email administrator address
@@ -70,13 +71,11 @@ def index(request):
       # The email body for administrators with non-HTML email clients.
       ADMIN_BODY_TEXT = (Template("Name: $name\n"
                   "Address: $address\n"
-                  "Phone: $phone\n"
+                  "Phone: ($phone_ac) $phone_3d - $phone_4d ext. $phone_ext\n"
                   "Email: $email\n"
                   "Message: $message\n"
-                  "Human probability scale: $recaptcha_score").substitute(name=name, address=address, phone=phone, email=email, message=message, recaptcha_score=recaptcha_score)
+                  "Human probability scale: $recaptcha_score").substitute(name=name, address=address, phone_ac=phone_ac, phone_3d=phone_3d, phone_4d=phone_4d, phone_ext=phone_ext, email=email, message=message, recaptcha_score=recaptcha_score)
                   )
-
-      print('ADMIN_BODY_TEXT: ', ADMIN_BODY_TEXT)
             
       # The HTML body of the email sent to the customer.
       BODY_HTML = """<html>
@@ -110,7 +109,7 @@ def index(request):
         <p>
           Name: """ + Template('$name').substitute(name=name) + """<br>
           Address: """ + Template('$address').substitute(address=address) + """<br>
-          Phone: """ + Template('$phone').substitute(phone=phone) + """<br>
+          Phone: """ + Template('($phone_ac) $phone_3d - $phone_4d ext. $phone_ext').substitute(phone_ac=phone_ac, phone_3d=phone_3d, phone_4d=phone_4d, phone_ext=phone_ext) + """<br>
           Email: """ + Template('$email').substitute(email=email) + """<br>
           Message: """ + Template('$message').substitute(message=message) + """<br>
           Human probability scale from 0 to 1 (0 for non-human, 1 for human): """ + Template('$recaptcha_score').substitute(recaptcha_score=recaptcha_score) + """<br>
