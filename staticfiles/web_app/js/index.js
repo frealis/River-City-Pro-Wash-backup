@@ -72,8 +72,6 @@ document.addEventListener('DOMContentLoaded', function() {
   // Retrieve message from "Contact Us" form and submit
   document.querySelector('#send_message').onclick = () => {
 
-    
-
     // Initialize POST request, extract the CSRF value from the index.html DOM
     // and put that into the header of the POST request, extract the reCAPTCHA v3
     // value from the index.html DOM
@@ -83,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
     request.open('POST', '/');
     request.setRequestHeader("X-CSRFToken", csrf_token);
 
-    console.log(recaptcha);
+    // console.log(recaptcha);
 
     // Retrieve user input from the "Contact Us" form
     let name      = document.querySelector('#name').value;

@@ -33,6 +33,8 @@ def index(request):
     b = urllib.parse.urlencode({'secret': RECAPTCHA_SITE_SECRET, 'response': request.POST['recaptcha']}, True)
     c = urllib.request.Request(a + '?' + b)
     recaptcha_response = urllib.request.urlopen(c).read().decode("utf-8")
+
+    print('=================== recaptcha_response: ', recaptcha_response)
     if json.loads(recaptcha_response).get("success") == True:
 
       # Set recaptcha = 'Success' to be stored in database
