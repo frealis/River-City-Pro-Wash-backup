@@ -30,7 +30,7 @@ def index(request):
     a = os.getenv('RECAPTCHA_SITE_VERIFY_URL')    # heroku, local
     # a = os.environ['RECAPTCHA_SITE_VERIFY_URL']     # aws
 
-    b = urllib.parse.urlencode({'secret': RECAPTCHA_SITE_SECRET, 'response': request.POST['recaptcha']}, True)
+    b = urllib.parse.urlencode({'secret': RECAPTCHA_SITE_SECRET, 'response': request.POST['recaptcha_token']}, True)
     c = urllib.request.Request(a + '?' + b)
     recaptcha_response = urllib.request.urlopen(c).read().decode("utf-8")
 
@@ -39,6 +39,7 @@ def index(request):
 
       # Set recaptcha = 'Success' to be stored in database
       recaptcha = 'Success'
+      recaptcha_score = json.loads(recaptcha_response).get("score")
       print('=== json.loads(recaptcha_response).get("score"): ', json.loads(recaptcha_response).get('score'))
       print('=== reCAPTCHA succeeded ===')
 

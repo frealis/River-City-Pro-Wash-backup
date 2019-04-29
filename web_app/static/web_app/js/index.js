@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // value from the index.html DOM
     const request = new XMLHttpRequest();
     const csrf_token = document.querySelector('#csrf').childNodes[0]['value'];
-    const recaptcha = document.querySelector('#g-recaptcha-token').value;
+    const recaptcha_token = document.querySelector('#g-recaptcha-token').value;
     request.open('POST', '/');
     request.setRequestHeader("X-CSRFToken", csrf_token);
 
@@ -120,14 +120,16 @@ document.addEventListener('DOMContentLoaded', function() {
       };
 
       // Append user input & reCAPTCHA v3 token to message_data (the FormData() 
-      // object)
+      // object) -- token is randomly generated and good for only 1 submission
+      // to the google recaptcha API, bots may try to make POST requests using old
+      // or invalid tokens.
       const message_data = new FormData();
       message_data.append('name',       name);
       message_data.append('address',    address);
       message_data.append('phone',      phone);
       message_data.append('email',      email);
       message_data.append('message',    message);
-      message_data.append('recaptcha',  recaptcha);
+      message_data.append('recaptcha_token',  recaptcha_token);
 
       // View the contents of FormData() in browser console using the strange
       // *.entries() method.
