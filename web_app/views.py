@@ -32,9 +32,10 @@ def index(request):
     c = urllib.request.Request(a + '?' + b)
     recaptcha_response = urllib.request.urlopen(c).read().decode("utf-8")
 
-    print('=================== recaptcha_response: ', recaptcha_response)
+    print('=== recaptcha_response: ', recaptcha_response)
     if json.loads(recaptcha_response).get("success") == True:
       recaptcha = 'Success'
+      recaptcha_score = json.loads(recaptcha_response).get("score")
       print('=== reCAPTCHA succeeded ===')
 
       # Set email administrator address
@@ -69,7 +70,8 @@ def index(request):
                   "Address: $address\n"
                   "Phone: $phone\n"
                   "Email: $email\n"
-                  "Message: $message").substitute(name=name, address=address, phone=phone, email=email, message=message)
+                  "Message: $message"
+                  "Human probability scale: $recaptcha_score").substitute(name=name, address=address, phone=phone, email=email, message=message, recaptcha_score=recaptcha_score)
                   )
             
       # The HTML body of the email sent to the customer.
@@ -106,6 +108,7 @@ def index(request):
           Phone: """ + Template('$phone').substitute(phone=phone_pretty) + """<br>
           Email: """ + Template('$email').substitute(email=email) + """<br>
           Message: """ + Template('$message').substitute(message=message) + """<br>
+          Human probability scale from 0 to 1 (0 for non-human, 1 for human): """ + Template('$recaptcha_score').substitute(recaptcha_score=recaptcha_score) + """<br>
         </p>
       </body>
       </html>
@@ -161,7 +164,7 @@ def index(request):
       # Save data submitted from the "Contact Us" form to database -- if there is
       # a problem with the database connection, then the rest of the code in 
       # this function will not execute (ie. mail will not be sent)
-      m = Message(name=name, address=address, phone=phone, email=email, message=message, ip=ip, recaptcha=recaptcha)
+      m = Message(name=name, address=address, phone=phone, email=email, message=message, ip=ip, recaptcha=recaptcha, recaptcha_score=recaptcha_score)
       m.save()
 
 
