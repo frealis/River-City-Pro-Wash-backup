@@ -36,6 +36,7 @@ def index(request):
     if json.loads(recaptcha_response).get("success") == True:
       recaptcha = 'Success'
       recaptcha_score = json.loads(recaptcha_response).get("score")
+      print('=== phone: ', phone)
       print('=== reCAPTCHA succeeded ===')
 
       # Set email administrator address
