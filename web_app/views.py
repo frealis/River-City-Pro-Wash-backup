@@ -40,6 +40,7 @@ def index(request):
       # Set recaptcha = 'Success' to be stored in database
       recaptcha = 'Success'
       recaptcha_score = json.loads(recaptcha_response).get("score")
+      print("=== request.POST['recaptcha_token']: ", request.POST['recaptcha_token'])
       print('=== json.loads(recaptcha_response).get("score"): ', json.loads(recaptcha_response).get('score'))
       print('=== reCAPTCHA succeeded ===')
 
