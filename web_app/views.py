@@ -39,6 +39,7 @@ def index(request):
 
       # Set recaptcha = 'Success' to be stored in database
       recaptcha = 'Success'
+      print('=== json.loads(recaptcha_response).get("score"): ', json.loads(recaptcha_response).get('score'))
       print('=== reCAPTCHA succeeded ===')
 
       # Set email administrator address
