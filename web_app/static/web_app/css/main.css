@@ -297,6 +297,11 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
+/* Hide the reCAPTCHA v3 badge */
+.grecaptcha-badge {
+  display: none !important;
+}
+
 .modal-body {padding: 0;}
 
 .modal-footer {
@@ -318,7 +323,7 @@ input[type=number]::-webkit-outer-spin-button {
 .modal-link:hover,
 .modal-link:focus {
   cursor: pointer;
-  filter: brightness(75%);
+  filter: brightness(70%);
 }
 
 @media (max-width: 767px) {
