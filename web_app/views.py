@@ -34,6 +34,7 @@ def index(request):
     c = urllib.request.Request(a + '?' + b)
     recaptcha_response = urllib.request.urlopen(c).read().decode("utf-8")
 
+    print('=================== RECAPTCHA_SITE_SECRET: ', RECAPTCHA_SITE_SECRET)
     print('=================== recaptcha_response: ', recaptcha_response)
     if json.loads(recaptcha_response).get("success") == True:
 
