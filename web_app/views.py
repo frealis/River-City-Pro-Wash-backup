@@ -110,7 +110,7 @@ def index(request):
         <p>
           Name: """ + Template('$name').substitute(name=name) + """<br>
           Address: """ + Template('$address').substitute(address=address) + """<br>
-          Phone: """ + Template('$phone').substitute(phone=phone_pretty) + """<br>
+          Phone: """ + Template('$phone').substitute(phone=phone) + """<br>
           Email: """ + Template('$email').substitute(email=email) + """<br>
           Message: """ + Template('$message').substitute(message=message) + """<br>
           Human probability scale from 0 to 1 (0 for non-human, 1 for human): """ + Template('$recaptcha_score').substitute(recaptcha_score=recaptcha_score) + """<br>
