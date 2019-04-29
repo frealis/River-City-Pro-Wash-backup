@@ -313,7 +313,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 .modal-link {
   width: 100%;
-  /* width: 225px; */
+}
+
+.modal-link:hover,
+.modal-link:focus {
+  color: #EFF4F8;
+  text-decoration: none;
+  cursor: pointer;
+  filter: brightness(50%);
 }
 
 @media (max-width: 767px) {
