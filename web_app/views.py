@@ -37,6 +37,7 @@ def index(request):
       recaptcha = 'Success'
       recaptcha_score = json.loads(recaptcha_response).get("score")
       print('=== phone: ', phone)
+      print('=== recaptcha_score: ', recaptcha_score)
       print('=== reCAPTCHA succeeded ===')
 
       # Set email administrator address
@@ -71,9 +72,11 @@ def index(request):
                   "Address: $address\n"
                   "Phone: $phone\n"
                   "Email: $email\n"
-                  "Message: $message"
+                  "Message: $message\n"
                   "Human probability scale: $recaptcha_score").substitute(name=name, address=address, phone=phone, email=email, message=message, recaptcha_score=recaptcha_score)
                   )
+
+      print('ADMIN_BODY_TEXT: ', ADMIN_BODY_TEXT)
             
       # The HTML body of the email sent to the customer.
       BODY_HTML = """<html>
