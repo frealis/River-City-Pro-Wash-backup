@@ -95,13 +95,13 @@ def index(request):
       </html>
                   """
 
-      if phone:
-        phone_str = str(phone)
-        phone_list = list(phone_str)
-        phone_ac = phone_list[0] + phone_list[1] + phone_list[2]
-        phone_3d = phone_list[3] + phone_list[4] + phone_list[5]
-        phone_4d = phone_list[6] + phone_list[7] + phone_list[8] + phone_list[9]
-        phone_pretty = Template('($phone_ac) $phone_3d - $phone_4d').substitute(phone_ac=phone_ac, phone_3d=phone_3d, phone_4d=phone_4d)
+      # if phone:
+      #   phone_str = str(phone)
+      #   phone_list = list(phone_str)
+      #   phone_ac = phone_list[0] + phone_list[1] + phone_list[2]
+      #   phone_3d = phone_list[3] + phone_list[4] + phone_list[5]
+      #   phone_4d = phone_list[6] + phone_list[7] + phone_list[8] + phone_list[9]
+      #   phone_pretty = Template('($phone_ac) $phone_3d - $phone_4d').substitute(phone_ac=phone_ac, phone_3d=phone_3d, phone_4d=phone_4d)
 
       # The HTML body of the email sent to the site administrator.
       ADMIN_BODY_HTML = """<html>
