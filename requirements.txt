@@ -11,6 +11,6 @@ pytz==2019.1
 requests==2.20.1
 sendgrid==6.0.4
 six==1.12.0
-urllib3==1.24.2
+urllib3==1.26.5
 webencodings==0.5.1
 django-heroku==0.3.1
